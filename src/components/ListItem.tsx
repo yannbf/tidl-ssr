@@ -7,7 +7,7 @@ type Props = {
 }
 
 const ListItem: React.FunctionComponent<Props> = ({ data }: Props) => (
-  <div>
+  <div data-testid="list-item">
     <p>{data.name}</p>
   </div>
 )

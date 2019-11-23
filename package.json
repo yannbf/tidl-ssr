@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "tslint 'src/**/*.{ts,tsx,js}'",
-    "format": "prettier --write 'src/**/*.{ts,tsx,js}'"
+    "format": "prettier --write 'src/**/*.{ts,tsx,js}'",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "isomorphic-unfetch": "^3.0.0",
@@ -17,8 +19,15 @@
     "styled-components": "^4.4.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.7.4",
+    "@storybook/addon-actions": "^5.2.6",
+    "@storybook/addon-links": "^5.2.6",
+    "@storybook/addons": "^5.2.6",
+    "@storybook/preset-typescript": "^1.1.0",
+    "@storybook/react": "^5.2.6",
     "@types/node": "^12.12.11",
     "@types/react": "^16.9.12",
+    "babel-loader": "^8.0.6",
     "husky": ">=1",
     "lint-staged": ">=8",
     "prettier": "^1.19.1",

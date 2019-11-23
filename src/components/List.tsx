@@ -7,7 +7,9 @@ type Props = {
   items?: IRecord[]
 }
 
-const EmptyState: React.FunctionComponent = () => <p>The items list is empty!</p>
+const EmptyState: React.FunctionComponent = () => (
+  <p data-testid="empty-list">The items list is empty!</p>
+)
 
 const List: React.FunctionComponent<Props> = ({ items = [] }: Props) => {
   if (!items.length) {

@@ -4,17 +4,25 @@ import ListItem from './ListItem'
 import { IRecord } from '../interfaces'
 
 type Props = {
-  items: IRecord[]
+  items?: IRecord[]
 }
 
-const List: React.FunctionComponent<Props> = ({ items }: Props) => (
-  <ul>
-    {items.map((item: IRecord) => (
-      <li key={item.name}>
-        <ListItem data={item} />
-      </li>
-    ))}
-  </ul>
-)
+const EmptyState: React.FunctionComponent = () => <p>The items list is empty!</p>
+
+const List: React.FunctionComponent<Props> = ({ items = [] }: Props) => {
+  if (!items.length) {
+    return <EmptyState />
+  }
+
+  return (
+    <ul>
+      {items.map((item: IRecord) => (
+        <li key={item.name}>
+          <ListItem data={item} />
+        </li>
+      ))}
+    </ul>
+  )
+}
 
 export default List

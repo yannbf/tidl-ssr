@@ -6,6 +6,10 @@ import { database } from '../api/database'
 import { IRecord } from '../interfaces'
 import ListItem from '../components/List'
 import Layout from '../components/Layout'
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
+
+dayjs.extend(relativeTime)
 
 type Props = {
   items: IRecord[]

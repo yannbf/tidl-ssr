@@ -13,3 +13,17 @@ This is an app to remind about the last time you have done certain activities (t
   $yarn
   $yarn dev
 ```
+
+## Running tests
+
+- Unit tests
+
+```sh
+  $yarn test
+```
+
+- E2E tests
+
+```sh
+  $yarn test:e2e
+```

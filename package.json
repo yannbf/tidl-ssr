@@ -20,9 +20,15 @@
     "dayjs": "^1.8.17",
     "isomorphic-unfetch": "^3.0.0",
     "next": "9.1.4",
+    "next-redux-wrapper": "^4.0.1",
     "react": "16.12.0",
     "react-dom": "16.12.0",
-    "styled-components": "^4.4.1"
+    "react-redux": "^7.1.3",
+    "redux": "^4.0.4",
+    "redux-observable": "^1.2.0",
+    "rxjs": "^6.5.3",
+    "styled-components": "^4.4.1",
+    "universal-rxjs-ajax": "^2.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.7.4",
@@ -42,6 +48,7 @@
     "jest": "^24.9.0",
     "lint-staged": ">=8",
     "prettier": "^1.19.1",
+    "redux-logger": "^3.0.6",
     "ts-jest": "^24.2.0",
     "tslint": "^5.20.1",
     "tslint-config-prettier": "^1.18.0",

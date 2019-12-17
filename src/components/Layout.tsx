@@ -2,7 +2,7 @@ import React from 'react'
 // import styled from 'styled-components'
 
 type Props = {
-  children: React.ReactNode[]
+  children: React.ReactNode | React.ReactNode[]
 }
 
 const Layout: React.FunctionComponent<Props> = (props: Props) => <div>{props.children}</div>

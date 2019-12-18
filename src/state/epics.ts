@@ -7,7 +7,7 @@ import * as actions from './actions'
 import * as types from './actionTypes'
 import { database } from '../api/database'
 
-export const fetchTasksEpic = (action$, state$) =>
+export const fetchTasksEpic = action$ =>
   action$.pipe(
     ofType(types.FETCH_TASKS),
     mergeMap(() =>

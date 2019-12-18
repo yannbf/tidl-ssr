@@ -20,7 +20,7 @@ const List: React.FunctionComponent = () => {
   const isLoading: boolean = useSelector((state: IAppState) => state.isLoading)
 
   if (isLoading) {
-    return <div>loading..</div>
+    return <div data-testid="loading">loading..</div>
   }
 
   return tasks.length ? (

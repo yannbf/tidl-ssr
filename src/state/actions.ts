@@ -6,11 +6,11 @@ export const fetchTasks = () => ({
 })
 
 export const fetchTasksSuccess = tasks => ({
-  type: types.FETCH_TASK_SUCCESS,
+  type: types.FETCH_TASKS_SUCCESS,
   payload: { tasks, isLoading: false },
 })
 
 export const fetchTasksFailure = error => ({
-  type: types.FETCH_TASK_FAILURE,
+  type: types.FETCH_TASKS_FAILURE,
   payload: { error, isLoading: false },
 })

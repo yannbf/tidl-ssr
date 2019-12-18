@@ -1,6 +1,6 @@
 import * as types from './actionTypes'
 
-const INITIAL_STATE = {
+export const INITIAL_STATE = {
   tasks: [],
   isLoading: true,
 }
@@ -14,13 +14,13 @@ export default function reducer(state = INITIAL_STATE, action) {
         ...state,
         isLoading: true,
       }
-    case types.FETCH_TASK_SUCCESS:
+    case types.FETCH_TASKS_SUCCESS:
       return {
         ...state,
         tasks: payload.tasks,
         isLoading: false,
       }
-    case types.FETCH_TASK_FAILURE:
+    case types.FETCH_TASKS_FAILURE:
       return {
         ...state,
         error: payload.error,

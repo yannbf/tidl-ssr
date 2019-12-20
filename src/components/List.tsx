@@ -16,21 +16,35 @@ const List: React.FunctionComponent = () => {
     fetchTasks({ type: types.FETCH_TASKS })
   }, [])
 
-  const tasks: IRecord[] = useSelector((state: IAppState) => state.tasks)
-  const isLoading: boolean = useSelector((state: IAppState) => state.isLoading)
+  const [tasks, isLoading] = useSelector(({ tasks, isLoading }: IAppState) => [tasks, isLoading])
 
   if (isLoading) {
     return <div data-testid="loading">loading..</div>
   }
 
   return tasks.length ? (
-    <ul>
-      {tasks.map((item: IRecord) => (
-        <li key={item.name}>
-          <ListItem data={item} />
-        </li>
-      ))}
-    </ul>
+    <>
+      <ul>
+        {tasks.map((item: IRecord) => (
+          <li key={item.name}>
+            <ListItem data={item} />
+          </li>
+        ))}
+      </ul>
+      <style jsx>
+        {`
+          ul {
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
+          }
+          li {
+            display: inline-block;
+          }
+        `}
+      </style>
+    </>
   ) : (
     <EmptyState />
   )

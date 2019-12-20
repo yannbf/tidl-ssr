@@ -5,6 +5,7 @@ import withRedux from 'next-redux-wrapper'
 
 import initStore from '../state'
 import '../util/configure-dates'
+import '../util/register-icons'
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {

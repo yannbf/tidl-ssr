@@ -1,11 +1,11 @@
 import React from 'react'
-import List from '../src/components/List'
+import TaskList from '../src/components/TaskList'
 import mockData from '../src/api/mock-data'
 
 export default {
-  title: 'List',
+  title: 'Task List',
 }
 
-export const emptyList = () => <List />
+export const emptyList = () => <TaskList />
 
-export const withThreeElements = () => <List items={mockData} />
+export const withThreeElements = () => <TaskList items={mockData} />

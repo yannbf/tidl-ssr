@@ -2,14 +2,14 @@ import React, { useEffect } from 'react'
 import * as types from '../state/actionTypes'
 import { useSelector, useDispatch } from 'react-redux'
 
-import ListItem from './ListItem'
+import Task from './Task'
 import { IRecord, IAppState } from '../interfaces'
 
 const EmptyState: React.FunctionComponent = () => (
-  <p data-testid="empty-list">The tasks list is empty!</p>
+  <p data-testid="empty-list">The task list is empty!</p>
 )
 
-const List: React.FunctionComponent = () => {
+const TaskList: React.FunctionComponent = () => {
   const fetchTasks = useDispatch()
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const List: React.FunctionComponent = () => {
       <ul>
         {tasks.map((item: IRecord) => (
           <li key={item.name}>
-            <ListItem data={item} />
+            <Task data={item} />
           </li>
         ))}
       </ul>
@@ -50,4 +50,4 @@ const List: React.FunctionComponent = () => {
   )
 }
 
-export default List
+export default TaskList

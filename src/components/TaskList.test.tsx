@@ -3,14 +3,14 @@ import { cleanup } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import { renderWithRedux } from '../../tests/state'
 
-import List from './List'
+import TaskList from './TaskList'
 
 // TODO: fix it now that it uses redux
-describe.skip('List', () => {
+describe.skip('Task List', () => {
   afterEach(cleanup)
 
   test('Loading element is rendered if no data is there', () => {
-    const { getByTestId } = renderWithRedux(<List />, {
+    const { getByTestId } = renderWithRedux(<TaskList />, {
       initialState: { tasks: [], isLoading: true },
     })
 
@@ -18,7 +18,7 @@ describe.skip('List', () => {
   })
 
   test('Empty List element is rendered if empty array is passed', async done => {
-    const { container, getByTestId } = renderWithRedux(<List />, {
+    const { container, getByTestId } = renderWithRedux(<TaskList />, {
       initialState: { tasks: [], isLoading: false },
     })
     const loadingElement = getByTestId('loading')
@@ -41,7 +41,7 @@ describe.skip('List', () => {
       { name: 'yann', date: new Date() },
     ]
 
-    const { getAllByTestId } = renderWithRedux(<List />)
+    const { getAllByTestId } = renderWithRedux(<TaskList />)
 
     expect(getAllByTestId('list-item').length).toBe(data.length)
   })

@@ -8,7 +8,7 @@ type Props = {
   data: IRecord
 }
 
-const ListItem: React.FC<Props> = ({ data }: Props) => (
+const Task: React.FC<Props> = ({ data }: Props) => (
   <div data-testid="list-item" className="task-item">
     <p className="task-item--name">{data.name}</p>
     <Icon icon={data.icon} size="4x" fixedWidth />
@@ -40,4 +40,4 @@ const ListItem: React.FC<Props> = ({ data }: Props) => (
   </div>
 )
 
-export default ListItem
+export default Task

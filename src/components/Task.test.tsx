@@ -1,12 +1,12 @@
 import React from 'react'
 import { render } from '@testing-library/react'
-import '@testing-library/jest-dom/extend-expect'
 
-import Task from './Task'
+import { Task } from './Task'
+import { IRecord } from '@ltid/types'
 
-describe('Task', () => {
+describe.only('Task', () => {
   test('Item name is rendered', () => {
-    const data = { name: 'braga', date: new Date() }
+    const data: IRecord = { name: 'braga', date: new Date(), icon: 'coffee' }
 
     const { getByText } = render(<Task data={data} />)
 

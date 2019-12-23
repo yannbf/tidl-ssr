@@ -1,5 +1,29 @@
 {
   "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@ltid/components": [
+        "components/index.ts"
+      ],
+      "@ltid/util": [
+        "util/index.ts"
+      ],
+      "@ltid/services": [
+        "api/index.ts"
+      ],
+      "@ltid/styles": [
+        "styles/index.ts"
+      ],
+      "@ltid/types": [
+        "interfaces/index.ts"
+      ],
+      "@ltid/state/*": [
+        "state/*"
+      ],
+      "@ltid/tests/*": [
+        "../tests/*"
+      ]
+    },
     "module": "commonjs",
     "target": "esnext",
     "jsx": "react",

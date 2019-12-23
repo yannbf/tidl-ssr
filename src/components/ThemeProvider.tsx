@@ -1,9 +1,10 @@
-import useDarkMode from 'use-dark-mode'
-import { lightTheme, darkTheme } from '../styles/themes'
 import { useState, useEffect } from 'react'
-import { ThemeProvider } from 'styled-components'
+import useDarkMode from 'use-dark-mode'
+import { ThemeProvider as StyledThemeProvider } from 'styled-components'
 
-export default ({ children }) => {
+import { lightTheme, darkTheme } from '@ltid/styles'
+
+export const ThemeProvider = ({ children }) => {
   const { value } = useDarkMode(false, { storageKey: null, onChange: null })
   const theme = value ? darkTheme : lightTheme
 
@@ -13,7 +14,7 @@ export default ({ children }) => {
     setMounted(true)
   }, [])
 
-  const body = <ThemeProvider theme={theme}>{children}</ThemeProvider>
+  const body = <StyledThemeProvider theme={theme}>{children}</StyledThemeProvider>
 
   // prevents ssr flash for mismatched dark mode
   if (!mounted) {

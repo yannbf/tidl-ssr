@@ -1,14 +1,14 @@
 import * as React from 'react'
 import dayjs from 'dayjs'
 
-import { IRecord } from '../interfaces'
+import { IRecord } from '@ltid/types'
 import Icon from './Icon'
 
 type Props = {
   data: IRecord
 }
 
-const Task: React.FC<Props> = ({ data }: Props) => (
+export const Task: React.FC<Props> = ({ data }: Props) => (
   <div data-testid="list-item" className="task-item">
     <p className="task-item--name">{data.name}</p>
     <Icon icon={data.icon} size="4x" fixedWidth />
@@ -39,5 +39,3 @@ const Task: React.FC<Props> = ({ data }: Props) => (
     </style>
   </div>
 )
-
-export default Task

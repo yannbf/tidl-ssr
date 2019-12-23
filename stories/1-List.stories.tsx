@@ -1,6 +1,6 @@
 import React from 'react'
-import TaskList from '../src/components/TaskList'
-import mockData from '../src/api/mock-data'
+import { TaskList } from '@ltid/components'
+import { mockData } from '@ltid/services'
 
 export default {
   title: 'Task List',

@@ -1,5 +1,4 @@
 import { library } from '@fortawesome/fontawesome-svg-core'
-import '@fortawesome/fontawesome-svg-core/styles.css'
 import {
   faCheckSquare,
   faCoffee,
@@ -8,6 +7,8 @@ import {
   faTrash,
 } from '@fortawesome/free-solid-svg-icons'
 
-const icons = [faCheckSquare, faCoffee, faTshirt, faUtensils, faTrash]
+export const registerIcons = () => {
+  const icons = [faCheckSquare, faCoffee, faTshirt, faUtensils, faTrash]
 
-library.add(...icons)
+  library.add(...icons)
+}

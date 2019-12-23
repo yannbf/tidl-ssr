@@ -1,11 +1,17 @@
 {
   "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@ltid/components": ["components/index.ts"],
+      "@ltid/util": ["util/index.ts"],
+      "@ltid/services": ["api/index.ts"],
+      "@ltid/styles": ["styles/index.ts"],
+      "@ltid/types": ["interfaces/index.ts"],
+      "@ltid/state/*": ["state/*"],
+      "@ltid/tests/*": ["../tests/*"]
+    },
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -19,13 +25,6 @@
     "jsx": "preserve",
     "sourceMap": true
   },
-  "exclude": [
-    "node_modules",
-    "src/**/*.spec.ts"
-  ],
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ]
+  "exclude": ["node_modules", "src/**/*.spec.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
 }

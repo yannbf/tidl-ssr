@@ -1,5 +1,5 @@
 import React from 'react'
-import { HttpStatusCode } from '../interfaces/status-codes'
+import { HttpStatusCode } from '@ltid/types'
 import NotFound from './404'
 
 type Prop = {
@@ -7,7 +7,7 @@ type Prop = {
 }
 
 const Error = ({ statusCode }: Prop) => {
-  if(statusCode === HttpStatusCode.NotFound) return <NotFound/>
+  if (statusCode === HttpStatusCode.NotFound) return <NotFound />
 
   const msg = statusCode
     ? `An error ${statusCode} occurred on server`

@@ -2,7 +2,8 @@ import React from 'react'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import { render } from '@testing-library/react'
-import reducer, { INITIAL_STATE } from '../src/state/reducers'
+
+import reducer, { INITIAL_STATE } from '@ltid/state/reducers'
 
 export function renderWithRedux(
   component,

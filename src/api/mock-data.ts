@@ -1,6 +1,6 @@
-import { IRecord } from '../interfaces'
+import { IRecord } from '@ltid/types'
 
-const data: IRecord[] = [
+export const mockData: IRecord[] = [
   {
     name: 'Laundry',
     date: new Date(),
@@ -17,5 +17,3 @@ const data: IRecord[] = [
     icon: 'utensils',
   },
 ]
-
-export default data

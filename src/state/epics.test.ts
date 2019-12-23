@@ -1,8 +1,8 @@
 import * as actions from './actionTypes'
 import { fetchTasksEpic } from './epics'
-import { database } from '../api/database'
+import { database } from '@ltid/services'
 import { ActionsObservable } from 'redux-observable'
-jest.mock('../api/database')
+jest.mock('@ltid/services')
 
 describe('Task Epics', () => {
   afterEach(() => {

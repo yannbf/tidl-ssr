@@ -2,7 +2,7 @@ import React from 'react'
 import { NextPage } from 'next'
 import Head from 'next/head'
 
-import TaskList from '../components/TaskList'
+import { TaskList } from '@ltid/components'
 
 const Home: NextPage = () => (
   <>

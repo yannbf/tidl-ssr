@@ -1,9 +1,8 @@
 import React from 'react'
 import { cleanup } from '@testing-library/react'
-import '@testing-library/jest-dom/extend-expect'
-import { renderWithRedux } from '../../tests/state'
 
-import TaskList from './TaskList'
+import { renderWithRedux } from '@ltid/tests/state'
+import { TaskList } from './TaskList'
 
 // TODO: fix it now that it uses redux
 describe.skip('Task List', () => {

@@ -1,11 +1,11 @@
 import { from, of } from 'rxjs'
-import { mergeMap, catchError, map, tap } from 'rxjs/operators'
+import { mergeMap, catchError, map } from 'rxjs/operators'
 import { combineEpics, ofType } from 'redux-observable'
 import { request } from 'universal-rxjs-ajax' // because standard AjaxObservable only works in browser
 
 import * as actions from './actions'
 import * as types from './actionTypes'
-import { database } from '../api/database'
+import { database } from '@ltid/services'
 
 export const fetchTasksEpic = action$ =>
   action$.pipe(

@@ -1,3 +1,5 @@
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
+
 module.exports = ({ config, mode }) => {
   config.module.rules.push({
     test: /\.(ts|tsx)$/,
@@ -7,5 +9,11 @@ module.exports = ({ config, mode }) => {
     },
   })
   config.resolve.extensions.push('.ts', '.tsx')
+
+  if (config.resolve.plugins) {
+    config.resolve.plugins.push(new TsconfigPathsPlugin())
+  } else {
+    config.resolve.plugins = [new TsconfigPathsPlugin()]
+  }
   return config
 }

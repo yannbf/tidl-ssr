@@ -1,8 +1,5 @@
 import React, { FunctionComponent } from 'react'
-
-export default {
-  title: 'Welcome',
-}
+import { storiesOf } from '@storybook/react'
 
 const Main: FunctionComponent = props => (
   <article
@@ -32,7 +29,7 @@ const InlineCode: FunctionComponent = props => (
   />
 )
 
-export const toStorybook = () => (
+const ToStorybook = () => (
   <Main>
     <h1>Welcome to storybook!</h1>
     <p>
@@ -57,11 +54,13 @@ export const toStorybook = () => (
       >
         Writing Stories
       </a>{' '}
-      section in the Storybook documentation.
+      section in the Storybook documentation or check the{' '}
+      <a href="https://www.learnstorybook.com/" target="_blank" rel="noopener noreferrer">
+        Learn Storybook
+      </a>{' '}
+      website for more information.
     </p>
   </Main>
 )
 
-toStorybook.story = {
-  name: 'to Storybook',
-}
+storiesOf('Welcome', module).add('to Storybook', () => <ToStorybook />)

@@ -20,6 +20,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
     "@fortawesome/free-solid-svg-icons": "^5.12.0",
     "@fortawesome/react-fontawesome": "^0.1.8",
+    "@zeit/next-css": "^1.0.1",
     "dayjs": "^1.8.17",
     "isomorphic-unfetch": "^3.0.0",
     "next": "9.1.6",
@@ -31,7 +32,8 @@
     "redux-observable": "^1.2.0",
     "rxjs": "^6.5.3",
     "styled-components": "^4.4.1",
-    "universal-rxjs-ajax": "^2.0.3"
+    "universal-rxjs-ajax": "^2.0.3",
+    "use-dark-mode": "^2.3.1"
   },
   "devDependencies": {
     "@babel/core": "^7.7.4",
@@ -47,6 +49,7 @@
     "@types/node": "^12.12.11",
     "@types/react": "^16.9.12",
     "babel-loader": "^8.0.6",
+    "babel-plugin-styled-components": "^1.10.6",
     "chalk": "^3.0.0",
     "cypress": "^3.6.1",
     "husky": ">=1",

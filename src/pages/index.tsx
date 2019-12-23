@@ -2,7 +2,7 @@ import React from 'react'
 import { NextPage } from 'next'
 import Head from 'next/head'
 
-import { TaskList } from '@ltid/components'
+import { TaskListContainer } from '@ltid/components'
 
 const Home: NextPage = () => (
   <>
@@ -10,7 +10,7 @@ const Home: NextPage = () => (
       <title>Home</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
-    <TaskList />
+    <TaskListContainer />
   </>
 )
 

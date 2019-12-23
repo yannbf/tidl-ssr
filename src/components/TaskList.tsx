@@ -1,27 +1,17 @@
-import React, { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React from 'react'
 
 import { Task } from './Task'
-import * as types from '@ltid/state/actionTypes'
-import { IRecord, IAppState } from '@ltid/types'
+import { IRecord } from '@ltid/types'
 
 const EmptyState: React.FunctionComponent = () => (
   <p data-testid="empty-list">The task list is empty!</p>
 )
 
-export const TaskList: React.FunctionComponent = () => {
-  const fetchTasks = useDispatch()
+type Props = {
+  tasks: IRecord[]
+}
 
-  useEffect(() => {
-    fetchTasks({ type: types.FETCH_TASKS })
-  }, [])
-
-  const [tasks, isLoading] = useSelector(({ tasks, isLoading }: IAppState) => [tasks, isLoading])
-
-  if (isLoading) {
-    return <div data-testid="loading">loading..</div>
-  }
-
+export const TaskList: React.FunctionComponent<Props> = ({ tasks }) => {
   return tasks.length ? (
     <>
       <ul>

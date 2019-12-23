@@ -1,4 +1,5 @@
 export * from './Icon'
 export * from './Task'
 export * from './TaskList'
+export * from './TaskListContainer'
 export * from './ThemeProvider'

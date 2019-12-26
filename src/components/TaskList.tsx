@@ -17,11 +17,10 @@ const ItemWrapper = styled.li`
 
 type Props = {
   tasks: ITask[]
-  isLoading: boolean
 }
 
-export const TaskList: React.FunctionComponent<Props> = ({ isLoading, tasks }) => {
-  if (isLoading) {
+export const TaskList: React.FunctionComponent<Props> = ({ tasks }) => {
+  if (tasks === null) {
     return <div data-testid="loading">loading..</div>
   }
 

@@ -12,7 +12,7 @@ export const TaskListContainer: React.FunctionComponent = () => {
     fetchTasks({ type: types.FETCH_TASKS })
   }, [])
 
-  const [tasks, isLoading] = useSelector(({ tasks, isLoading }: IAppState) => [tasks, isLoading])
+  const [tasks] = useSelector(({ tasks }: IAppState) => [tasks])
 
-  return <TaskList isLoading={isLoading} tasks={tasks} />
+  return <TaskList tasks={tasks} />
 }

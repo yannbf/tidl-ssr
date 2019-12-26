@@ -14,9 +14,5 @@ export const TaskListContainer: React.FunctionComponent = () => {
 
   const [tasks, isLoading] = useSelector(({ tasks, isLoading }: IAppState) => [tasks, isLoading])
 
-  if (isLoading) {
-    return <div data-testid="loading">loading..</div>
-  }
-
-  return <TaskList tasks={tasks} />
+  return <TaskList isLoading={isLoading} tasks={tasks} />
 }

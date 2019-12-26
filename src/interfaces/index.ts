@@ -1,13 +1,13 @@
 import { IconName } from '@fortawesome/fontawesome-svg-core'
 
-export interface IRecord {
+export interface ITask {
   name: string
   date: Date
   icon: IconName
 }
 
 export interface IAppState {
-  tasks: IRecord[]
+  tasks: ITask[]
   isLoading: boolean
   error: string
 }

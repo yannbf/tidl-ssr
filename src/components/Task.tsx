@@ -2,7 +2,7 @@ import * as React from 'react'
 import dayjs from 'dayjs'
 import styled from 'styled-components'
 
-import { IRecord } from '@ltid/types'
+import { ITask } from '@ltid/types'
 import Icon from './Icon'
 import { Text } from './Text'
 
@@ -20,7 +20,7 @@ const Wrapper = styled.div`
 `
 
 type Props = {
-  data: IRecord
+  data: ITask
 }
 
 export const Task: React.FC<Props> = ({ data }: Props) => (

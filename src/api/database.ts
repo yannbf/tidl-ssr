@@ -1,8 +1,8 @@
-import { IRecord } from '@ltid/types'
+import { ITask } from '@ltid/types'
 import { mockData } from './mock-data'
 
 class Database {
-  fetchData(): Promise<IRecord[]> {
+  fetchData(): Promise<ITask[]> {
     return Promise.resolve(mockData)
   }
 }

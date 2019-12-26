@@ -3,10 +3,10 @@ import { storiesOf } from '@storybook/react'
 import { withKnobs, text } from '@storybook/addon-knobs'
 
 import { Task } from '@ltid/components'
-import { IRecord } from '@ltid/types'
+import { ITask } from '@ltid/types'
 
 const WithCurrentDate = () => {
-  const data: IRecord = {
+  const data: ITask = {
     name: text('Name', 'Do Laundry'),
     date: new Date(),
     icon: text('icon', 'tshirt') as any,
@@ -15,7 +15,7 @@ const WithCurrentDate = () => {
 }
 
 const FromAWeekAgo = () => {
-  const data: IRecord = {
+  const data: ITask = {
     name: text('Name', 'Take trash out'),
     date: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
     icon: text('icon', 'trash') as any,

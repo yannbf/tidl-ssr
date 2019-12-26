@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { Task } from './Task'
-import { IRecord } from '@ltid/types'
+import { ITask } from '@ltid/types'
 
 const ListWrapper = styled.ul`
   padding: 0;
@@ -16,7 +16,7 @@ const ItemWrapper = styled.li`
 `
 
 type Props = {
-  tasks: IRecord[]
+  tasks: ITask[]
   isLoading: boolean
 }
 
@@ -31,7 +31,7 @@ export const TaskList: React.FunctionComponent<Props> = ({ isLoading, tasks }) =
 
   return (
     <ListWrapper data-testid="task-list">
-      {tasks.map((item: IRecord) => (
+      {tasks.map((item: ITask) => (
         <ItemWrapper key={item.name}>
           <Task data={item} />
         </ItemWrapper>

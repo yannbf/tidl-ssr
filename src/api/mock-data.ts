@@ -1,6 +1,6 @@
-import { IRecord } from '@ltid/types'
+import { ITask } from '@ltid/types'
 
-export const mockData: IRecord[] = [
+export const mockData: ITask[] = [
   {
     name: 'Laundry',
     date: new Date(),

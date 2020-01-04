@@ -3,6 +3,7 @@
     "baseUrl": "./src",
     "paths": {
       "@ltid/components": ["components/index.ts"],
+      "@ltid/components/*": ["components/*"],
       "@ltid/util": ["util/index.ts"],
       "@ltid/services": ["api/index.ts"],
       "@ltid/styles": ["styles/index.ts"],

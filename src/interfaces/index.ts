@@ -1,6 +1,7 @@
 import { IconName } from '@fortawesome/fontawesome-svg-core'
 
 export interface ITask {
+  id?: number
   name: string
   date: Date
   icon: IconName

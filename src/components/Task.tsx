@@ -28,7 +28,7 @@ export const Task: React.FC<Props> = ({ data }: Props) => (
     <Text element="p">{data.name}</Text>
     <Icon icon={data.icon} size="4x" fixedWidth />
     <Text element="p" fontWeight="bold">
-      {dayjs().from(data.date)}
+      {dayjs().to(data.date)}
     </Text>
   </Wrapper>
 )

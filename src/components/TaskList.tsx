@@ -28,6 +28,12 @@ export const TaskList: React.FunctionComponent<Props> = ({ tasks }) => {
     return <p data-testid="empty-list">The task list is empty!</p>
   }
 
+  tasks.sort((first: ITask, second: ITask) => {
+    const a = first.date
+    const b = second.date
+    return a > b ? -1 : a < b ? 1 : 0
+  })
+
   return (
     <ListWrapper data-testid="task-list">
       {tasks.map((item: ITask) => (

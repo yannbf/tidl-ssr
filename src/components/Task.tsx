@@ -1,6 +1,7 @@
 import * as React from 'react'
 import dayjs from 'dayjs'
 import styled from 'styled-components'
+import { useDispatch } from 'react-redux'
 
 import { ITask } from '@ltid/types'
 import Icon from './Icon'
@@ -23,12 +24,18 @@ type Props = {
   data: ITask
 }
 
-export const Task: React.FC<Props> = ({ data }: Props) => (
-  <Wrapper data-testid="list-item">
-    <Text element="p">{data.name}</Text>
-    <Icon icon={data.icon} size="4x" fixedWidth />
-    <Text element="p" fontWeight="bold">
-      {dayjs().to(data.date)}
-    </Text>
-  </Wrapper>
-)
+export const Task: React.FC<Props> = ({ data }: Props) => {
+  const dispatch = useDispatch()
+  return (
+    <Wrapper
+      data-testid="list-item"
+      onClick={() => dispatch({ type: 'OPEN_MODAL', payload: { formData: data } })}
+    >
+      <Text element="p">{data.name}</Text>
+      <Icon icon={data.icon} size="4x" fixedWidth />
+      <Text element="p" fontWeight="bold">
+        {dayjs().from(data.date)}
+      </Text>
+    </Wrapper>
+  )
+}

@@ -5,6 +5,14 @@ export const fetchTasks = () => ({
   payload: { isLoading: true },
 })
 
+export const openModal = () => ({
+  type: types.OPEN_MODAL,
+})
+
+export const closeModal = () => ({
+  type: types.CLOSE_MODAL,
+})
+
 export const fetchTasksSuccess = tasks => ({
   type: types.FETCH_TASKS_SUCCESS,
   payload: { tasks, isLoading: false },

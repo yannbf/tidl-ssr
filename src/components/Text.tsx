@@ -1,6 +1,5 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { database } from '@ltid/services'
 
 export interface DefaultProps {
   color: string
@@ -69,7 +68,7 @@ const DefaultStyle = ({
 
 export const Text: React.FC<Props> = props => {
   const { children, element: Element = 'span' } = props
-  database.fetchData()
+
   const StyledElement = styled(Element)`
     ${DefaultStyle(props)};
   `

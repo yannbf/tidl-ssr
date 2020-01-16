@@ -37,7 +37,7 @@ export const TaskList: React.FunctionComponent<Props> = ({ tasks }) => {
   return (
     <ListWrapper data-testid="task-list">
       {tasks.map((item: ITask) => (
-        <ItemWrapper key={item.name}>
+        <ItemWrapper key={item.id}>
           <Task data={item} />
         </ItemWrapper>
       ))}

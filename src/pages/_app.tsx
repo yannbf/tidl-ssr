@@ -23,6 +23,7 @@ class MyApp extends App {
         <Provider store={store}>
           <Component {...pageProps} />
         </Provider>
+        <div id="modal" />
         <GlobalStyle />
       </ThemeProvider>
     )

@@ -11,7 +11,7 @@ describe('Task Epics', () => {
 
   test('should dispatch success when fetching data', async () => {
     // Setup
-    ;(database.fetchData as jest.Mock).mockReturnValue(Promise.resolve([]))
+    ;(database.fetchMockData as jest.Mock).mockReturnValue(Promise.resolve([]))
 
     const action$ = ActionsObservable.of({
       type: actions.FETCH_TASKS,
@@ -33,7 +33,7 @@ describe('Task Epics', () => {
 
   test('should dispatch failure when fetching data', async () => {
     // Setup
-    ;(database.fetchData as jest.Mock).mockReturnValue(Promise.reject('error!'))
+    ;(database.fetchMockData as jest.Mock).mockReturnValue(Promise.reject('error!'))
 
     const action$ = ActionsObservable.of({
       type: actions.FETCH_TASKS,

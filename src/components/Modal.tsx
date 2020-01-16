@@ -1,0 +1,125 @@
+import React, { useState } from 'react'
+import styled, { keyframes, css } from 'styled-components'
+import { createGlobalStyle } from 'styled-components'
+
+import ClientOnlyPortal from './ClientOnlyPortal'
+import { useKey } from '../hooks'
+import { mediaBreakpoint } from '@ltid/styles'
+import Icon from './Icon'
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    overflow: hidden;
+  }
+`
+
+const translate = (from: string, to: string) => keyframes`
+  from {
+    transform: translateY(${from});
+  }
+
+  to {
+    transform: translateY(${to});
+  }
+`
+
+const fade = (from: string, to: string) => keyframes`
+  from {
+    opacity: ${from};
+  }
+
+  to {
+    opacity: ${to};
+  }
+`
+
+const ModalWrapper = styled.div`
+  background-color: white;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  position: absolute;
+  z-index: 100;
+  top: 5%;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 3em 1em 1em 1em;
+  transform-origin: 'top center';
+  animation: ${props =>
+    props.showing
+      ? css`
+          ${translate('100%', '0%')} 160ms ease-in
+        `
+      : css`
+          ${translate('0%', '100%')} 160ms ease-in forwards
+        `};
+  ${mediaBreakpoint.desktop`
+    top: 10%;
+    right: 10%;
+    bottom: 10%;
+    left: 10%;
+    animation: none;
+  `}
+`
+
+const Backdrop = styled.div`
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.4);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  animation: ${fade} 200ms ease-in;
+  animation: ${props =>
+    props.showing
+      ? css`
+          ${fade('0.1', '0.6')} 160ms ease-in
+        `
+      : css`
+          ${fade('0.6', '0')} 160ms ease-in forwards
+        `};
+  ${mediaBreakpoint.desktop`
+    animation: none;
+  `}
+`
+
+const TopBar = styled.div`
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+`
+
+const TopBarButton = styled.button`
+  padding: 0.75rem;
+`
+
+export const Modal = ({ children, isOpen, onClose }) => {
+  const [showing, setShowing] = useState(true)
+
+  const closeModal = () => {
+    setShowing(false)
+    setTimeout(() => {
+      onClose()
+      setShowing(true)
+    }, 200)
+  }
+
+  useKey('escape', closeModal)
+
+  return (
+    isOpen && (
+      <ClientOnlyPortal selector="#modal">
+        <ModalWrapper showing={showing}>
+          <TopBar>
+            <TopBarButton onClick={closeModal}>
+              <Icon icon="times" size="lg" />
+            </TopBarButton>
+          </TopBar>
+          {children}
+        </ModalWrapper>
+        <GlobalStyle />
+        <Backdrop showing={showing} onClick={closeModal}></Backdrop>
+      </ClientOnlyPortal>
+    )
+  )
+}

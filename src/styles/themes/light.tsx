@@ -2,7 +2,7 @@ import { IAppTheme } from '.'
 
 const light: IAppTheme = {
   bg: {
-    primary: '#eff0f5',
+    primary: '#eff0f524',
     secondary: '#ffffff',
     input: 'rgba(65,67,78,0.12)',
   },

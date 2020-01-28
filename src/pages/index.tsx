@@ -1,39 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { NextPage } from 'next'
-import Head from 'next/head'
 
-import { TaskListContainer, Modal } from '@ltid/components'
+import { TaskListContainer, Modal, TaskForm, PageTemplate } from '@ltid/components'
 import { database } from 'api/database'
 import { IAppState } from '@ltid/types'
-
-const ModalForm = ({ formData, onSubmit }) => {
-  const [name, setName] = useState(formData.name || '')
-  const [date, setDate] = useState(formData.date || '')
-
-  const handleSubmit = event => {
-    event.preventDefault()
-    onSubmit({
-      id: formData.id,
-      name,
-      date,
-    })
-  }
-
-  return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Name:
-        <input type="text" value={name} onChange={ev => setName(ev.target.value)} />
-      </label>
-      <label>
-        Date:
-        <input type="date" value={date} onChange={ev => setDate(ev.target.value)} />
-      </label>
-      <input type="submit" value="Submit" />
-    </form>
-  )
-}
 
 const Home: NextPage = () => {
   useEffect(() => {
@@ -72,18 +43,13 @@ const Home: NextPage = () => {
   const dispatch = useDispatch()
 
   return (
-    <>
-      <Head>
-        <title>Home</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <PageTemplate title="Home">
       <TaskListContainer />
       <button onClick={() => dispatch({ type: 'OPEN_MODAL' })}>LEO AMIGUE DO BOM</button>
       <Modal isOpen={isOpen} onClose={closeModal}>
-        {/* TODO: USE FORMIK */}
-        <ModalForm onSubmit={saveData} formData={formData} />
+        <TaskForm onSubmit={saveData} formData={formData} />
       </Modal>
-    </>
+    </PageTemplate>
   )
 }
 

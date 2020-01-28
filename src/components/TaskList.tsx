@@ -4,15 +4,12 @@ import styled from 'styled-components'
 import { Task } from './Task'
 import { ITask } from '@ltid/types'
 
-const ListWrapper = styled.ul`
+const List = styled.ul`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(6.5rem, 1fr));
+  grid-gap: 0.75rem;
+  align-items: start;
   padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  align-content: flex-start;
-`
-
-const ItemWrapper = styled.li`
-  display: inline-block;
 `
 
 type Props = {
@@ -29,18 +26,16 @@ export const TaskList: React.FunctionComponent<Props> = ({ tasks }) => {
   }
 
   tasks.sort((first: ITask, second: ITask) => {
-    const a = first.date
-    const b = second.date
+    const a = second.date
+    const b = first.date
     return a > b ? -1 : a < b ? 1 : 0
   })
 
   return (
-    <ListWrapper data-testid="task-list">
+    <List data-testid="task-list">
       {tasks.map((item: ITask) => (
-        <ItemWrapper key={item.id}>
-          <Task data={item} />
-        </ItemWrapper>
+        <Task data={item} key={item.id} />
       ))}
-    </ListWrapper>
+    </List>
   )
 }

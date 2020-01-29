@@ -54,11 +54,15 @@ const ModalWrapper = styled.div`
           ${translate('0%', '100%')} 160ms ease-in forwards
         `};
   ${mediaBreakpoint.desktop`
-    top: 10%;
-    right: 10%;
-    bottom: 10%;
-    left: 10%;
     animation: none;
+    box-shadow: 0 28px 48px rgba(0,0,0,.4);
+    bottom: 0;
+    left: calc(50% - (600px/2));
+    top: calc(50% - (600px/2));
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 0.75rem;
   `}
 `
 

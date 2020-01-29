@@ -57,7 +57,6 @@ const DefaultStyle = ({
   textTransform = 'none',
 }: Props) => {
   return css`
-    font-family: 'Roboto', 'sans-serif';
     font-size: ${fontSizes[size.toLowerCase()].mobile}px;
     color: ${color};
     text-transform: ${textTransform};

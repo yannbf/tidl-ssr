@@ -45,7 +45,7 @@ const Home: NextPage = () => {
   return (
     <PageTemplate title="Home">
       <TaskListContainer />
-      <button onClick={() => dispatch({ type: 'OPEN_MODAL' })}>LEO AMIGUE DO BOM</button>
+      <button onClick={() => dispatch({ type: 'OPEN_MODAL' })}>Add new task</button>
       <Modal isOpen={isOpen} onClose={closeModal}>
         <TaskForm onSubmit={saveData} formData={formData} />
       </Modal>

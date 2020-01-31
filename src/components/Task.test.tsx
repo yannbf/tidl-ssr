@@ -6,10 +6,10 @@ import { ITask } from '@ltid/types'
 
 describe.only('Task', () => {
   test('Item name is rendered', () => {
-    const data: ITask = { name: 'braga', date: new Date(), icon: 'coffee' }
+    const task: ITask = { name: 'braga', date: new Date(), icon: 'coffee' }
 
-    const { getByText } = render(<Task data={data} />)
+    const { getByText } = render(<Task task={task} />)
 
-    expect(getByText(data.name)).toBeInTheDocument()
+    expect(getByText(task.name)).toBeInTheDocument()
   })
 })

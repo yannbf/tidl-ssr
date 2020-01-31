@@ -11,7 +11,12 @@ const TaskSchema = Yup.object().shape({
     .required('Required'),
   date: Yup.date()
     .nullable()
-    .max(new Date(), 'Do not select dates in the future.')
+    .max(
+      dayjs()
+        .add(1, 'minute')
+        .format('YYYY-MM-DDTHH:mm'),
+      'Do not select dates in the future.'
+    )
     .required('Required'),
 })
 
@@ -27,7 +32,7 @@ const StyledForm = styled(Form)`
 `
 
 const StyledField = styled(Field)`
-  width: 8rem;
+  width: 12rem;
   height: 1.5rem;
 `
 
@@ -49,7 +54,7 @@ export const TaskForm = ({ formData, onSubmit }) => {
 
   return (
     <Formik
-      initialValues={{ name, date }}
+      initialValues={{ name, date: dayjs(date).format('YYYY-MM-DDTHH:mm') }}
       validationSchema={TaskSchema}
       onSubmit={({ name, date }) =>
         onSubmit({
@@ -70,7 +75,7 @@ export const TaskForm = ({ formData, onSubmit }) => {
 
           <FieldSet>
             <label htmlFor="name">Last time you did it</label>
-            <StyledField type="date" name="date" max={dayjs().format('YYYY-MM-DD')} />
+            <StyledField type="datetime-local" name="date" />
             <ErrorMessage name="date" component="div" />
           </FieldSet>
 

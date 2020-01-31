@@ -7,6 +7,7 @@ import { ITask } from '@ltid/types'
 import Icon from './Icon'
 import { Text } from './Text'
 import { useLongPress } from '../hooks/useLongPress'
+import { openModal, saveTask } from '@ltid/state/actions'
 
 const Wrapper = styled.div`
   cursor: pointer;
@@ -21,25 +22,23 @@ const Wrapper = styled.div`
 `
 
 type Props = {
-  data: ITask
+  task: ITask
 }
 
-export const Task: React.FC<Props> = ({ data }: Props) => {
+export const Task: React.FC<Props> = ({ task }: Props) => {
   const dispatch = useDispatch()
 
-  const [longPressRef, isPressed] = useLongPress(() => alert('worked'), 2000)
+  const [longPressRef, isPressed] = useLongPress(
+    () => dispatch(saveTask({ ...task, date: new Date() })),
+    2000
+  )
 
   return (
-    <Wrapper
-      data-testid="list-item"
-      ref={longPressRef}
-      onClick={() => dispatch({ type: 'OPEN_MODAL', payload: { formData: data } })}
-    >
-      {isPressed ? <p>'BEING CLICKED'</p> : null}
-      <Text element="p">{data.name}</Text>
-      <Icon icon={data.icon} size="4x" fixedWidth />
+    <Wrapper data-testid="list-item" ref={longPressRef} onClick={() => dispatch(openModal(task))}>
+      <Text element="p">{task.name}</Text>
+      <Icon icon={task.icon} size="4x" fixedWidth />
       <Text element="p" fontWeight="bold">
-        {dayjs().to(data.date)}
+        {dayjs().to(task.date)}
       </Text>
     </Wrapper>
   )

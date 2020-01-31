@@ -1,6 +1,6 @@
+import { useCallback, useState } from 'react'
 import { fromEvent, of } from 'rxjs'
 import { delay, takeUntil, mergeMap } from 'rxjs/operators'
-import { useCallback, useState } from 'react'
 
 export const useLongPress = (callback: Function, debounce = 1000) => {
   const [isPressed, setIsPressed] = useState(false)
@@ -17,9 +17,6 @@ export const useLongPress = (callback: Function, debounce = 1000) => {
       longPress$.subscribe(event => {
         callback(event)
       })
-
-      mouseDown$.pipe(delay(200)).subscribe(() => setIsPressed(true))
-      mouseUp$.subscribe(() => setIsPressed(false))
     } else {
       console.warn('useLongPress: the element passed does not exist.')
     }

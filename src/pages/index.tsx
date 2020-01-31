@@ -5,30 +5,34 @@ import { NextPage } from 'next'
 import { TaskListContainer, Modal, TaskForm, PageTemplate } from '@ltid/components'
 import { database } from 'api/database'
 import { IAppState } from '@ltid/types'
+import { openModal, closeModal, saveTask } from '@ltid/state/actions'
 
 const Home: NextPage = () => {
   useEffect(() => {
     database.init()
   }, [])
 
-  const { isOpen, formData } = useSelector((state: IAppState) => {
+  const { isOpen, formData } = useSelector(({ isOpen, formData }: IAppState) => {
     return {
-      isOpen: state.isOpen,
-      formData: state.formData,
+      isOpen,
+      formData,
     }
   })
 
-  const saveData = ({ id, name, date }) => {
-    database.save({
-      id,
-      name,
-      date,
-      icon: 'coffee',
-    })
-    closeModal()
-  }
+  const closeTheModal = () => dispatch(closeModal())
 
-  const closeModal = () => dispatch({ type: 'CLOSE_MODAL' })
+  const saveData = ({ id, name, date }) => {
+    dispatch(
+      saveTask({
+        id,
+        name,
+        date,
+        icon: 'coffee',
+      })
+    )
+
+    closeTheModal()
+  }
 
   /* TODO:
     /home-page
@@ -45,8 +49,8 @@ const Home: NextPage = () => {
   return (
     <PageTemplate title="Home">
       <TaskListContainer />
-      <button onClick={() => dispatch({ type: 'OPEN_MODAL' })}>Add new task</button>
-      <Modal isOpen={isOpen} onClose={closeModal}>
+      <button onClick={() => dispatch(openModal())}>Add new task</button>
+      <Modal isOpen={isOpen} onClose={closeTheModal}>
         <TaskForm onSubmit={saveData} formData={formData} />
       </Modal>
     </PageTemplate>

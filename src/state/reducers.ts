@@ -15,7 +15,7 @@ export default function reducer(state = INITIAL_STATE, action) {
       return {
         ...state,
         isOpen: true,
-        formData: (payload && payload.formData) || {},
+        formData: payload.task || {},
       }
     case types.CLOSE_MODAL:
       return {
@@ -38,6 +38,19 @@ export default function reducer(state = INITIAL_STATE, action) {
         ...state,
         error: payload.error,
         isLoading: false,
+      }
+    case types.SAVE_TASK:
+      return {
+        ...state,
+        isLoading: true,
+      }
+    case types.SAVE_TASK_SUCCESS:
+      return {
+        ...state,
+      }
+    case types.SAVE_TASK_FAILURE:
+      return {
+        ...state,
       }
     default:
       return state

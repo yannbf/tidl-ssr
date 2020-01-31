@@ -1,5 +1,5 @@
 import { from, of } from 'rxjs'
-import { mergeMap, catchError, map, tap } from 'rxjs/operators'
+import { mergeMap, catchError, map, tap, switchMap } from 'rxjs/operators'
 import { combineEpics, ofType } from 'redux-observable'
 import { request } from 'universal-rxjs-ajax' // because standard AjaxObservable only works in browser
 
@@ -17,11 +17,20 @@ export const fetchTasksEpic = action$ =>
         tap(() => {
           window.api = database
         }),
-        tap(console.log),
         map(response => actions.fetchTasksSuccess(response)),
         catchError(error => of(actions.fetchTasksFailure(error)))
       )
     )
   )
 
-export const rootEpic = combineEpics(fetchTasksEpic)
+export const saveTasksEpic = action$ =>
+  action$.pipe(
+    ofType(types.SAVE_TASK),
+    mergeMap(({ payload }: any) => {
+      database.save(payload.task)
+      return of(actions.saveTaskSuccess())
+    }),
+    catchError(error => of(actions.fetchTasksFailure(error)))
+  )
+
+export const rootEpic = combineEpics(fetchTasksEpic, saveTasksEpic)

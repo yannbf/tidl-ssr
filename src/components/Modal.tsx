@@ -95,6 +95,7 @@ const TopBar = styled.div`
 
 const TopBarButton = styled.button`
   padding: 0.75rem;
+  border: none;
 `
 
 export const Modal = ({ children, isOpen, onClose }) => {

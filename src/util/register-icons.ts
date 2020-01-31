@@ -5,10 +5,12 @@ import {
   faTshirt,
   faUtensils,
   faTrash,
+  faTimes,
+  faBoxOpen,
 } from '@fortawesome/free-solid-svg-icons'
 
 export const registerIcons = () => {
-  const icons = [faCheckSquare, faCoffee, faTshirt, faUtensils, faTrash]
+  const icons = [faCheckSquare, faCoffee, faTshirt, faUtensils, faTrash, faTimes, faBoxOpen]
 
   library.add(...icons)
 }

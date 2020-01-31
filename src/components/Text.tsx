@@ -1,6 +1,5 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { database } from '@ltid/services'
 
 export interface DefaultProps {
   color: string
@@ -58,7 +57,6 @@ const DefaultStyle = ({
   textTransform = 'none',
 }: Props) => {
   return css`
-    font-family: 'Roboto', 'sans-serif';
     font-size: ${fontSizes[size.toLowerCase()].mobile}px;
     color: ${color};
     text-transform: ${textTransform};
@@ -69,7 +67,7 @@ const DefaultStyle = ({
 
 export const Text: React.FC<Props> = props => {
   const { children, element: Element = 'span' } = props
-  database.fetchData()
+
   const StyledElement = styled(Element)`
     ${DefaultStyle(props)};
   `

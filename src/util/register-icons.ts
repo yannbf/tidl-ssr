@@ -1,16 +1,10 @@
 import { library } from '@fortawesome/fontawesome-svg-core'
-import {
-  faCheckSquare,
-  faCoffee,
-  faTshirt,
-  faUtensils,
-  faTrash,
-  faTimes,
-  faBoxOpen,
-} from '@fortawesome/free-solid-svg-icons'
+import * as Icons from '@fortawesome/free-solid-svg-icons'
+
+export const iconList = Object.keys(Icons)
+  .filter(key => key !== 'fas' && key !== 'prefix')
+  .map(icon => Icons[icon])
 
 export const registerIcons = () => {
-  const icons = [faCheckSquare, faCoffee, faTshirt, faUtensils, faTrash, faTimes, faBoxOpen]
-
-  library.add(...icons)
+  library.add(...iconList)
 }

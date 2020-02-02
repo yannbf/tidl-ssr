@@ -8,9 +8,7 @@ import { IAppState } from '@ltid/types'
 import { openModal, closeModal, saveTask } from '@ltid/state/actions'
 
 const Home: NextPage = () => {
-  useEffect(() => {
-    database.init()
-  }, [])
+  const dispatch = useDispatch()
 
   const { isOpen, formData } = useSelector(({ isOpen, formData }: IAppState) => {
     return {
@@ -19,17 +17,14 @@ const Home: NextPage = () => {
     }
   })
 
+  useEffect(() => {
+    database.init()
+  }, [])
+
   const closeTheModal = () => dispatch(closeModal())
 
-  const saveData = ({ id, name, date }) => {
-    dispatch(
-      saveTask({
-        id,
-        name,
-        date,
-        icon: 'coffee',
-      })
-    )
+  const saveData = task => {
+    dispatch(saveTask(task))
 
     closeTheModal()
   }
@@ -44,7 +39,6 @@ const Home: NextPage = () => {
     /shared
       - mutation
   */
-  const dispatch = useDispatch()
 
   return (
     <PageTemplate title="Home">

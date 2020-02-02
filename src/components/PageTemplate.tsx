@@ -13,7 +13,7 @@ const Wrapper = styled.section`
 export const PageTemplate = ({ title, children }: Props) => (
   <>
     <Head>
-      <title>{title}</title>
+      <title>LTID - {title}</title>
       <link rel="icon" href="/favicon.ico" />
       <meta
         name="viewport"

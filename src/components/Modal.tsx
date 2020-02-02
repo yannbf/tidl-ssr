@@ -39,12 +39,13 @@ const ModalWrapper = styled.div`
   border-top-right-radius: 1rem;
   position: absolute;
   z-index: 100;
-  top: 5%;
+  top: ${props => (props.small ? '50%' : '5%')};
   right: 0;
   bottom: 0;
   left: 0;
   padding: 3em 1em 1em 1em;
   transform-origin: 'top center';
+  box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
   animation: ${props =>
     props.showing
       ? css`
@@ -57,11 +58,11 @@ const ModalWrapper = styled.div`
     animation: none;
     box-shadow: 0 28px 48px rgba(0,0,0,.4);
     bottom: 0;
-    left: calc(50% - (600px/2));
-    top: calc(50% - (600px/2));
+    left: ${props => (props.small ? 'calc(50% - (400px/2))' : 'calc(50% - (600px/2))')};
+    top: ${props => (props.small ? 'calc(50% - (300px/2))' : 'calc(50% - (600px/2))')};
     position: absolute;
-    width: 600px;
-    height: 600px;
+    width: ${props => (props.small ? '400px' : '600px')};
+    height: ${props => (props.small ? '400px' : '600px')};;
     border-radius: 0.75rem;
   `}
 `
@@ -98,7 +99,7 @@ const TopBarButton = styled.button`
   border: none;
 `
 
-export const Modal = ({ children, isOpen, onClose }) => {
+export const Modal = ({ children, isOpen, onClose, small = false }) => {
   const [showing, setShowing] = useState(true)
 
   const closeModal = () => {
@@ -114,7 +115,7 @@ export const Modal = ({ children, isOpen, onClose }) => {
   return (
     isOpen && (
       <ClientOnlyPortal selector="#modal">
-        <ModalWrapper showing={showing}>
+        <ModalWrapper showing={showing} small={small}>
           <TopBar>
             <TopBarButton onClick={closeModal}>
               <Icon icon="times" size="lg" />

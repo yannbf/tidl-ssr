@@ -1,7 +1,8 @@
 const withCSS = require('@zeit/next-css')
+const withOffline = require('next-offline')
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 
-module.exports = withCSS({
+const nextConfig = {
   webpack: config => {
     if (config.resolve.plugins) {
       config.resolve.plugins.push(new TsconfigPathsPlugin())
@@ -12,4 +13,6 @@ module.exports = withCSS({
     return config
   },
   target: 'serverless',
-})
+}
+
+module.exports = withOffline(withCSS(nextConfig))

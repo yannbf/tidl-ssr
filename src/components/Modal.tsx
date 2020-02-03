@@ -37,7 +37,7 @@ const ModalWrapper = styled.div`
   background-color: white;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
-  position: absolute;
+  position: fixed;
   z-index: 100;
   top: ${props => (props.small ? '50%' : '5%')};
   right: 0;

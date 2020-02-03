@@ -62,9 +62,9 @@ class Database {
     }
   }
 
-  public delete(task: ITask) {
+  public delete(taskId: number) {
     const tasks = this.tasks
-    let index = tasks.indexOf(tasks.find(item => item.id === task.id))
+    let index = tasks.indexOf(tasks.find(item => item.id === taskId))
     if (index != -1) {
       tasks.splice(index, 1)
       this.tasks = tasks

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { NextPage } from 'next'
 
-import { TaskListContainer, Modal, TaskForm, PageTemplate } from '@ltid/components'
+import { TaskListContainer, Modal, TaskForm, PageTemplate, FloatingButton } from '@ltid/components'
 import { database } from 'api/database'
 import { IAppState } from '@ltid/types'
 import { openModal, closeModal, saveTask } from '@ltid/state/actions'
@@ -43,10 +43,12 @@ const Home: NextPage = () => {
   return (
     <PageTemplate title="Home">
       <TaskListContainer />
-      <button onClick={() => dispatch(openModal())}>Add new task</button>
+
       <Modal isOpen={isOpen} onClose={closeTheModal}>
         <TaskForm onSubmit={saveData} formData={formData} />
       </Modal>
+
+      <FloatingButton icon="plus" onClick={() => dispatch(openModal())} />
     </PageTemplate>
   )
 }

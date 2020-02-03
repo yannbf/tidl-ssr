@@ -37,3 +37,17 @@ export const saveTaskSuccess = () => ({
 export const saveTaskFailure = () => ({
   type: types.SAVE_TASK_FAILURE,
 })
+
+export const removeTask = (id: number) => ({
+  type: types.REMOVE_TASK,
+  payload: { id },
+})
+
+export const removeTaskSuccess = () => ({
+  type: types.REMOVE_TASK_SUCCESS,
+})
+
+export const removeTaskFailure = error => ({
+  type: types.REMOVE_TASK_FAILURE,
+  payload: { error },
+})

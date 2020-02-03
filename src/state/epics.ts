@@ -33,4 +33,14 @@ export const saveTasksEpic = action$ =>
     catchError(error => of(actions.fetchTasksFailure(error)))
   )
 
-export const rootEpic = combineEpics(fetchTasksEpic, saveTasksEpic)
+export const removeTasksEpic = action$ =>
+  action$.pipe(
+    ofType(types.REMOVE_TASK),
+    mergeMap(({ payload }: any) => {
+      database.delete(payload.id)
+      return of(actions.removeTaskSuccess())
+    }),
+    catchError(error => of(actions.removeTaskFailure(error)))
+  )
+
+export const rootEpic = combineEpics(fetchTasksEpic, saveTasksEpic, removeTasksEpic)

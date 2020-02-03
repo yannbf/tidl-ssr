@@ -29,10 +29,6 @@ export default class MyDocument extends Document {
       <Html>
         <Head>
           <link rel="icon" href="/favicon.ico" />
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
-          ></meta>
           <link rel="manifest" href="manifest.json" />
           <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-icon-180.png" />
           <link rel="apple-touch-icon" sizes="167x167" href="icons/apple-icon-167.png" />

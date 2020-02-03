@@ -13,7 +13,7 @@ const Wrapper = styled.section`
 export const PageTemplate = ({ title, children }: Props) => (
   <>
     <Head>
-      <title>LTID - {title}</title>
+      <title>Tidl - {title}</title>
     </Head>
     <Wrapper>{children}</Wrapper>
   </>

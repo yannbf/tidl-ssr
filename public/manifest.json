@@ -1,11 +1,11 @@
 {
   "dir": "ltr",
   "lang": "en",
-  "name": "Last Time I Did",
+  "name": "Tidl",
   "scope": "/",
   "display": "standalone",
   "start_url": "https://last-time-i-did.now.sh/",
-  "short_name": "LTID",
+  "short_name": "Tidl",
   "theme_color": "#212121",
   "description": "The app to make you feel guilty of not doing stuff :)",
   "orientation": "any",

@@ -7,6 +7,7 @@ import dayjs from 'dayjs'
 import { Modal } from './Modal'
 import { IconList } from './IconList'
 import Icon from './Icon'
+import { ITask } from '@ltid/types'
 
 const TaskSchema = Yup.object().shape({
   name: Yup.string()
@@ -28,11 +29,14 @@ const FieldSet = styled.fieldset`
   display: flex;
   flex-direction: column;
   border: none;
+  padding: 0 0 1rem 0;
+  margin: 0;
 `
 
 const StyledForm = styled(Form)`
   display: flex;
   flex-direction: column;
+  padding: 0.5rem;
 `
 
 const StyledField = styled(Field)`
@@ -54,7 +58,25 @@ const SubmitButton = styled.button`
   border-radius: 0.75rem;
 `
 
-export const TaskForm = ({ formData, onSubmit }) => {
+const DeleteButton = styled.button`
+  color: red;
+  background-color: transparent;
+  width: 10rem;
+  padding: 0.25rem 0 1rem 0;
+  text-align: left;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+`
+
+type Props = {
+  formData: ITask
+  onSubmit: Function
+  onDelete?: Function
+}
+
+export const TaskForm = ({ formData, onSubmit, onDelete }: Props) => {
   const { name = '', date = new Date(), icon = 'coffee' } = formData
   const [selectedIcon, setSelectedIcon] = useState(icon)
   const [openIconList, setOpenIconList] = useState(false)
@@ -87,6 +109,10 @@ export const TaskForm = ({ formData, onSubmit }) => {
               <StyledField type="datetime-local" name="date" />
               <ErrorMessage name="date" component="div" />
             </FieldSet>
+
+            {formData.id && (
+              <DeleteButton onClick={() => onDelete(formData.id)}>Delete this task</DeleteButton>
+            )}
 
             <SubmitButton type="submit" disabled={!isValid || isSubmitting}>
               Save

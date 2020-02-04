@@ -9,7 +9,7 @@ import { iconList } from '@ltid/util'
 const GRID_SIZE = 4
 const ICON_SIZE = 72
 
-const IconListWrapper = styled.ul`
+const IconSelectorWrapper = styled.ul`
   padding: 0 0.5rem;
   height: 38vh;
   text-align: center;
@@ -49,7 +49,7 @@ const Row = ({ data, columnIndex, rowIndex, style }) => {
   )
 }
 
-export const IconList = ({ onIconSelected, selectedIconName }) => {
+export const IconSelector = ({ onIconSelected, selectedIconName }) => {
   const [selectedIcon, setSelectedIcon] = useState(selectedIconName)
   const selectIcon = iconName => {
     onIconSelected(iconName)
@@ -79,7 +79,7 @@ export const IconList = ({ onIconSelected, selectedIconName }) => {
   const numberOfRows = Math.max(iconList.length / GRID_SIZE)
 
   return (
-    <IconListWrapper>
+    <IconSelectorWrapper>
       <AutoSizer>
         {({ height, width }) => (
           <Grid
@@ -96,6 +96,6 @@ export const IconList = ({ onIconSelected, selectedIconName }) => {
           </Grid>
         )}
       </AutoSizer>
-    </IconListWrapper>
+    </IconSelectorWrapper>
   )
 }

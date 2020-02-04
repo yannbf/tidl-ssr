@@ -6,7 +6,7 @@ import dayjs from 'dayjs'
 import { IconName } from '@fortawesome/fontawesome-svg-core'
 
 import { Modal } from './Modal'
-import { IconList } from './IconList'
+import { IconSelector } from './IconSelector'
 import Icon from './Icon'
 import { ITask } from '@ltid/types'
 
@@ -80,7 +80,7 @@ type Props = {
 export const TaskForm = ({ formData, onSubmit, onDelete }: Props) => {
   const { name = '', date = new Date(), icon = 'coffee' } = formData
   const [selectedIcon, setSelectedIcon] = useState(icon)
-  const [openIconList, setOpenIconList] = useState(false)
+  const [openIconSelector, setOpenIconSelector] = useState(false)
 
   return (
     <>
@@ -98,7 +98,7 @@ export const TaskForm = ({ formData, onSubmit, onDelete }: Props) => {
       >
         {({ isValid, isSubmitting }: { isValid: boolean; isSubmitting: boolean }) => (
           <StyledForm>
-            <StyledIcon onClick={() => setOpenIconList(true)} icon={selectedIcon} />
+            <StyledIcon onClick={() => setOpenIconSelector(true)} icon={selectedIcon} />
             <FieldSet>
               <label htmlFor="name">Name</label>
               <StyledField type="text" name="name" placeholder="Task name.." />
@@ -122,8 +122,8 @@ export const TaskForm = ({ formData, onSubmit, onDelete }: Props) => {
         )}
       </Formik>
 
-      <Modal small isOpen={openIconList} onClose={() => setOpenIconList(false)}>
-        <IconList
+      <Modal small isOpen={openIconSelector} onClose={() => setOpenIconSelector(false)}>
+        <IconSelector
           selectedIconName={selectedIcon}
           onIconSelected={(name: IconName) => {
             setSelectedIcon(name)

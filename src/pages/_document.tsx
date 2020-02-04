@@ -140,6 +140,7 @@ export default class MyDocument extends Document {
           />
         </Head>
         <body>
+          <noscript>You need to enable JavaScript to run this app.</noscript>
           <div id="modal" />
           <Main />
           <NextScript />

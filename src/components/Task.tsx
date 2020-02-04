@@ -9,7 +9,7 @@ import { Text } from './Text'
 import { useLongPress } from '../hooks/useLongPress'
 import { openModal, saveTask } from '@ltid/state/actions'
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ isPressing: boolean }>`
   cursor: pointer;
   display: flex;
   width: auto;
@@ -18,23 +18,27 @@ const Wrapper = styled.div`
   border-radius: 0.5rem;
   box-shadow: 0px 9px 12px 3px rgba(2, 8, 20, 0.1), 0 0 16px rgba(2, 8, 20, 0.08);
   align-items: center;
+  opacity: ${({ isPressing }) => (isPressing ? 0.5 : 1)};
   color: #1a1919;
 `
 
 type Props = {
   task: ITask
 }
-
 export const Task: React.FC<Props> = ({ task }: Props) => {
   const dispatch = useDispatch()
 
-  const [longPressRef, isPressed] = useLongPress(
-    () => dispatch(saveTask({ ...task, date: new Date() })),
-    2000
-  )
+  const [onTouchStart, onTouchEnd, pressing] = useLongPress()
 
   return (
-    <Wrapper data-testid="list-item" ref={longPressRef} onClick={() => dispatch(openModal(task))}>
+    <Wrapper
+      data-testid="list-item"
+      onClick={() => dispatch(openModal(task))}
+      onTouchStart={onTouchStart}
+      onTouchEnd={onTouchEnd}
+      onTouchMove={onTouchEnd}
+      isPressing={pressing}
+    >
       <Text element="p">{task.name}</Text>
       <Icon icon={task.icon} size="4x" fixedWidth />
       <Text element="p" fontWeight="bold">

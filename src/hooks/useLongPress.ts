@@ -1,26 +1,34 @@
-import { useCallback, useState } from 'react'
-import { fromEvent, of } from 'rxjs'
-import { delay, takeUntil, mergeMap } from 'rxjs/operators'
+import { useCallback, useState, useRef } from 'react'
 
-export const useLongPress = (callback: Function, debounce = 1000) => {
-  const [isPressed, setIsPressed] = useState(false)
+type LongPressHook = [() => void, () => void, boolean]
 
-  const longPressCallback = useCallback(targetElement => {
-    if (targetElement !== null) {
-      const mouseUp$ = fromEvent(targetElement, 'mouseup')
-      const mouseDown$ = fromEvent(targetElement, 'mousedown')
+export const useLongPress = (
+  duration: number = 2000,
+  callback: () => void = () => {}
+): LongPressHook => {
+  const timer = useRef(null)
+  const delayTimer = useRef(null)
+  const [pressing, setPressing] = useState(false)
 
-      const longPress$ = mouseDown$.pipe(
-        mergeMap(e => of(e).pipe(delay(debounce), takeUntil(mouseUp$)))
-      )
+  const onTouchStart = useCallback(() => {
+    delayTimer.current = setTimeout(() => {
+      setPressing(true)
+    }, 100)
+    timer.current = setTimeout(() => {
+      setPressing(false)
+      callback()
+    }, duration)
+  }, [])
 
-      longPress$.subscribe(event => {
-        callback(event)
-      })
-    } else {
-      console.warn('useLongPress: the element passed does not exist.')
+  const onTouchEnd = useCallback(() => {
+    setPressing(false)
+    if (timer.current) {
+      clearTimeout(timer.current)
+    }
+    if (delayTimer.current) {
+      clearTimeout(delayTimer.current)
     }
   }, [])
 
-  return [longPressCallback, isPressed]
+  return [onTouchStart, onTouchEnd, pressing]
 }

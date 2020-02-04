@@ -124,6 +124,7 @@ export const TaskForm = ({ formData, onSubmit, onDelete }: Props) => {
 
       <Modal small isOpen={openIconList} onClose={() => setOpenIconList(false)}>
         <IconList
+          selectedIconName={selectedIcon}
           onIconSelected={(name: IconName) => {
             setSelectedIcon(name)
           }}

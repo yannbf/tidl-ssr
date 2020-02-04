@@ -1,5 +1,7 @@
-import React from 'react'
-import styled, { css } from 'styled-components'
+import React, { useContext } from 'react'
+import styled, { css, ThemeContext } from 'styled-components'
+
+import { IAppTheme } from '@ltid/styles'
 
 export interface DefaultProps {
   color: string
@@ -68,8 +70,13 @@ const DefaultStyle = ({
 export const Text: React.FC<Props> = props => {
   const { children, element: Element = 'span' } = props
 
+  const themeContext = useContext(ThemeContext) as IAppTheme
+
   const StyledElement = styled(Element)`
-    ${DefaultStyle(props)};
+    ${DefaultStyle({
+      ...props,
+      color: themeContext.text.primary,
+    })};
   `
 
   return <StyledElement>{children}</StyledElement>

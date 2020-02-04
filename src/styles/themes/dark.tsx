@@ -8,7 +8,7 @@ const dark: IAppTheme = {
   },
   text: {
     primary: '#fbfbfc',
-    secondary: '#e3e4e8',
+    secondary: '#1a1919',
   },
 }
 

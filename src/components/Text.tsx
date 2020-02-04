@@ -11,6 +11,7 @@ export interface DefaultProps {
 
 interface NonDefaultProps {
   children?: React.ReactNode
+  secondary?: boolean
   fontStyle?: 'normal' | 'italic'
   fontWeight?: 'light' | 'regular' | 'semibold' | 'bold'
   textTransform?: 'capitalize' | 'lowercase' | 'uppercase' | 'none'
@@ -68,14 +69,16 @@ const DefaultStyle = ({
 }
 
 export const Text: React.FC<Props> = props => {
-  const { children, element: Element = 'span' } = props
+  const { children, secondary = false, element: Element = 'span' } = props
 
   const themeContext = useContext(ThemeContext) as IAppTheme
+
+  const color = secondary ? themeContext.text.secondary : themeContext.text.primary
 
   const StyledElement = styled(Element)`
     ${DefaultStyle({
       ...props,
-      color: themeContext.text.primary,
+      color,
     })};
   `
 

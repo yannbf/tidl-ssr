@@ -39,9 +39,11 @@ export const Task: React.FC<Props> = ({ task }: Props) => {
       onTouchMove={onTouchEnd}
       isPressing={pressing}
     >
-      <Text element="p">{task.name}</Text>
+      <Text secondary element="p">
+        {task.name}
+      </Text>
       <Icon icon={task.icon} size="4x" fixedWidth />
-      <Text element="p" fontWeight="bold">
+      <Text secondary element="p" fontWeight="bold">
         {dayjs().to(task.date)}
       </Text>
     </Wrapper>

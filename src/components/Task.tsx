@@ -20,11 +20,14 @@ const Wrapper = styled.div<{ isPressing: boolean }>`
   align-items: center;
   opacity: ${({ isPressing }) => (isPressing ? 0.5 : 1)};
   color: #1a1919;
+  user-select: none;
+  -webkit-touch-callout: none;
 `
 
 type Props = {
   task: ITask
 }
+
 export const Task: React.FC<Props> = ({ task }: Props) => {
   const dispatch = useDispatch()
 

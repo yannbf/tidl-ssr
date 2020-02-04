@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import { Task } from './Task'
 import { ITask } from '@ltid/types'
-import Icon from './Icon'
+import { EmptyList } from '@ltid/components'
 
 const List = styled.ul`
   display: grid;
@@ -11,12 +11,6 @@ const List = styled.ul`
   grid-gap: 0.75rem;
   align-items: start;
   padding: 0;
-`
-
-const EmptyList = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 `
 
 type Props = {
@@ -29,12 +23,7 @@ export const TaskList: React.FunctionComponent<Props> = ({ tasks }) => {
   }
 
   if (tasks.length === 0) {
-    return (
-      <EmptyList data-testid="empty-list">
-        <Icon icon="box-open" />
-        <p>The task list is empty!</p>
-      </EmptyList>
-    )
+    return <EmptyList />
   }
 
   tasks.sort((first: ITask, second: ITask) => {

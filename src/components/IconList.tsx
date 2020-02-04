@@ -16,7 +16,7 @@ const IconListWrapper = styled.ul`
   margin-bottom: -2rem;
 `
 
-const StyledIcon = styled(Icon)`
+const StyledIcon = styled(Icon)<{ selected: boolean }>`
   margin: 0.35rem;
   box-sizing: border-box;
   border: ${props => (props.selected ? '1px solid #4CAF50' : '1px solid #eee')};

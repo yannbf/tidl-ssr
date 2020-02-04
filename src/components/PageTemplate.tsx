@@ -10,7 +10,7 @@ const Wrapper = styled.section`
   padding: 1rem;
 `
 
-export const PageTemplate = ({ title, children }: Props) => (
+export const PageTemplate: React.FC<Props> = ({ title, children }) => (
   <>
     <Head>
       <title>Tidl - {title}</title>

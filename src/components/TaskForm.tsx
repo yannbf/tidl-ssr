@@ -3,6 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import styled from 'styled-components'
 import dayjs from 'dayjs'
+import { IconName } from '@fortawesome/fontawesome-svg-core'
 
 import { Modal } from './Modal'
 import { IconList } from './IconList'
@@ -71,9 +72,9 @@ const DeleteButton = styled.button`
 `
 
 type Props = {
-  formData: ITask
-  onSubmit: Function
-  onDelete?: Function
+  formData: Partial<ITask>
+  onSubmit: (task: ITask) => void
+  onDelete?: (id: number) => void
 }
 
 export const TaskForm = ({ formData, onSubmit, onDelete }: Props) => {
@@ -84,9 +85,9 @@ export const TaskForm = ({ formData, onSubmit, onDelete }: Props) => {
   return (
     <>
       <Formik
-        initialValues={{ name, date: dayjs(date).format('YYYY-MM-DDTHH:mm') }}
+        initialValues={{ name, date: dayjs(date).format('YYYY-MM-DDTHH:mm'), icon: 'coffee' }}
         validationSchema={TaskSchema}
-        onSubmit={({ name, date }) =>
+        onSubmit={({ name, date }: ITask) =>
           onSubmit({
             id: formData.id,
             name,
@@ -95,7 +96,7 @@ export const TaskForm = ({ formData, onSubmit, onDelete }: Props) => {
           })
         }
       >
-        {({ isValid, isSubmitting }) => (
+        {({ isValid, isSubmitting }: { isValid: boolean; isSubmitting: boolean }) => (
           <StyledForm>
             <StyledIcon onClick={() => setOpenIconList(true)} icon={selectedIcon} />
             <FieldSet>
@@ -120,9 +121,10 @@ export const TaskForm = ({ formData, onSubmit, onDelete }: Props) => {
           </StyledForm>
         )}
       </Formik>
+
       <Modal small isOpen={openIconList} onClose={() => setOpenIconList(false)}>
         <IconList
-          onIconSelected={name => {
+          onIconSelected={(name: IconName) => {
             setSelectedIcon(name)
           }}
         />

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { NextPage } from 'next'
 
 import { TaskListContainer, Modal, TaskForm, PageTemplate, FloatingButton } from '@ltid/components'
-import { database } from 'api/database'
+import { database } from '@ltid/services'
 import { IAppState, ITask } from '@ltid/types'
 import { openModal, closeModal, saveTask, removeTask } from '@ltid/state/actions'
 

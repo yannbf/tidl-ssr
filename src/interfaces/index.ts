@@ -3,7 +3,7 @@ import { IconName } from '@fortawesome/fontawesome-svg-core'
 export interface ITask {
   id?: number
   name: string
-  date: Date
+  date: string
   icon: IconName
 }
 
@@ -12,7 +12,7 @@ export interface IAppState {
   isLoading: boolean
   error: string
   isOpen: boolean
-  formData: Object
+  formData: ITask | object
 }
 
 export * from './status-codes'

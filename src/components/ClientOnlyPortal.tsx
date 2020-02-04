@@ -1,7 +1,12 @@
 import { useRef, useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 
-export default function ClientOnlyPortal({ children, selector }) {
+type Props = {
+  children: React.ReactNode
+  selector: string
+}
+
+export const ClientOnlyPortal: React.FC<Props> = ({ children, selector }) => {
   const ref = useRef()
   const [mounted, setMounted] = useState(false)
 

@@ -1,13 +1,18 @@
 import * as types from './actionTypes'
+import { IAppState } from '@ltid/types'
 
-export const INITIAL_STATE = {
+export const INITIAL_STATE: IAppState = {
+  error: null,
   tasks: [],
   isLoading: true,
   isOpen: false,
   formData: {},
 }
 
-export default function reducer(state = INITIAL_STATE, action) {
+export default function reducer(
+  state: IAppState = INITIAL_STATE,
+  action: { type: string; payload }
+) {
   const { type, payload } = action
 
   switch (type) {

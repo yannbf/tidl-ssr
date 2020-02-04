@@ -30,7 +30,7 @@ const popOut = keyframes`
   }
 `
 
-const FloatingButtonStyled = styled.button`
+const FloatingButtonStyled = styled.button<{ isShowing: boolean }>`
   position: absolute;
   bottom: 2.5rem;
   right: 2.5rem;
@@ -55,7 +55,7 @@ const FloatingButtonStyled = styled.button`
 type Props = {
   icon: IconName
   isShowing?: boolean
-  onClick: Function
+  onClick: () => void
 }
 
 export const FloatingButton = ({ icon, isShowing = true, onClick }: Props) => (

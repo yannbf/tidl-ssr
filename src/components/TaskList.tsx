@@ -17,7 +17,7 @@ type Props = {
   tasks: ITask[]
 }
 
-export const TaskList: React.FunctionComponent<Props> = ({ tasks }) => {
+export const TaskList: React.FC<Props> = ({ tasks }) => {
   if (tasks === null) {
     return <div data-testid="loading">loading..</div>
   }

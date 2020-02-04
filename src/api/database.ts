@@ -19,20 +19,20 @@ class Database {
     return (tasks && JSON.parse(tasks)) || []
   }
 
-  private notifySubscribers() {
+  private notifySubscribers(): void {
     this.tasksSubject.next(this.tasks)
   }
 
-  public init() {
+  public init(): void {
     this.tasksSubject.next(this.tasks)
   }
 
-  public flush() {
+  public flush(): void {
     localStorage.clear()
     this.notifySubscribers()
   }
 
-  public sort(tasks) {
+  public sort(tasks: ITask[]): ITask[] {
     if (tasks.length > 1) {
       return tasks.sort((first: ITask, second: ITask) => {
         const a = first.date
@@ -44,10 +44,10 @@ class Database {
     }
   }
 
-  public save(myTask: ITask) {
+  public save(myTask: ITask): void {
     const tasks = this.tasks
-    let index = tasks.indexOf(tasks.find(item => item.id === myTask.id))
-    if (index != -1) {
+    const index = tasks.indexOf(tasks.find(item => item.id === myTask.id))
+    if (index !== -1) {
       // Already existing task
       tasks[index] = myTask
       this.tasks = tasks
@@ -62,10 +62,10 @@ class Database {
     }
   }
 
-  public delete(taskId: number) {
+  public delete(taskId: number): void {
     const tasks = this.tasks
-    let index = tasks.indexOf(tasks.find(item => item.id === taskId))
-    if (index != -1) {
+    const index = tasks.indexOf(tasks.find(item => item.id === taskId))
+    if (index !== -1) {
       tasks.splice(index, 1)
       this.tasks = tasks
       this.notifySubscribers()

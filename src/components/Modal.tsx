@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
-import styled, { keyframes, css } from 'styled-components'
-import { createGlobalStyle } from 'styled-components'
+import styled, { keyframes, css, createGlobalStyle } from 'styled-components'
 
-import ClientOnlyPortal from './ClientOnlyPortal'
+import { ClientOnlyPortal } from './ClientOnlyPortal'
 import { useKey } from '../hooks'
 import { mediaBreakpoint } from '@ltid/styles'
 import Icon from './Icon'
@@ -13,7 +12,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
-const translate = (from: string, to: string) => keyframes`
+const translateAnimation = (from: string, to: string) => keyframes`
   from {
     transform: translateY(${from});
   }
@@ -23,7 +22,7 @@ const translate = (from: string, to: string) => keyframes`
   }
 `
 
-const fade = (from: string, to: string) => keyframes`
+const fadeAnimation = (from: string, to: string) => keyframes`
   from {
     opacity: ${from};
   }
@@ -33,7 +32,7 @@ const fade = (from: string, to: string) => keyframes`
   }
 `
 
-const ModalWrapper = styled.div`
+const ModalWrapper = styled.div<{ showing: boolean; small: boolean }>`
   background-color: white;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
@@ -49,10 +48,10 @@ const ModalWrapper = styled.div`
   animation: ${props =>
     props.showing
       ? css`
-          ${translate('100%', '0%')} 160ms ease-in
+          ${translateAnimation('100%', '0%')} 160ms ease-in
         `
       : css`
-          ${translate('0%', '100%')} 160ms ease-in forwards
+          ${translateAnimation('0%', '100%')} 160ms ease-in forwards
         `};
   ${mediaBreakpoint.desktop`
     animation: none;
@@ -67,21 +66,20 @@ const ModalWrapper = styled.div`
   `}
 `
 
-const Backdrop = styled.div`
+const Backdrop = styled.div<{ showing: boolean }>`
   position: fixed;
   background-color: rgba(0, 0, 0, 0.4);
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  animation: ${fade} 200ms ease-in;
   animation: ${props =>
     props.showing
       ? css`
-          ${fade('0.1', '0.6')} 160ms ease-in
+          ${fadeAnimation('0.1', '0.6')} 160ms ease-in
         `
       : css`
-          ${fade('0.6', '0')} 160ms ease-in forwards
+          ${fadeAnimation('0.6', '0')} 160ms ease-in forwards
         `};
   ${mediaBreakpoint.desktop`
     animation: none;
@@ -124,7 +122,7 @@ export const Modal = ({ children, isOpen, onClose, small = false }) => {
           {children}
         </ModalWrapper>
         <GlobalStyle />
-        <Backdrop showing={showing} onClick={closeModal}></Backdrop>
+        <Backdrop showing={showing} onClick={closeModal} />
       </ClientOnlyPortal>
     )
   )

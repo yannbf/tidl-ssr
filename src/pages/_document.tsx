@@ -45,7 +45,6 @@ export default class MyDocument extends Document {
           <meta name="apple-mobile-web-app-capable" content="yes" />
 
           {/* <!-- Primary Meta Tags --> */}
-          <title>{APP_NAME}</title>
           <meta name="title" content={APP_NAME} />
           <meta name="description" content={APP_DESCRIPTION} />
 

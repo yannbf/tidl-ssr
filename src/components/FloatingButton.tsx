@@ -31,6 +31,7 @@ const popOut = keyframes`
 `
 
 const FloatingButtonStyled = styled.button<{ isShowing: boolean }>`
+  user-select: none;
   position: absolute;
   bottom: 2.5rem;
   right: 2.5rem;

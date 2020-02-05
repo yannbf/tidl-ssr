@@ -47,7 +47,7 @@ const Home: NextPage = () => {
   */
 
   return (
-    <PageTemplate title="Home">
+    <PageTemplate>
       <TaskListContainer />
 
       <Modal isOpen={isOpen} onClose={closeTheModal}>

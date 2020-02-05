@@ -7,5 +7,6 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Open Sans', sans-serif;
     background: ${({ theme }: { theme: IAppTheme }) => theme.bg.primary};
     font-size: 1rem;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
   }
 `

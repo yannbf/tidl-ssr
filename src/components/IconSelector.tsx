@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, memo } from 'react'
 import styled from 'styled-components'
 import { FixedSizeGrid as Grid } from 'react-window'
 import AutoSizer from 'react-virtualized-auto-sizer'
@@ -6,51 +6,76 @@ import AutoSizer from 'react-virtualized-auto-sizer'
 import Icon from './Icon'
 import { iconList } from '@ltid/util'
 
-const GRID_SIZE = 4
-const ICON_SIZE = 72
+const ICON_SIZE = 70
 
 const IconSelectorWrapper = styled.ul`
-  padding: 0 0.5rem;
+  padding: 0;
+  margin: 1rem 0;
   height: 38vh;
   text-align: center;
+  position: relative;
+
+  &::before {
+    content: '';
+    z-index: 2;
+    height: 1rem;
+    top: -1px;
+    width: 100%;
+    background: linear-gradient(to bottom, white, rgba(255, 255, 255, 0));
+    display: block;
+    position: absolute;
+  }
+
+  &::after {
+    content: '';
+    z-index: 2;
+    height: 1rem;
+    bottom: -1px;
+    width: 100%;
+    background: linear-gradient(to top, white, rgba(255, 255, 255, 0));
+    display: block;
+    position: absolute;
+  }
 `
 
 const StyledIcon = styled(Icon)<{ selected: boolean }>`
-  margin: 0.35rem;
   box-sizing: border-box;
   border: ${props => (props.selected ? '1px solid #4CAF50' : '1px solid #eee')};
   box-shadow: ${props => (props.selected ? '0px 2px 4px 1px rgba(2,8,20,0.1)' : 'none')};
   border-radius: 0.5rem;
   padding: 0.5rem;
+  margin: 0 auto;
+  width: ${ICON_SIZE - 10}px;
+  height: ${ICON_SIZE - 10}px;
 `
 
-const Row = ({ data, columnIndex, rowIndex, style }) => {
+const Row = memo(({ data, columnIndex, rowIndex, style }: any) => {
   // translate a Matrix index into Array index
-  const index = rowIndex * GRID_SIZE + columnIndex
+  const index = rowIndex * data.numberOfColumns + columnIndex
+
+  if (!data.iconList[index]) {
+    return null
+  }
+
   const iconName = data.iconList[index].iconName
-  const GUTTER_SIZE = 10
 
   return (
-    <StyledIcon
-      style={{
-        ...style,
-        left: style.left + GUTTER_SIZE,
-        top: style.top + GUTTER_SIZE,
-        width: style.width - GUTTER_SIZE,
-        height: style.height - GUTTER_SIZE,
-      }}
-      key={iconName}
-      selected={iconName === data.selectedIcon}
-      size="3x"
-      fixedWidth
-      onClick={() => data.selectIcon(iconName)}
-      icon={iconName}
-    />
+    <div style={{ ...style, display: 'flex', alignItems: 'center' }}>
+      <StyledIcon
+        key={iconName}
+        selected={iconName === data.selectedIcon}
+        size="3x"
+        fixedWidth
+        onClick={() => data.selectIcon(iconName)}
+        icon={iconName}
+      />
+    </div>
   )
-}
+})
 
 export const IconSelector = ({ onIconSelected, selectedIconName }) => {
   const [selectedIcon, setSelectedIcon] = useState(selectedIconName)
+  const [numberOfColumns, setNumberOfColumns] = useState(null)
   const selectIcon = iconName => {
     onIconSelected(iconName)
     setSelectedIcon(iconName)
@@ -62,39 +87,51 @@ export const IconSelector = ({ onIconSelected, selectedIconName }) => {
     const itemIndex = iconList.findIndex(i => i.iconName === selectedIconName)
 
     // translate an Array index into Matrix index
-    const columnIndex = itemIndex % GRID_SIZE
-    const rowIndex = Math.floor(itemIndex / GRID_SIZE)
+    const columnIndex = itemIndex % numberOfColumns
+    const rowIndex = Math.floor(itemIndex / numberOfColumns)
 
     // The element being inside Autosizer makes
     // it more difficult to pass the ref to the Grid
-    setTimeout(() => {
+    if (gridRef.current) {
       gridRef.current.scrollToItem({
-        align: 'start',
+        align: 'center',
         columnIndex,
         rowIndex,
       })
-    }, 0)
-  }, [])
-
-  const numberOfRows = Math.max(iconList.length / GRID_SIZE)
+    }
+  }, [numberOfColumns, gridRef])
 
   return (
     <IconSelectorWrapper>
       <AutoSizer>
-        {({ height, width }) => (
-          <Grid
-            ref={gridRef}
-            itemData={{ iconList, selectedIcon, selectIcon }}
-            height={height}
-            width={width}
-            columnCount={GRID_SIZE}
-            rowCount={numberOfRows}
-            columnWidth={ICON_SIZE}
-            rowHeight={ICON_SIZE}
-          >
-            {Row}
-          </Grid>
-        )}
+        {({ height, width }) => {
+          setNumberOfColumns(Math.floor(width / ICON_SIZE))
+
+          const cellSize = Math.floor(width / numberOfColumns)
+          const numberOfRows = Math.floor(iconList.length / numberOfColumns)
+
+          return (
+            numberOfColumns && (
+              <Grid
+                ref={gridRef}
+                itemData={{
+                  iconList,
+                  selectedIcon,
+                  selectIcon,
+                  numberOfColumns,
+                }}
+                height={height}
+                width={width}
+                columnCount={numberOfColumns}
+                rowCount={numberOfRows}
+                columnWidth={cellSize}
+                rowHeight={cellSize}
+              >
+                {Row}
+              </Grid>
+            )
+          )
+        }}
       </AutoSizer>
     </IconSelectorWrapper>
   )

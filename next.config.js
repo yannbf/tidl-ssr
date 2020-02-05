@@ -14,7 +14,7 @@ const nextConfig = {
     return config
   },
   transformManifest: manifest => ['/'].concat(manifest),
-  generateInDevMode: true,
+  generateInDevMode: false,
   workboxOpts: {
     swDest: 'static/service-worker.js',
     runtimeCaching: [

@@ -4,7 +4,7 @@
   "name": "Tidl",
   "scope": "/",
   "display": "standalone",
-  "start_url": "https://last-time-i-did.now.sh/",
+  "start_url": "https://tidl.now.sh/",
   "short_name": "Tidl",
   "theme_color": "#212121",
   "description": "The app to make you feel guilty of not doing stuff :)",

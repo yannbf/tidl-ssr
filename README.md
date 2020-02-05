@@ -1,8 +1,8 @@
-# Last Time I Did
+# Tidl
 
 This is a task manager app to remind about the last time you have done certain activities (took trash out, done laundry, threw a party, etc). The main intention is to show you that it's about time to do that activity again.
 
-Live demo: https://last-time-i-did.now.sh
+Live demo: https://tidl.now.sh
 
 ## Technologies
 

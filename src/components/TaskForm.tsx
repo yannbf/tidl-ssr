@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import dayjs from 'dayjs'
 import { IconName } from '@fortawesome/fontawesome-svg-core'
 
-import { Modal } from './Modal'
+import { Modal } from './Modal/Modal'
 import { IconSelector } from './IconSelector'
 import Icon from './Icon'
 import { ITask } from '@ltid/types'

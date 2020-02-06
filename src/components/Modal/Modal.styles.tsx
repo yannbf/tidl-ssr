@@ -82,6 +82,7 @@ export const ModalContent = styled.div<{ small: boolean }>`
   box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
 
   ${defaultAnimation}
+  ${desktopOverrides}
 `
 
 export const Backdrop = styled.div`

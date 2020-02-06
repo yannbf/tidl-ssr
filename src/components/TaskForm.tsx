@@ -9,6 +9,7 @@ import { Modal } from './Modal'
 import { IconSelector } from './IconSelector'
 import Icon from './Icon'
 import { ITask } from '@ltid/types'
+import { logEvent } from 'util/analytics'
 
 const TaskSchema = Yup.object().shape({
   name: Yup.string()
@@ -127,6 +128,7 @@ export const TaskForm = ({ formData, onSubmit, onDelete }: Props) => {
           selectedIconName={selectedIcon}
           onIconSelected={(name: IconName) => {
             setSelectedIcon(name)
+            logEvent('action', 'selectIcon', name)
           }}
         />
       </Modal>

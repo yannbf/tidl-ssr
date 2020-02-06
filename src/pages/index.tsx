@@ -6,6 +6,7 @@ import { TaskListContainer, Modal, TaskForm, PageTemplate, FloatingButton } from
 import { database } from '@ltid/services'
 import { IAppState, ITask } from '@ltid/types'
 import { openModal, closeModal, saveTask, removeTask } from '@ltid/state/actions'
+import { logModalView } from 'util/analytics'
 
 const Home: NextPage = () => {
   const dispatch = useDispatch()
@@ -54,7 +55,13 @@ const Home: NextPage = () => {
         <TaskForm onSubmit={saveData} formData={formData} onDelete={removeData} />
       </Modal>
 
-      <FloatingButton icon="plus" onClick={() => dispatch(openModal())} />
+      <FloatingButton
+        icon="plus"
+        onClick={() => {
+          dispatch(openModal())
+          logModalView('NewTask')
+        }}
+      />
     </PageTemplate>
   )
 }

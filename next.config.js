@@ -4,6 +4,9 @@ const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 
 const nextConfig = {
   target: 'serverless',
+  env: {
+    GA_KEY: process.env.GA_KEY,
+  },
   webpack: config => {
     if (config.resolve.plugins) {
       config.resolve.plugins.push(new TsconfigPathsPlugin())

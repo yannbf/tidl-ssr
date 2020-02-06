@@ -1,8 +1,7 @@
 import ReactGA from 'react-ga'
 
 export const initGA = (): void => {
-  // TODO: add key via secrets
-  ReactGA.initialize('')
+  ReactGA.initialize(process.env.GA_KEY)
 }
 
 export const logPageView = (): void => {

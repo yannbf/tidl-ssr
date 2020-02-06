@@ -15,5 +15,10 @@
       "src": "next.config.js",
       "use": "@now/next"
     }
-  ]
+  ],
+  "build": {
+    "env": {
+      "GA_KEY": "@ga-key"
+    }
+  }
 }

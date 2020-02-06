@@ -8,6 +8,7 @@ import Icon from './Icon'
 import { Text } from './Text'
 import { useLongPress } from '../hooks/useLongPress'
 import { openModal, saveTask } from '@ltid/state/actions'
+import { logModalView } from 'util/analytics'
 
 const Wrapper = styled.div<{ isPressing: boolean }>`
   cursor: pointer;
@@ -36,7 +37,10 @@ export const Task: React.FC<Props> = ({ task }: Props) => {
   return (
     <Wrapper
       data-testid="list-item"
-      onClick={() => dispatch(openModal(task))}
+      onClick={() => {
+        dispatch(openModal(task))
+        logModalView('EditTask')
+      }}
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
       onTouchMove={onTouchEnd}

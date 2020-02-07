@@ -117,7 +117,9 @@ export const TaskForm = ({ formData, onSubmit, onDelete }: Props) => {
             </FieldSet>
 
             {formData.id && (
-              <DeleteButton onClick={() => onDelete(formData.id)}>Delete this task</DeleteButton>
+              <DeleteButton type="button" onClick={() => onDelete(formData.id)}>
+                Delete this task
+              </DeleteButton>
             )}
 
             <SubmitButton type="submit" disabled={!isValid || isSubmitting}>

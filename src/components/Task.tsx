@@ -9,18 +9,19 @@ import { Text } from './Text'
 import { useLongPress } from '../hooks/useLongPress'
 import { openModal, saveTask } from '@ltid/state/actions'
 import { logModalView } from 'util/analytics'
+import { IAppTheme } from '@ltid/styles'
 
 const Wrapper = styled.div<{ isPressing: boolean }>`
   cursor: pointer;
   display: flex;
   width: auto;
   flex-direction: column;
-  background: white;
+  background: ${({ theme }: { theme: IAppTheme }) => theme.bg.secondary};
   border-radius: 0.5rem;
   box-shadow: 0px 9px 12px 3px rgba(2, 8, 20, 0.1), 0 0 16px rgba(2, 8, 20, 0.08);
   align-items: center;
   opacity: ${({ isPressing }) => (isPressing ? 0.5 : 1)};
-  color: #1a1919;
+  color: ${({ theme }: { theme: IAppTheme }) => theme.text.primary};
   user-select: none;
   -webkit-touch-callout: none;
 `
@@ -50,7 +51,7 @@ export const Task: React.FC<Props> = ({ task }: Props) => {
         {task.name}
       </Text>
       <Icon icon={task.icon} size="4x" fixedWidth />
-      <Text secondary element="p" fontWeight="bold">
+      <Text element="p" fontWeight="bold">
         {dayjs().to(task.date)}
       </Text>
     </Wrapper>

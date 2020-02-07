@@ -2,6 +2,7 @@ import styled, { keyframes, css } from 'styled-components'
 import { IconName } from '@fortawesome/fontawesome-svg-core'
 
 import Icon from './Icon'
+import { IAppTheme } from '@ltid/styles'
 
 const popIn = keyframes`
   0% {
@@ -36,7 +37,8 @@ const FloatingButtonStyled = styled.button<{ isShowing: boolean }>`
   bottom: 2.5rem;
   right: 2.5rem;
   border-radius: 50%;
-  background: white;
+  color: white;
+  background: ${({ theme }: { theme: IAppTheme }) => theme.button.primary};
   width: 4rem;
   height: 4rem;
   border: none;

@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { device } from '@ltid/styles'
+import { device, IAppTheme } from '@ltid/styles'
 
 const topTriangle = css`
   &::after {
@@ -9,7 +9,8 @@ const topTriangle = css`
     top: -25px;
     border-left: 20px solid transparent;
     border-right: 20px solid transparent;
-    border-bottom: 25px solid white;
+    border-bottom: 25px solid;
+    border-bottom-color: ${({ theme }: { theme: IAppTheme }) => theme.bg.tertiary};
   }
 `
 
@@ -68,7 +69,8 @@ const desktopOverrides = css<{ small: boolean }>`
 `
 
 export const ModalContent = styled.div<{ small: boolean }>`
-  background-color: white;
+  background-color: ${({ theme, small }: { theme: IAppTheme; small: boolean }) =>
+    small ? theme.bg.tertiary : theme.bg.secondary};
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
   position: fixed;
@@ -87,7 +89,7 @@ export const ModalContent = styled.div<{ small: boolean }>`
 
 export const Backdrop = styled.div`
   position: fixed;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: ${({ theme }: { theme: IAppTheme }) => theme.backdrop};
   top: 0;
   right: 0;
   bottom: 0;
@@ -121,4 +123,5 @@ export const TopBarButton = styled.button`
   border: none;
   background: none;
   cursor: pointer;
+  color: ${({ theme }: { theme: IAppTheme }) => theme.text.primary};
 `

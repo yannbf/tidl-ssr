@@ -5,6 +5,7 @@ import AutoSizer from 'react-virtualized-auto-sizer'
 
 import Icon from './Icon'
 import { iconList } from '@ltid/util'
+import { IAppTheme } from '@ltid/styles'
 
 const ICON_SIZE = 70
 
@@ -21,7 +22,10 @@ const IconSelectorWrapper = styled.ul`
     height: 1rem;
     top: -1px;
     width: 100%;
-    background: linear-gradient(to bottom, white, rgba(255, 255, 255, 0));
+    background: ${({ theme }: { theme: IAppTheme }) => {
+      const { from, to } = theme.fade
+      return `linear-gradient(to bottom, ${from}, ${to})`
+    }};
     display: block;
     position: absolute;
   }
@@ -32,7 +36,10 @@ const IconSelectorWrapper = styled.ul`
     height: 1rem;
     bottom: -1px;
     width: 100%;
-    background: linear-gradient(to top, white, rgba(255, 255, 255, 0));
+    background: ${({ theme }: { theme: IAppTheme }) => {
+      const { from, to } = theme.fade
+      return `linear-gradient(to bottom, ${to}, ${from})`
+    }};
     display: block;
     position: absolute;
   }
@@ -40,13 +47,15 @@ const IconSelectorWrapper = styled.ul`
 
 const StyledIcon = styled(Icon)<{ selected: boolean }>`
   box-sizing: border-box;
-  border: ${props => (props.selected ? '1px solid #4CAF50' : '1px solid #eee')};
+  border: ${props => (props.selected ? '1px solid #ffffff' : 'none')};
   box-shadow: ${props => (props.selected ? '0px 2px 4px 1px rgba(2,8,20,0.1)' : 'none')};
+  background: ${({ theme }: { theme: IAppTheme }) => theme.bg.tertiary};
   border-radius: 0.5rem;
   padding: 0.5rem;
   margin: 0 auto;
   width: ${ICON_SIZE - 10}px;
   height: ${ICON_SIZE - 10}px;
+  color: ${({ theme }: { theme: IAppTheme }) => theme.text.primary};
 `
 
 const Row = memo(({ data, columnIndex, rowIndex, style }: any) => {

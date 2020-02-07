@@ -10,6 +10,7 @@ import { IconSelector } from './IconSelector'
 import Icon from './Icon'
 import { ITask } from '@ltid/types'
 import { logEvent } from 'util/analytics'
+import { IAppTheme } from '@ltid/styles'
 
 const TaskSchema = Yup.object().shape({
   name: Yup.string()
@@ -28,6 +29,7 @@ const TaskSchema = Yup.object().shape({
 })
 
 const FieldSet = styled.fieldset`
+  color: ${({ theme }: { theme: IAppTheme }) => theme.text.secondary};
   display: flex;
   flex-direction: column;
   border: none;
@@ -49,6 +51,7 @@ const StyledField = styled(Field)`
 const StyledIcon = styled(Icon)`
   align-self: center;
   cursor: pointer;
+  color: ${({ theme }: { theme: IAppTheme }) => theme.text.primary};
 `
 
 const SubmitButton = styled.button`
@@ -88,14 +91,15 @@ export const TaskForm = ({ formData, onSubmit, onDelete }: Props) => {
       <Formik
         initialValues={{ name, date: dayjs(date).format('YYYY-MM-DDTHH:mm'), icon: 'coffee' }}
         validationSchema={TaskSchema}
-        onSubmit={({ name, date }: ITask) =>
+        onSubmit={({ name, date }: ITask) => {
+          setOpenIconSelector(false)
           onSubmit({
             id: formData.id,
             name,
             date,
             icon: selectedIcon,
           })
-        }
+        }}
       >
         {({ isValid, isSubmitting }: { isValid: boolean; isSubmitting: boolean }) => (
           <StyledForm>

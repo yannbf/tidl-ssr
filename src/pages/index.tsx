@@ -30,10 +30,12 @@ const Home: NextPage = () => {
     closeTheModal()
   }
 
-  const removeData = (id: number) => {
-    dispatch(removeTask(id))
-
-    closeTheModal()
+  const removeData = async (id: number) => {
+    const isConfirmed = confirm('Are you sure you want to remove this task?')
+    if (isConfirmed === true) {
+      dispatch(removeTask(id))
+      closeTheModal()
+    }
   }
 
   /* TODO:

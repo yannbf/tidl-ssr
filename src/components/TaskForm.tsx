@@ -86,6 +86,22 @@ export const TaskForm = ({ formData, onSubmit, onDelete }: Props) => {
   const [selectedIcon, setSelectedIcon] = useState(icon)
   const [openIconSelector, setOpenIconSelector] = useState(false)
 
+  const share = async () => {
+    const shareData = {
+      title: 'Tidl',
+      text: `Hey! I just wanted to say that it's been ${dayjs().to(formData.date)} since I ${
+        formData.name
+      }!`,
+      url: 'https://tidl.now.sh',
+    }
+
+    try {
+      await (navigator as any).share(shareData)
+    } catch (err) {
+      alert(err)
+    }
+  }
+
   return (
     <>
       <Formik
@@ -117,9 +133,14 @@ export const TaskForm = ({ formData, onSubmit, onDelete }: Props) => {
             </FieldSet>
 
             {formData.id && (
-              <DeleteButton type="button" onClick={() => onDelete(formData.id)}>
-                Delete this task
-              </DeleteButton>
+              <>
+                <DeleteButton type="button" onClick={() => onDelete(formData.id)}>
+                  Delete this task
+                </DeleteButton>
+                <button type="button" onClick={share}>
+                  share about this
+                </button>
+              </>
             )}
 
             <SubmitButton type="submit" disabled={!isValid || isSubmitting}>

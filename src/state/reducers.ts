@@ -1,5 +1,5 @@
 import * as types from './actionTypes'
-import { IAppState } from '@ltid/types'
+import { IAppState } from '@tidl/types'
 
 export const INITIAL_STATE: IAppState = {
   error: null,

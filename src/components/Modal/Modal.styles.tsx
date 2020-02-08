@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { device, IAppTheme } from '@ltid/styles'
+import { device, IAppTheme } from '@tidl/styles'
 
 const topTriangle = css`
   &::after {

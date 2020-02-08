@@ -1,8 +1,8 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 
-import { TaskList } from '@ltid/components'
-import { mockData } from '@ltid/services'
+import { TaskList } from '@tidl/components'
+import { mockData } from '@tidl/services'
 
 const EmptyList = () => <TaskList tasks={[]} />
 

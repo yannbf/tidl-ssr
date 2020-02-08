@@ -1,6 +1,7 @@
 import { ServerStyleSheet } from 'styled-components'
 import Document, { Html, Head, Main, NextScript } from 'next/document'
-import { APP_NAME, APP_URL, APP_DESCRIPTION, APP_BANNER } from '../constants'
+
+import { APP_NAME, APP_URL, APP_DESCRIPTION, APP_BANNER } from '@tidl/constants'
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {

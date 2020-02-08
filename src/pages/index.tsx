@@ -2,11 +2,11 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { NextPage } from 'next'
 
-import { TaskListContainer, Modal, TaskForm, PageTemplate, FloatingButton } from '@ltid/components'
-import { database } from '@ltid/services'
-import { IAppState, ITask } from '@ltid/types'
-import { openModal, closeModal, saveTask, removeTask } from '@ltid/state/actions'
-import { logModalView } from 'util/analytics'
+import { TaskListContainer, Modal, TaskForm, PageTemplate, FloatingButton } from '@tidl/components'
+import { database } from '@tidl/services'
+import { IAppState, ITask } from '@tidl/types'
+import { openModal, closeModal, saveTask, removeTask } from '@tidl/state/actions'
+import { logModalView } from '@tidl/analytics'
 
 const Home: NextPage = () => {
   const dispatch = useDispatch()

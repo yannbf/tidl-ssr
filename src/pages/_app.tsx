@@ -3,12 +3,12 @@ import { Provider } from 'react-redux'
 import App from 'next/app'
 import withRedux from 'next-redux-wrapper'
 import '@fortawesome/fontawesome-svg-core/styles.css'
-
-import initStore from '@ltid/state/index'
-import { configureDates, registerIcons } from '@ltid/util'
-import { GlobalStyle } from '@ltid/styles'
-import { ThemeProvider } from '@ltid/components'
 import Head from 'next/head'
+
+import initStore from '@tidl/state/index'
+import { configureDates, registerIcons } from '@tidl/util'
+import { GlobalStyle } from '@tidl/styles'
+import { ThemeProvider } from '@tidl/components'
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {

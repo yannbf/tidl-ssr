@@ -2,7 +2,7 @@ import React from 'react'
 import { render } from '@testing-library/react'
 
 import { Task } from './Task'
-import { ITask } from '@ltid/types'
+import { ITask } from '@tidl/types'
 
 describe.only('Task', () => {
   test('Item name is rendered', () => {

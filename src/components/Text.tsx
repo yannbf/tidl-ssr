@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import styled, { css, ThemeContext } from 'styled-components'
 
-import { IAppTheme } from '@ltid/styles'
+import { IAppTheme } from '@tidl/styles'
 
 type Color = 'primary' | 'secondary' | 'danger'
 export interface DefaultProps {

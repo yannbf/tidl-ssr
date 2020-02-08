@@ -1,9 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { Task } from './Task'
-import { ITask } from '@ltid/types'
-import { EmptyList } from '@ltid/components'
+import { ITask } from '@tidl/types'
+import { EmptyList, Task } from '@tidl/components'
 
 const List = styled.ul`
   display: grid;

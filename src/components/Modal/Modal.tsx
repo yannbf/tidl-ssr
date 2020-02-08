@@ -4,8 +4,8 @@ import { CSSTransition } from 'react-transition-group'
 
 import { ModalContent, TopBar, TopBarButton, Backdrop } from './Modal.styles'
 import { ClientOnlyPortal } from '../ClientOnlyPortal'
-import { useKey } from '../../hooks'
-import Icon from '../Icon'
+import { useKey } from '@tidl/hooks'
+import { Icon } from '@tidl/components'
 
 const GlobalStyle = createGlobalStyle`
   body {

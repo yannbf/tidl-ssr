@@ -1,6 +1,6 @@
 import { Observable, BehaviorSubject } from 'rxjs'
 
-import { ITask } from '@ltid/types'
+import { ITask } from '@tidl/types'
 import { mockData } from './mock-data'
 
 class Database {

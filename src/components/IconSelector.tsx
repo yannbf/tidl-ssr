@@ -3,9 +3,9 @@ import styled from 'styled-components'
 import { FixedSizeGrid as Grid } from 'react-window'
 import AutoSizer from 'react-virtualized-auto-sizer'
 
-import Icon from './Icon'
-import { iconList } from '@ltid/util'
-import { IAppTheme } from '@ltid/styles'
+import { iconList } from '@tidl/util'
+import { IAppTheme } from '@tidl/styles'
+import { Icon } from '@tidl/components'
 
 const ICON_SIZE = 70
 

@@ -1167,6 +1167,13 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
+"@crello/react-lottie@^0.0.7":
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/@crello/react-lottie/-/react-lottie-0.0.7.tgz#98747bb35cc21e91dec9c0571c9d17022a4d76ba"
+  integrity sha512-1O3R/fFuScZxTwMyj8qq93qkMjp/FuwnEYHmzAC60YDaSGYpBkg8OdheF/1OCB0cgnyDKiUmco6Wxn2EaF7KkQ==
+  dependencies:
+    lottie-web "5.5.9"
+
 "@csstools/convert-colors@^1.4.0":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
@@ -8204,10 +8211,10 @@ loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.4.0:
   dependencies:
     js-tokens "^3.0.0 || ^4.0.0"
 
-lottie-web@^5.1.3:
-  version "5.6.3"
-  resolved "https://registry.yarnpkg.com/lottie-web/-/lottie-web-5.6.3.tgz#d3dd9f8d8c50c02f286e1b2da946dc04489410ec"
-  integrity sha512-cSG6kSA2m5ppxV/QMVHRVGop/R+oXgO4vVMvDcZR015Cy0PGml5hHP+XG21yB2qV6cYZy+X3ChTogSALgch7CA==
+lottie-web@5.5.9:
+  version "5.5.9"
+  resolved "https://registry.yarnpkg.com/lottie-web/-/lottie-web-5.5.9.tgz#f8775e8c36dfada428f9acea826ab674750419a8"
+  integrity sha512-3Zdxnuyi6WXnMj+0ZfwDd17EXCM87Hcbhd+sVFq6EPGfkVoGzoIkZt9OafcgXw4mzjyILOkPDLaBumrgGKoCaw==
 
 lower-case@^1.1.1:
   version "1.1.4"
@@ -10528,14 +10535,6 @@ react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
-
-react-lottie@^1.2.3:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/react-lottie/-/react-lottie-1.2.3.tgz#8544b96939e088658072eea5e12d912cdaa3acc1"
-  integrity sha512-qLCERxUr8M+4mm1LU0Ruxw5Y5Fn/OmYkGfnA+JDM/dZb3oKwVAJCjwnjkj9TMHtzR2U6sMEUD3ZZ1RaHagM7kA==
-  dependencies:
-    babel-runtime "^6.26.0"
-    lottie-web "^5.1.3"
 
 react-popper-tooltip@^2.8.3:
   version "2.10.1"

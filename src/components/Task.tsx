@@ -10,6 +10,7 @@ import { openModal, saveTask } from '@tidl/state/actions'
 import { logModalView, logEvent } from '@tidl/analytics'
 import { IAppTheme } from '@tidl/styles'
 import { Icon, Text, Check } from '@tidl/components'
+import { vibrate } from '@tidl/util'
 
 const Wrapper = styled.div<{ isPressing: boolean }>`
   cursor: pointer;
@@ -57,6 +58,7 @@ export const Task: React.FC<Props> = ({ task }: Props) => {
   const onLongPress = () => {
     // for animation purposes
     setUpdating(true)
+    vibrate()
     setTimeout(() => {
       setUpdating(false)
     }, 1500)

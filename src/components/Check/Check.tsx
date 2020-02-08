@@ -11,10 +11,7 @@ const lottieOptions = {
     preserveAspectRatio: 'xMidYMid slice',
   },
 }
-type Props = {
-  style?: object
-}
 
-export const Check: React.FC<Props> = memo(({ style }) => (
-  <Lottie style={style} config={lottieOptions} speed={0.5} height="100px" width="100px" />
+export const Check: React.FC = memo(() => (
+  <Lottie config={lottieOptions} speed={0.5} height="100px" width="100px" />
 ))

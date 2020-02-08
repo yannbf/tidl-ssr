@@ -3,8 +3,8 @@ import { useCallback, useState, useRef } from 'react'
 type LongPressHook = [() => void, () => void, boolean]
 
 export const useLongPress = (
-  duration: number = 2000,
-  callback: () => void = () => {}
+  callback: () => void = () => {},
+  duration: number = 2000
 ): LongPressHook => {
   const timer = useRef(null)
   const delayTimer = useRef(null)
@@ -15,8 +15,8 @@ export const useLongPress = (
       setPressing(true)
     }, 100)
     timer.current = setTimeout(() => {
-      setPressing(false)
       callback()
+      setPressing(false)
     }, duration)
   }, [])
 

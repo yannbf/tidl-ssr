@@ -47,7 +47,7 @@ export const Task: React.FC<Props> = ({ task }: Props) => {
       onTouchMove={onTouchEnd}
       isPressing={pressing}
     >
-      <Text secondary element="p">
+      <Text color="secondary" element="p">
         {task.name}
       </Text>
       <Icon icon={task.icon} size="4x" fixedWidth />

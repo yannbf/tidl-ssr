@@ -3,8 +3,9 @@ import styled, { css, ThemeContext } from 'styled-components'
 
 import { IAppTheme } from '@ltid/styles'
 
+type Color = 'primary' | 'secondary' | 'danger'
 export interface DefaultProps {
-  color: string
+  color: Color
   element: 'span' | 'p' | 'div'
   size: 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl'
 }
@@ -55,7 +56,7 @@ const fontSizes = {
 
 const DefaultStyle = ({
   size = 'm',
-  color = '#1a1919',
+  color,
   fontWeight = 'regular',
   textTransform = 'none',
 }: Props) => {
@@ -69,16 +70,16 @@ const DefaultStyle = ({
 }
 
 export const Text: React.FC<Props> = props => {
-  const { children, secondary = false, element: Element = 'span' } = props
+  const { children, color = 'primary', element: Element = 'span' } = props
 
   const themeContext = useContext(ThemeContext) as IAppTheme
 
-  const color = secondary ? themeContext.text.secondary : themeContext.text.primary
+  const textColor = themeContext.text[color] as Color
 
   const StyledElement = styled(Element)`
     ${DefaultStyle({
       ...props,
-      color,
+      color: textColor,
     })};
   `
 

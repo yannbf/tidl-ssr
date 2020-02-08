@@ -292,6 +292,7 @@ import {
   faWineBottle,
   faWineGlassAlt,
   faWrench,
+  faShare,
 } from '@fortawesome/free-solid-svg-icons'
 
 import {
@@ -321,6 +322,14 @@ import {
   faYoutube,
 } from '@fortawesome/free-brands-svg-icons'
 
+// General icons to be used in the app
+export const SystemIcons = {
+  faTimes,
+  faShare,
+  faPlus,
+}
+
+// Icons for the IconSelector component
 export const Icons = {
   faAddressCard,
   faAddressBook,
@@ -490,7 +499,6 @@ export const Icons = {
   faMugHot,
   faMusic,
   faNewspaper,
-  faPlus,
   faPaintBrush,
   faPaintRoller,
   faPalette,
@@ -576,7 +584,6 @@ export const Icons = {
   faTerminal,
   faThList,
   faTheaterMasks,
-  faTimes,
   faTint,
   faToilet,
   faToolbox,

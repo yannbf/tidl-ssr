@@ -1,5 +1,5 @@
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { Icons } from './icons'
+import { Icons, SystemIcons } from './icons'
 
 export const iconList = Object.keys(Icons)
   .filter(key => key !== 'fas' && key !== 'prefix')
@@ -9,4 +9,5 @@ export const iconList = Object.keys(Icons)
 
 export const registerIcons = () => {
   library.add(...iconList)
+  library.add(SystemIcons)
 }

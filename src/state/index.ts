@@ -1,9 +1,9 @@
-import { createStore, applyMiddleware, compose, Store } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import { createLogger } from 'redux-logger'
 import { createEpicMiddleware } from 'redux-observable'
 import reducer from './reducers'
 import { rootEpic } from './epics'
-import { IAppState } from '@ltid/types'
+import { IAppState } from '@tidl/types'
 
 declare const window
 

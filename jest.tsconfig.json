@@ -2,25 +2,28 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
-      "@ltid/components": [
+      "@tidl/components": [
         "components/index.ts"
       ],
-      "@ltid/util": [
+      "@tidl/util": [
         "util/index.ts"
       ],
-      "@ltid/services": [
+      "@tidl/services": [
         "api/index.ts"
       ],
-      "@ltid/styles": [
+      "@tidl/styles": [
         "styles/index.ts"
       ],
-      "@ltid/types": [
+      "@tidl/types": [
         "interfaces/index.ts"
       ],
-      "@ltid/state/*": [
+      "@tidl/constants": [
+        "constants/index.ts"
+      ],
+      "@tidl/state/*": [
         "state/*"
       ],
-      "@ltid/tests/*": [
+      "@tidl/tests/*": [
         "../tests/*"
       ]
     },

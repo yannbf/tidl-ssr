@@ -15,7 +15,7 @@
       true,
       "dev",
       [
-        "@ltid"
+        "@tidl"
       ]
     ],
     "jsx-boolean-value": false,
@@ -70,6 +70,7 @@
     "no-trailing-whitespace": true,
     "no-unnecessary-initializer": true,
     "no-unused-expression": true,
+    "no-unused-variable": true,
     "object-literal-sort-keys": false,
     "one-line": [
       true,

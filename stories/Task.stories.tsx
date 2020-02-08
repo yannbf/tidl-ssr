@@ -2,8 +2,8 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { withKnobs, text } from '@storybook/addon-knobs'
 
-import { Task } from '@ltid/components'
-import { ITask } from '@ltid/types'
+import { Task } from '@tidl/components'
+import { ITask } from '@tidl/types'
 
 const WithCurrentDate = () => {
   const task: ITask = {

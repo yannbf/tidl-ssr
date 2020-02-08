@@ -3,13 +3,12 @@ import dayjs from 'dayjs'
 import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
 
-import { ITask } from '@ltid/types'
-import Icon from './Icon'
-import { Text } from './Text'
-import { useLongPress } from '../hooks/useLongPress'
-import { openModal, saveTask } from '@ltid/state/actions'
-import { logModalView } from 'util/analytics'
-import { IAppTheme } from '@ltid/styles'
+import { ITask } from '@tidl/types'
+import { useLongPress } from '@tidl/hooks'
+import { openModal, saveTask } from '@tidl/state/actions'
+import { logModalView } from '@tidl/analytics'
+import { IAppTheme } from '@tidl/styles'
+import { Icon, Text } from '@tidl/components'
 
 const Wrapper = styled.div<{ isPressing: boolean }>`
   cursor: pointer;

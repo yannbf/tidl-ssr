@@ -2,7 +2,7 @@ import React from 'react'
 import { cleanup, render } from '@testing-library/react'
 
 import { TaskList } from './TaskList'
-import { ITask } from '@ltid/types'
+import { ITask } from '@tidl/types'
 
 describe('Task List', () => {
   afterEach(cleanup)

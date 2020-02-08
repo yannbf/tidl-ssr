@@ -5,7 +5,7 @@ import { request } from 'universal-rxjs-ajax' // because standard AjaxObservable
 
 import * as actions from './actions'
 import * as types from './actionTypes'
-import { database } from '@ltid/services'
+import { database } from '@tidl/services'
 
 declare const window
 

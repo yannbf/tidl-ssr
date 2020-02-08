@@ -1,4 +1,4 @@
-import { ITask } from '@ltid/types'
+import { ITask } from '@tidl/types'
 
 export const mockData: ITask[] = [
   {

@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import Head from 'next/head'
 import styled from 'styled-components'
 
-import { initGA, logPageView } from '@ltid/util'
+import { initGA, logPageView } from '@tidl/analytics'
 
 declare const window
 

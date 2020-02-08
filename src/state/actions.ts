@@ -1,5 +1,5 @@
 import * as types from './actionTypes'
-import { ITask } from '@ltid/types'
+import { ITask } from '@tidl/types'
 
 export const fetchTasks = () => ({
   type: types.FETCH_TASKS,

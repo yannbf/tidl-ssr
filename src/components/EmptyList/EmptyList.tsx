@@ -1,7 +1,7 @@
 import Lottie from 'react-lottie'
 import styled from 'styled-components'
 
-import { Text } from '@ltid/components'
+import { Text } from '@tidl/components'
 import animationData from './animation.json'
 
 const EmptyListStyled = styled.div`

@@ -5,14 +5,11 @@ import styled from 'styled-components'
 import dayjs from 'dayjs'
 import { IconName } from '@fortawesome/fontawesome-svg-core'
 
-import { Modal } from './Modal/Modal'
-import { IconSelector } from './IconSelector'
-import Icon from './Icon'
-import { ITask } from '@ltid/types'
-import { logEvent } from 'util/analytics'
-import { IAppTheme } from '@ltid/styles'
-import { APP_NAME, APP_URL } from '../constants'
-import { Text } from './Text'
+import { logEvent } from '@tidl/analytics'
+import { IAppTheme } from '@tidl/styles'
+import { APP_NAME, APP_URL } from '@tidl/constants'
+import { ITask } from '@tidl/types'
+import { Icon, Text, Modal, IconSelector } from '@tidl/components'
 
 const TaskSchema = Yup.object().shape({
   name: Yup.string()

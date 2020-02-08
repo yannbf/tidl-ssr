@@ -1,8 +1,8 @@
 import styled, { keyframes, css } from 'styled-components'
 import { IconName } from '@fortawesome/fontawesome-svg-core'
 
-import Icon from './Icon'
-import { IAppTheme } from '@ltid/styles'
+import { IAppTheme } from '@tidl/styles'
+import { Icon } from '@tidl/components'
 
 const popIn = keyframes`
   0% {

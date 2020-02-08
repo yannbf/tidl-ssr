@@ -1,7 +1,7 @@
 import { addParameters, configure } from '@storybook/react'
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport'
 
-import { configureDates, registerIcons } from '@ltid/util'
+import { configureDates, registerIcons } from '@tidl/util'
 
 configureDates()
 registerIcons()

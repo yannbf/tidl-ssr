@@ -2,14 +2,17 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
-      "@ltid/components": ["components/index.ts"],
-      "@ltid/components/*": ["components/*"],
-      "@ltid/util": ["util/index.ts"],
-      "@ltid/services": ["api/index.ts"],
-      "@ltid/styles": ["styles/index.ts"],
-      "@ltid/types": ["interfaces/index.ts"],
-      "@ltid/state/*": ["state/*"],
-      "@ltid/tests/*": ["../tests/*"]
+      "@tidl/components": ["components/index.ts"],
+      "@tidl/components/*": ["components/*"],
+      "@tidl/util": ["util/index.ts"],
+      "@tidl/analytics": ["util/analytics.ts"],
+      "@tidl/services": ["api/index.ts"],
+      "@tidl/styles": ["styles/index.ts"],
+      "@tidl/types": ["interfaces/index.ts"],
+      "@tidl/constants": ["constants/index.ts"],
+      "@tidl/state/*": ["state/*"],
+      "@tidl/hooks": ["hooks/index.ts"],
+      "@tidl/tests/*": ["../tests/*"]
     },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],

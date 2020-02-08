@@ -10,6 +10,7 @@ const light: Partial<IAppTheme> = {
   text: {
     primary: '#050505',
     secondary: '#2f3037',
+    danger: '#f30a49',
   },
   button: {
     primary: '#46b5d1',

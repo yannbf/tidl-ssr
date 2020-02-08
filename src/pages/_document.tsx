@@ -1,10 +1,6 @@
 import { ServerStyleSheet } from 'styled-components'
 import Document, { Html, Head, Main, NextScript } from 'next/document'
-
-const APP_NAME = 'Tidl'
-const APP_URL = 'https://tidl.now.sh/'
-const APP_DESCRIPTION = `${APP_NAME} is an app to help you keep track of tasks and make you feel bad if you haven't done them for a long time :)`
-const APP_IMAGE = `${APP_URL}app_banner.png`
+import { APP_NAME, APP_URL, APP_DESCRIPTION, APP_BANNER } from '../constants'
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -53,14 +49,14 @@ export default class MyDocument extends Document {
           <meta property="og:url" content={APP_URL} />
           <meta property="og:title" content={APP_NAME} />
           <meta property="og:description" content={APP_DESCRIPTION} />
-          <meta property="og:image" content={APP_IMAGE} />
+          <meta property="og:image" content={APP_BANNER} />
 
           {/* <!-- Twitter --> */}
           <meta property="twitter:card" content="summary_large_image" />
           <meta property="twitter:url" content={APP_URL} />
           <meta property="twitter:title" content={APP_NAME} />
           <meta property="twitter:description" content={APP_DESCRIPTION} />
-          <meta property="twitter:image" content={APP_IMAGE} />
+          <meta property="twitter:image" content={APP_BANNER} />
 
           <link
             rel="apple-touch-startup-image"

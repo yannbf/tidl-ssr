@@ -11,6 +11,8 @@ import Icon from './Icon'
 import { ITask } from '@ltid/types'
 import { logEvent } from 'util/analytics'
 import { IAppTheme } from '@ltid/styles'
+import { APP_NAME, APP_URL } from '../constants'
+import { Text } from './Text'
 
 const TaskSchema = Yup.object().shape({
   name: Yup.string()
@@ -63,8 +65,7 @@ const SubmitButton = styled.button`
   border-radius: 0.75rem;
 `
 
-const DeleteButton = styled.button`
-  color: red;
+const ClearButton = styled.button`
   background-color: transparent;
   width: 10rem;
   padding: 0.25rem 0 1rem 0;
@@ -85,6 +86,21 @@ export const TaskForm = ({ formData, onSubmit, onDelete }: Props) => {
   const { name = '', date = new Date(), icon = 'coffee' } = formData
   const [selectedIcon, setSelectedIcon] = useState(icon)
   const [openIconSelector, setOpenIconSelector] = useState(false)
+
+  const canShare = navigator['share'] !== undefined
+
+  const share = async () => {
+    const shareData = {
+      title: APP_NAME,
+      text: `Hey! I just wanted to say that since ${dayjs().to(
+        date
+      )} I haven't done this: ${name}!`,
+      url: APP_URL,
+    }
+
+    logEvent('action', 'shareTask', name)
+    await (navigator as any).share(shareData)
+  }
 
   return (
     <>
@@ -117,9 +133,17 @@ export const TaskForm = ({ formData, onSubmit, onDelete }: Props) => {
             </FieldSet>
 
             {formData.id && (
-              <DeleteButton type="button" onClick={() => onDelete(formData.id)}>
-                Delete this task
-              </DeleteButton>
+              <>
+                <ClearButton type="button" onClick={() => onDelete(formData.id)}>
+                  <Text color="danger">Delete this task</Text>
+                </ClearButton>
+
+                {canShare && (
+                  <ClearButton type="button" onClick={share}>
+                    <Text>Share about this</Text>
+                  </ClearButton>
+                )}
+              </>
             )}
 
             <SubmitButton type="submit" disabled={!isValid || isSubmitting}>

@@ -10,6 +10,7 @@ const dark: Partial<IAppTheme> = {
   text: {
     primary: '#fbfbfc',
     secondary: 'rgba(255,255,255,0.8)',
+    danger: '#f30a49',
   },
   button: {
     primary: '#f30a49',

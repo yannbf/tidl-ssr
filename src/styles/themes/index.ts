@@ -13,6 +13,7 @@ export interface IAppTheme {
   text: {
     primary: string
     secondary: string
+    danger: string
   }
   button: {
     primary: string

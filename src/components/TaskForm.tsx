@@ -8,8 +8,9 @@ import { IconName } from '@fortawesome/fontawesome-svg-core'
 import { logEvent } from '@tidl/analytics'
 import { IAppTheme } from '@tidl/styles'
 import { APP_NAME, APP_URL } from '@tidl/constants'
-import { ITask } from '@tidl/types'
+import { ITask, TaskFrequency } from '@tidl/types'
 import { Icon, Text, Modal, IconSelector } from '@tidl/components'
+import { isDev } from '@tidl/util'
 
 const TaskSchema = Yup.object().shape({
   name: Yup.string()
@@ -79,8 +80,23 @@ type Props = {
   onDelete?: (id: number) => void
 }
 
+const FREQUENCY_OPTIONS: TaskFrequency[] = [
+  'none',
+  'daily',
+  'weekly',
+  'biweekly',
+  'monthly',
+  'yearly',
+]
+
 export const TaskForm = ({ formData, onSubmit, onDelete }: Props) => {
-  const { name = '', date = new Date(), icon = 'coffee' } = formData
+  const {
+    name = isDev ? 'Test' : '',
+    date = new Date(),
+    frequency = 'none',
+    icon = 'archive',
+  } = formData
+
   const [selectedIcon, setSelectedIcon] = useState(icon)
   const [openIconSelector, setOpenIconSelector] = useState(false)
 
@@ -102,15 +118,21 @@ export const TaskForm = ({ formData, onSubmit, onDelete }: Props) => {
   return (
     <>
       <Formik
-        initialValues={{ name, date: dayjs(date).format('YYYY-MM-DDTHH:mm'), icon: 'coffee' }}
+        initialValues={{
+          name,
+          frequency,
+          date: dayjs(date).format('YYYY-MM-DDTHH:mm'),
+          icon,
+        }}
         validationSchema={TaskSchema}
-        onSubmit={({ name, date }: ITask) => {
+        onSubmit={({ name, date, frequency }: ITask) => {
           setOpenIconSelector(false)
           onSubmit({
             id: formData.id,
             name,
             date,
             icon: selectedIcon,
+            frequency,
           })
         }}
       >
@@ -127,6 +149,17 @@ export const TaskForm = ({ formData, onSubmit, onDelete }: Props) => {
               <label htmlFor="name">Last time you did it</label>
               <StyledField type="datetime-local" name="date" />
               <ErrorMessage name="date" component="div" />
+            </FieldSet>
+
+            <FieldSet>
+              <label htmlFor="name">How frequent you should do it</label>
+              <StyledField component="select" name="frequency">
+                {FREQUENCY_OPTIONS.map(option => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </StyledField>
             </FieldSet>
 
             {formData.id && (

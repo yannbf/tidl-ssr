@@ -1,10 +1,13 @@
 import { IconName } from '@fortawesome/fontawesome-svg-core'
 
+export type TaskFrequency = 'none' | 'daily' | 'weekly' | 'biweekly' | 'monthly' | 'yearly'
+
 export interface ITask {
   id?: number
   name: string
   date: string
   icon: IconName
+  frequency: TaskFrequency
 }
 
 export interface IAppState {

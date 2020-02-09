@@ -25,12 +25,6 @@ export const TaskList: React.FC<Props> = ({ tasks }) => {
     return <EmptyList />
   }
 
-  tasks.sort((first: ITask, second: ITask) => {
-    const a = second.date
-    const b = first.date
-    return a > b ? -1 : a < b ? 1 : 0
-  })
-
   return (
     <List data-testid="task-list">
       {tasks.map((task: ITask) => (

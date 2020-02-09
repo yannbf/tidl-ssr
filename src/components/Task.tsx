@@ -1,18 +1,18 @@
 import { useState } from 'react'
 import dayjs from 'dayjs'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { useDispatch } from 'react-redux'
 import { CSSTransition } from 'react-transition-group'
 
-import { ITask } from '@tidl/types'
+import { ITask, TaskFrequency } from '@tidl/types'
 import { useLongPress } from '@tidl/hooks'
 import { openModal, saveTask } from '@tidl/state/actions'
 import { logModalView, logEvent } from '@tidl/analytics'
 import { IAppTheme } from '@tidl/styles'
 import { Icon, Text, Check } from '@tidl/components'
-import { vibrate } from '@tidl/util'
+import { vibrate, isDue } from '@tidl/util'
 
-const Wrapper = styled.div<{ isPressing: boolean }>`
+const Wrapper = styled.div<{ isPressing: boolean; isLate: boolean }>`
   cursor: pointer;
   position: relative;
   display: flex;
@@ -26,6 +26,21 @@ const Wrapper = styled.div<{ isPressing: boolean }>`
   color: ${({ theme }: { theme: IAppTheme }) => theme.text.primary};
   user-select: none;
   -webkit-touch-callout: none;
+  ${({ isLate }) =>
+    isLate &&
+    css`
+      &::before {
+        content: '';
+        height: 1rem;
+        width: 1rem;
+        top: -0.25rem;
+        right: -0.25rem;
+        border: 1px solid red;
+        background: red;
+        border-radius: 50%;
+        position: absolute;
+      }
+    `}
 `
 
 const FadeAnimation = styled.div`
@@ -69,6 +84,8 @@ export const Task: React.FC<Props> = ({ task }: Props) => {
 
   const [onTouchStart, onTouchEnd, pressing] = useLongPress(onLongPress, 1000)
 
+  const isLate = isDue(task.date, task.frequency)
+
   return (
     <Wrapper
       data-testid="list-item"
@@ -82,6 +99,7 @@ export const Task: React.FC<Props> = ({ task }: Props) => {
       onTouchEnd={onTouchEnd}
       onTouchMove={onTouchEnd}
       isPressing={pressing}
+      isLate={isLate}
     >
       <CSSTransition in={pressing || updating} timeout={200} classNames="fade" unmountOnExit>
         <FadeAnimation>

@@ -10,7 +10,7 @@ import { IAppTheme } from '@tidl/styles'
 import { APP_NAME, APP_URL } from '@tidl/constants'
 import { ITask, TaskFrequency } from '@tidl/types'
 import { Icon, Text, Modal, IconSelector } from '@tidl/components'
-import { isDev } from '@tidl/util'
+import { isDev, daysFromToday, isDue } from '@tidl/util'
 
 const TaskSchema = Yup.object().shape({
   name: Yup.string()
@@ -74,6 +74,13 @@ const ClearButton = styled.button`
   outline: none;
 `
 
+const Banner = styled.div`
+  background-color: red;
+  padding: 0.5rem;
+  text-align: left;
+  border-radius: 1rem;
+`
+
 type Props = {
   formData: Partial<ITask>
   onSubmit: (task: ITask) => void
@@ -114,9 +121,20 @@ export const TaskForm = ({ formData, onSubmit, onDelete }: Props) => {
     logEvent('action', 'shareTask', name)
     await (navigator as any).share(shareData)
   }
+  const isLate = isDue(formData.date, formData.frequency)
+  const dueText =
+    isLate &&
+    `Woah! It's been ${daysFromToday(formData.date)} days since you should have done: ${
+      formData.name
+    }. Guess it's time to do it?`
 
   return (
     <>
+      {dueText && (
+        <Banner>
+          <Text fontWeight="bold">{dueText}</Text>
+        </Banner>
+      )}
       <Formik
         initialValues={{
           name,

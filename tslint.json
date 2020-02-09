@@ -19,7 +19,7 @@
       ]
     ],
     "jsx-boolean-value": false,
-    "prettier": true,
+    "prettier": false,
     "jsx-no-lambda": false,
     "no-submodule-imports": false,
     "ordered-imports": false,

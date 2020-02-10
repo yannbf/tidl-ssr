@@ -11,7 +11,7 @@ const dark: IAppSpecificTheme = {
     primary: '#fbfbfc',
     secondary: 'rgba(255,255,255,0.8)',
     danger: '#f30a49',
-    light: '#eff0f524',
+    light: '#fbfbfc',
   },
   input: {
     color: 'rgba(255,255,255,0.8)',

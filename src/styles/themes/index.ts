@@ -3,25 +3,7 @@ import light from './light'
 
 type FontSize = '14px' | '16px' | '18px' | '22px' | '26px' | '32px' | '40px'
 
-export interface IAppTheme {
-  bg: {
-    primary: string
-    secondary: string
-    tertiary: string
-    input: string
-  }
-  text: {
-    primary: string
-    secondary: string
-    danger: string
-  }
-  button: {
-    primary: string
-  }
-  fade: {
-    from: string
-    to: string
-  }
+export interface IAppGeneralTheme {
   fontSizes: FontSize[]
   fontWeights: {
     body: number
@@ -37,6 +19,34 @@ export interface IAppTheme {
   }
   backdrop: string
 }
+
+export interface IAppSpecificTheme {
+  bg: {
+    primary: string
+    secondary: string
+    tertiary: string
+    input: string
+  }
+  text: {
+    primary: string
+    secondary: string
+    danger: string
+  }
+  button: {
+    primary: string
+  }
+  input: {
+    background: string
+    color: string
+    outline: string
+  }
+  fade: {
+    from: string
+    to: string
+  }
+}
+
+export interface IAppTheme extends IAppSpecificTheme, IAppGeneralTheme {}
 
 const defaultTheme = {
   fontSizes: [

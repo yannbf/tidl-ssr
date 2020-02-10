@@ -1,6 +1,6 @@
-import { IAppTheme } from '.'
+import { IAppSpecificTheme } from '.'
 
-const light: Partial<IAppTheme> = {
+const light: IAppSpecificTheme = {
   bg: {
     primary: '#eff0f524',
     secondary: '#ffffff',
@@ -11,6 +11,11 @@ const light: Partial<IAppTheme> = {
     primary: '#050505',
     secondary: '#2f3037',
     danger: '#f30a49',
+  },
+  input: {
+    color: '#2f3037',
+    background: '#9a9ba024',
+    outline: '#2f3037',
   },
   button: {
     primary: '#46b5d1',

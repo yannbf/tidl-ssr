@@ -2,11 +2,25 @@ import { createGlobalStyle } from 'styled-components'
 import { IAppTheme } from './themes'
 
 export const GlobalStyle = createGlobalStyle`
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap');
+  @font-face {
+    font-family: 'Tajawal';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/static/fonts/Tajawal-Regular.ttf') format('ttf');
+  }
+
+  @font-face {
+    font-family: 'Tajawal';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('/static/fonts/Tajawal-Bold.ttf') format('ttf');
+  }
+
   body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Tajawal', sans-serif;
     background: ${({ theme }: { theme: IAppTheme }) => theme.bg.primary};
-    font-size: 1rem;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
   }
 `

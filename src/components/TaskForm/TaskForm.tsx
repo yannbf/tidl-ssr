@@ -1,16 +1,24 @@
 import { useState } from 'react'
-import { Formik, Form, Field, ErrorMessage } from 'formik'
+import { Formik, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
-import styled from 'styled-components'
 import dayjs from 'dayjs'
 import { IconName } from '@fortawesome/fontawesome-svg-core'
 
 import { logEvent } from '@tidl/analytics'
-import { IAppTheme } from '@tidl/styles'
 import { APP_NAME, APP_URL } from '@tidl/constants'
 import { ITask, TaskFrequency } from '@tidl/types'
-import { Icon, Text, Modal, IconSelector } from '@tidl/components'
+import { Text, Modal, IconSelector } from '@tidl/components'
 import { isDev, daysFromToday, isDue } from '@tidl/util'
+import {
+  Banner,
+  Form,
+  StyledIcon,
+  FieldSet,
+  Input,
+  Select,
+  SubmitButton,
+  ClearButton,
+} from './TaskForm.styled'
 
 const TaskSchema = Yup.object().shape({
   name: Yup.string()
@@ -27,59 +35,6 @@ const TaskSchema = Yup.object().shape({
     )
     .required('Required'),
 })
-
-const FieldSet = styled.fieldset`
-  color: ${({ theme }: { theme: IAppTheme }) => theme.text.secondary};
-  display: flex;
-  flex-direction: column;
-  border: none;
-  padding: 0 0 1rem 0;
-  margin: 0;
-`
-
-const StyledForm = styled(Form)`
-  display: flex;
-  flex-direction: column;
-  padding: 0.5rem;
-`
-
-const StyledField = styled(Field)`
-  width: 12rem;
-  height: 1.5rem;
-`
-
-const StyledIcon = styled(Icon)`
-  align-self: center;
-  cursor: pointer;
-  color: ${({ theme }: { theme: IAppTheme }) => theme.text.primary};
-`
-
-const SubmitButton = styled.button`
-  width: 6rem;
-  align-self: center;
-  padding: 1rem;
-  font-size: 1rem;
-  background: white;
-  border-radius: 0.75rem;
-`
-
-const ClearButton = styled.button`
-  background-color: transparent;
-  width: 10rem;
-  padding: 0.25rem 0 1rem 0;
-  text-align: left;
-  border: none;
-  cursor: pointer;
-  overflow: hidden;
-  outline: none;
-`
-
-const Banner = styled.div`
-  background-color: red;
-  padding: 0.5rem;
-  text-align: left;
-  border-radius: 1rem;
-`
 
 type Props = {
   formData: Partial<ITask>
@@ -132,7 +87,9 @@ export const TaskForm = ({ formData, onSubmit, onDelete }: Props) => {
     <>
       {dueText && (
         <Banner>
-          <Text fontWeight="bold">{dueText}</Text>
+          <Text color="light" fontWeight="bold">
+            {dueText}
+          </Text>
         </Banner>
       )}
       <Formik
@@ -155,29 +112,35 @@ export const TaskForm = ({ formData, onSubmit, onDelete }: Props) => {
         }}
       >
         {({ isValid, isSubmitting }: { isValid: boolean; isSubmitting: boolean }) => (
-          <StyledForm>
+          <Form>
             <StyledIcon onClick={() => setOpenIconSelector(true)} icon={selectedIcon} />
             <FieldSet>
-              <label htmlFor="name">Name</label>
-              <StyledField type="text" name="name" placeholder="Task name.." />
+              <label htmlFor="name">
+                <Text fontWeight="bold">Name</Text>
+              </label>
+              <Input type="text" name="name" placeholder="Task name.." />
               <ErrorMessage name="name" component="div" />
             </FieldSet>
 
             <FieldSet>
-              <label htmlFor="name">Last time you did it</label>
-              <StyledField type="datetime-local" name="date" />
+              <label htmlFor="name">
+                <Text fontWeight="bold">Last time you did it</Text>
+              </label>
+              <Select type="datetime-local" name="date" />
               <ErrorMessage name="date" component="div" />
             </FieldSet>
 
             <FieldSet>
-              <label htmlFor="name">How frequent you should do it</label>
-              <StyledField component="select" name="frequency">
+              <label htmlFor="name">
+                <Text fontWeight="bold">How frequent you should do it</Text>
+              </label>
+              <Select component="select" name="frequency">
                 {FREQUENCY_OPTIONS.map(option => (
                   <option key={option} value={option}>
                     {option}
                   </option>
                 ))}
-              </StyledField>
+              </Select>
             </FieldSet>
 
             {formData.id && (
@@ -197,7 +160,7 @@ export const TaskForm = ({ formData, onSubmit, onDelete }: Props) => {
             <SubmitButton type="submit" disabled={!isValid || isSubmitting}>
               Save
             </SubmitButton>
-          </StyledForm>
+          </Form>
         )}
       </Formik>
 

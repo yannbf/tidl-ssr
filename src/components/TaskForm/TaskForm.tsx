@@ -158,7 +158,7 @@ export const TaskForm = ({ formData, onSubmit, onDelete }: Props) => {
             )}
 
             <SubmitButton type="submit" disabled={!isValid || isSubmitting}>
-              Save
+              <Text color="light">Save</Text>
             </SubmitButton>
           </Form>
         )}

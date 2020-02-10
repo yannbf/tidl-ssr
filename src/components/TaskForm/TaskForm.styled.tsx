@@ -57,13 +57,16 @@ export const StyledIcon = styled(Icon)`
 `
 
 export const SubmitButton = styled.button`
-  width: 6rem;
-  align-self: center;
-  padding: 1rem;
-  font-size: 1rem;
-  background: white;
+  height: 2.5rem;
+  width: 18rem;
+  border-radius: 2rem;
+  left: calc(50% - 9rem);
+  bottom: 2.5rem;
   user-select: none;
-  border-radius: 0.75rem;
+  position: absolute;
+  border: none;
+  box-shadow: 0px 9px 12px 3px rgba(2, 8, 20, 0.1);
+  background: ${({ theme }: { theme: IAppTheme }) => theme.button.primary};
 `
 
 export const ClearButton = styled.button`

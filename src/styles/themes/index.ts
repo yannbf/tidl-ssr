@@ -31,6 +31,7 @@ export interface IAppSpecificTheme {
     primary: string
     secondary: string
     danger: string
+    light: string
   }
   button: {
     primary: string

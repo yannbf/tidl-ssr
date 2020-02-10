@@ -11,6 +11,7 @@ const light: IAppSpecificTheme = {
     primary: '#050505',
     secondary: '#2f3037',
     danger: '#f30a49',
+    light: '#eff0f524',
   },
   input: {
     color: '#2f3037',

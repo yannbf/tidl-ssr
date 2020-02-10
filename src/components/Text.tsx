@@ -3,7 +3,7 @@ import styled, { css, ThemeContext } from 'styled-components'
 
 import { IAppTheme } from '@tidl/styles'
 
-type Color = 'primary' | 'secondary' | 'danger'
+type Color = 'primary' | 'secondary' | 'danger' | 'light'
 export interface DefaultProps {
   color: Color
   element: 'span' | 'p' | 'div'

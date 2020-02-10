@@ -1,34 +1,56 @@
 import { useCallback, useState, useRef } from 'react'
 
-type LongPressHook = [() => void, () => void, boolean]
+type LongPressHook = [boolean, () => void, () => void, () => void]
+
+const clearTimer = ref => {
+  if (ref.current) {
+    clearTimeout(ref.current)
+    ref.current = undefined
+  }
+}
+
+const CLICK_THRESHOLD = 200
 
 export const useLongPress = (
-  callback: () => void = () => {},
-  duration: number = 2000
+  onLongPress: () => void = () => {},
+  onClick: () => void = () => {},
+  duration: number = 1000
 ): LongPressHook => {
-  const timer = useRef(null)
+  const longPressTimer = useRef(null)
   const delayTimer = useRef(null)
-  const [pressing, setPressing] = useState(false)
+  const [isHolding, setHolding] = useState(false)
 
   const onTouchStart = useCallback(() => {
+    // Define a holding state only if not clicking
     delayTimer.current = setTimeout(() => {
-      setPressing(true)
-    }, 100)
-    timer.current = setTimeout(() => {
-      callback()
-      setPressing(false)
+      setHolding(true)
+      clearTimer(delayTimer)
+    }, CLICK_THRESHOLD)
+
+    longPressTimer.current = setTimeout(() => {
+      onLongPress()
+      setHolding(false)
     }, duration)
-  }, [])
+  }, [isHolding])
 
   const onTouchEnd = useCallback(() => {
-    setPressing(false)
-    if (timer.current) {
-      clearTimeout(timer.current)
-    }
-    if (delayTimer.current) {
-      clearTimeout(delayTimer.current)
-    }
-  }, [])
+    setHolding(false)
 
-  return [onTouchStart, onTouchEnd, pressing]
+    clearTimer(longPressTimer)
+
+    // If user clicks fast (under CLICK_THRESHOLD) triggers onClick
+    if (delayTimer.current !== undefined) {
+      onClick()
+      clearTimer(delayTimer)
+    }
+  }, [delayTimer, longPressTimer])
+
+  const onTouchMove = useCallback(() => {
+    setHolding(false)
+
+    clearTimer(longPressTimer)
+    clearTimer(delayTimer)
+  }, [delayTimer, longPressTimer])
+
+  return [isHolding, onTouchStart, onTouchEnd, onTouchMove]
 }

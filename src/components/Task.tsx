@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components'
 import { useDispatch } from 'react-redux'
 import { CSSTransition } from 'react-transition-group'
 
-import { ITask, TaskFrequency } from '@tidl/types'
+import { ITask } from '@tidl/types'
 import { useLongPress } from '@tidl/hooks'
 import { openModal, saveTask } from '@tidl/state/actions'
 import { logModalView, logEvent } from '@tidl/analytics'
@@ -12,7 +12,7 @@ import { IAppTheme } from '@tidl/styles'
 import { Icon, Text, Check } from '@tidl/components'
 import { vibrate, isDue } from '@tidl/util'
 
-const Wrapper = styled.div<{ isPressing: boolean; isLate: boolean }>`
+const Wrapper = styled.div<{ isHolding: boolean; isLate: boolean }>`
   cursor: pointer;
   position: relative;
   display: flex;
@@ -82,32 +82,31 @@ export const Task: React.FC<Props> = ({ task }: Props) => {
     logEvent('action', 'LongPressUpdate', task.name)
   }
 
-  const [onTouchStart, onTouchEnd, pressing] = useLongPress(onLongPress, 1000)
+  const onClick = () => {
+    dispatch(openModal(task))
+    logModalView('EditTask')
+  }
+
+  const [isHolding, onTouchStart, onTouchEnd, onTouchMove] = useLongPress(onLongPress, onClick)
 
   const isLate = isDue(task.date, task.frequency)
 
   return (
     <Wrapper
       data-testid="list-item"
-      onClick={() => {
-        if (!updating) {
-          dispatch(openModal(task))
-          logModalView('EditTask')
-        }
-      }}
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
-      onTouchMove={onTouchEnd}
-      isPressing={pressing}
+      onTouchMove={onTouchMove}
+      isHolding={isHolding}
       isLate={isLate}
     >
-      <CSSTransition in={pressing || updating} timeout={200} classNames="fade" unmountOnExit>
+      <CSSTransition in={isHolding || updating} timeout={200} classNames="fade" unmountOnExit>
         <FadeAnimation>
           <Check />
         </FadeAnimation>
       </CSSTransition>
 
-      {!pressing && !updating && (
+      {!isHolding && !updating && (
         <>
           <Text color="secondary" element="p">
             {task.name}

@@ -31,7 +31,7 @@ export const Modal = ({ children, isOpen, onClose, small = false }) => {
       </CSSTransition>
 
       <CSSTransition in={isOpen} timeout={300} classNames="backdrop" unmountOnExit>
-        {small ? <span /> : <Backdrop />}
+        <Backdrop small={small} onClick={onClose} />
       </CSSTransition>
 
       <GlobalStyle />

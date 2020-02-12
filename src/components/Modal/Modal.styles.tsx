@@ -74,7 +74,7 @@ export const ModalContent = styled.div<{ small: boolean }>`
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
   position: fixed;
-  z-index: 100;
+  z-index: ${({ small }) => (small ? 100 : 99)};
   top: ${props => (props.small ? '50%' : '5%')};
   right: 0;
   bottom: 0;
@@ -87,14 +87,14 @@ export const ModalContent = styled.div<{ small: boolean }>`
   ${desktopOverrides}
 `
 
-export const Backdrop = styled.div`
+export const Backdrop = styled.div<{ small: boolean }>`
   position: fixed;
   background-color: ${({ theme }: { theme: IAppTheme }) => theme.backdrop};
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 99;
+  z-index: ${({ small }) => (small ? 99 : 98)};
 
   &.backdrop-enter {
     opacity: 0;

@@ -12,7 +12,7 @@ import { IAppTheme } from '@tidl/styles'
 import { Icon, Text, Check } from '@tidl/components'
 import { vibrate, isDue } from '@tidl/util'
 
-const Wrapper = styled.div<{ isHolding: boolean; isLate: boolean }>`
+const Wrapper = styled.div<{ isHolding?: boolean; isLate: boolean }>`
   cursor: pointer;
   position: relative;
   display: flex;
@@ -87,19 +87,35 @@ export const Task: React.FC<Props> = ({ task }: Props) => {
     logModalView('EditTask')
   }
 
-  const [isHolding, onTouchStart, onTouchEnd, onTouchMove] = useLongPress(onLongPress, onClick)
-
   const isLate = isDue(task.date, task.frequency)
 
+  let Component = null
+  const [isHolding, onTouchStart, onTouchEnd, onTouchMove] = useLongPress(onLongPress, onClick)
+
+  // Handle touch events on mobile/tablets and normal click on desktop
+  if ('ontouchstart' in window) {
+    Component = ({ children }) => (
+      <Wrapper
+        data-testid="list-item"
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+        onTouchMove={onTouchMove}
+        isHolding={isHolding}
+        isLate={isLate}
+      >
+        {children}
+      </Wrapper>
+    )
+  } else {
+    Component = ({ children }) => (
+      <Wrapper data-testid="list-item" onClick={onClick} isLate={isLate}>
+        {children}
+      </Wrapper>
+    )
+  }
+
   return (
-    <Wrapper
-      data-testid="list-item"
-      onTouchStart={onTouchStart}
-      onTouchEnd={onTouchEnd}
-      onTouchMove={onTouchMove}
-      isHolding={isHolding}
-      isLate={isLate}
-    >
+    <Component>
       <CSSTransition in={isHolding || updating} timeout={200} classNames="fade" unmountOnExit>
         <FadeAnimation>
           <Check />
@@ -117,6 +133,6 @@ export const Task: React.FC<Props> = ({ task }: Props) => {
           </Text>
         </>
       )}
-    </Wrapper>
+    </Component>
   )
 }

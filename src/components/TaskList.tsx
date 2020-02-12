@@ -6,7 +6,7 @@ import { EmptyList, Task } from '@tidl/components'
 
 const List = styled.ul`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(6.5rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr));
   grid-gap: 0.75rem;
   align-items: start;
   padding: 0;

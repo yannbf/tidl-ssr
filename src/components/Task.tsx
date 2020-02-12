@@ -15,6 +15,7 @@ import { vibrate, isDue } from '@tidl/util'
 const Wrapper = styled.div<{ isHolding?: boolean; isLate: boolean }>`
   cursor: pointer;
   position: relative;
+  min-width: 7rem;
   display: flex;
   width: auto;
   min-height: 11rem;

@@ -1,6 +1,6 @@
 import { Form as FormikForm, Field } from 'formik'
 import styled, { css } from 'styled-components'
-import { IAppTheme } from '@tidl/styles'
+import { IAppTheme, device } from '@tidl/styles'
 import { Icon } from '@tidl/components'
 
 export const FieldSet = styled.fieldset`
@@ -16,6 +16,12 @@ export const Form = styled(FormikForm)`
   display: flex;
   flex-direction: column;
   padding: 0.5rem;
+  @media ${device.desktop} {
+    padding: 0.5rem 7rem;
+  }
+  @media ${device.tablet} {
+    padding: 0.5rem 10rem;
+  }
 `
 
 const addIconToBackground = (backgroundColor: string, iconColor: string) => css`

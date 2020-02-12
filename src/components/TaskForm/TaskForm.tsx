@@ -56,7 +56,7 @@ export const TaskForm = ({ formData, onSubmit, onDelete }: Props) => {
     name = isDev ? 'Test' : '',
     date = new Date(),
     frequency = 'none',
-    icon = 'archive',
+    icon = 'question',
   } = formData
 
   const [selectedIcon, setSelectedIcon] = useState(icon)

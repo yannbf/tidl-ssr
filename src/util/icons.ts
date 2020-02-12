@@ -94,6 +94,7 @@ import {
   faFirstAid,
   faFish,
   faFistRaised,
+  faQuestionCircle,
   faFireAlt,
   faFlag,
   faFlask,
@@ -331,6 +332,7 @@ export const SystemIcons = {
 
 // Icons for the IconSelector component
 export const Icons = {
+  faQuestionCircle,
   faAddressCard,
   faAddressBook,
   faAirFreshener,
@@ -426,6 +428,7 @@ export const Icons = {
   faFirstAid,
   faFish,
   faFireAlt,
+  faFistRaised,
   faFlag,
   faFlask,
   faFont,

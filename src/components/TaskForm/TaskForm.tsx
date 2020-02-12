@@ -29,7 +29,7 @@ const TaskSchema = Yup.object().shape({
     .nullable()
     .max(
       dayjs()
-        .add(1, 'minute')
+        .add(2, 'minute')
         .format('YYYY-MM-DDTHH:mm'),
       'Do not select dates in the future.'
     )

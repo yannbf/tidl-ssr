@@ -63,6 +63,7 @@ export const StyledIcon = styled(Icon)`
 `
 
 export const SubmitButton = styled.button`
+  cursor: pointer;
   height: 2.5rem;
   width: 18rem;
   border-radius: 2rem;

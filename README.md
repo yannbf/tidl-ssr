@@ -1,5 +1,3 @@
-# Tidl
-
 <p align="center">
   <img width="500" src="./public/static/app_banner.png">
 </p>

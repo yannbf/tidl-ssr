@@ -1,6 +1,10 @@
 # Tidl
 
-This is a task manager app to remind about the last time you have done certain activities (took trash out, done laundry, threw a party, etc). The main intention is to show you that it's about time to do that activity again.
+<p align="center">
+  <img width="500" src="./public/static/app_banner.png">
+</p>
+
+Tidl is a task manager to help you achieve healthier habits in your life. It achieves it by reminding about the last time you have done certain activities (clean the house, do laundry, throw a party, read a book, etc). The main intention is to show you that it's about time to do that activity again.
 
 Live demo: https://tidl.now.sh
 

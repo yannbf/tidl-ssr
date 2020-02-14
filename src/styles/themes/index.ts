@@ -18,6 +18,10 @@ export interface IAppGeneralTheme {
     code: number
   }
   backdrop: string
+  splashScreen: {
+    background: string
+    imageWidth: string
+  }
 }
 
 export interface IAppSpecificTheme {
@@ -72,6 +76,10 @@ const defaultTheme = {
     code: 1.6,
   },
   backdrop: 'rgba(0, 0, 0, 0.4)',
+  splashScreen: {
+    background: '#040b3c',
+    imageWidth: 'calc(100vw - calc(50vw - 20%) * 2)',
+  },
 }
 
 export const lightTheme = { ...defaultTheme, ...light }

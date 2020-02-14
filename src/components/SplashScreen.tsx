@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { IAppTheme } from '@tidl/styles'
 
 const Container = styled.div`
   display: flex;
@@ -10,7 +11,7 @@ const Container = styled.div`
   z-index: 10;
   align-items: center;
   justify-content: center;
-  background-color: #040b3c;
+  background-color: ${({ theme }: { theme: IAppTheme }) => theme.splashScreen.background};
   &.fade-enter {
     opacity: 1;
   }
@@ -30,7 +31,7 @@ const Container = styled.div`
 
 const Image = styled.img`
   /* width matches the padding given when generating splash screens */
-  width: calc(100vw - calc(50vw - 20%) * 2);
+  width: ${({ theme }: { theme: IAppTheme }) => theme.splashScreen.imageWidth};
 `
 
 export const SplashScreen = () => (

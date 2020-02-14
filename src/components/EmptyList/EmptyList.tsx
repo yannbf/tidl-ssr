@@ -1,7 +1,7 @@
 import { Lottie } from '@crello/react-lottie'
 import styled from 'styled-components'
 
-import { Text } from '@tidl/components'
+import { Text, Icon } from '@tidl/components'
 import animationData from './animation.json'
 
 const StyledEmptyList = styled.div`
@@ -22,7 +22,10 @@ const options = {
 
 export const EmptyList = () => (
   <StyledEmptyList data-testid="empty-list">
-    <Lottie config={options} height="190px" width="190px" />
-    <Text element="p">The task list is empty!</Text>
+    <Lottie config={options} height="160px" width="420px" />
+    <Text element="p">Your task list is empty!</Text>
+    <Text fontWeight="bold">
+      Click on <Icon color="purple" size="sm" icon="plus" /> below to add a task.
+    </Text>
   </StyledEmptyList>
 )

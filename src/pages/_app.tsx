@@ -1,9 +1,11 @@
+import '@fortawesome/fontawesome-svg-core/styles.css'
+
 import React from 'react'
 import { Provider } from 'react-redux'
-import App from 'next/app'
 import withRedux from 'next-redux-wrapper'
-import '@fortawesome/fontawesome-svg-core/styles.css'
+import withReduxSaga from 'next-redux-saga'
 import Head from 'next/head'
+import App from 'next/app'
 
 import initStore from '@tidl/state/index'
 import { configureDates, registerIcons } from '@tidl/util'
@@ -38,4 +40,4 @@ class MyApp extends App {
 
 configureDates()
 registerIcons()
-export default withRedux(initStore)(MyApp)
+export default withRedux(initStore)(withReduxSaga(MyApp))

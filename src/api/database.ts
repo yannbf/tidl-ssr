@@ -1,7 +1,6 @@
 import { Observable, BehaviorSubject } from 'rxjs'
 
 import { ITask } from '@tidl/types'
-import { mockData } from './mock-data'
 
 class Database {
   private tasksSubject: BehaviorSubject<ITask[]> = new BehaviorSubject<ITask[]>(null)
@@ -74,8 +73,8 @@ class Database {
     }
   }
 
-  public fetchMockData(): Promise<ITask[]> {
-    return Promise.resolve(mockData)
+  public list(): ITask[] {
+    return this.tasks
   }
 }
 

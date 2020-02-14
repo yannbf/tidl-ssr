@@ -5,14 +5,13 @@ import { IAppState } from '@tidl/types'
 import { TaskList } from '@tidl/components'
 import { fetchTasks } from '@tidl/state/actions'
 
-export const TaskListContainer: React.FunctionComponent = () => {
+export const TaskListContainer: React.FC = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(fetchTasks())
   }, [])
 
-  const [tasks] = useSelector(({ tasks }: IAppState) => [tasks])
-
+  const tasks = useSelector(({ tasks }: IAppState) => tasks)
   return <TaskList tasks={tasks} />
 }

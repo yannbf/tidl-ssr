@@ -22,7 +22,7 @@ const options = {
 
 export const EmptyList = () => (
   <StyledEmptyList data-testid="empty-list">
-    <Lottie config={options} height="160px" width="420px" />
+    <Lottie config={options} height="160px" width="160px" />
     <Text element="p">Your task list is empty!</Text>
     <Text fontWeight="bold">
       Click on <Icon color="purple" size="sm" icon="plus" /> below to add a task.

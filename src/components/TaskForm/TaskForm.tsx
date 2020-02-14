@@ -42,14 +42,7 @@ type Props = {
   onDelete?: (id: number) => void
 }
 
-const FREQUENCY_OPTIONS: TaskFrequency[] = [
-  'none',
-  'daily',
-  'weekly',
-  'biweekly',
-  'monthly',
-  'yearly',
-]
+const FREQUENCY_OPTIONS: TaskFrequency[] = ['none', 'daily', 'weekly', 'biweekly', 'monthly']
 
 export const TaskForm = ({ formData, onSubmit, onDelete }: Props) => {
   const {

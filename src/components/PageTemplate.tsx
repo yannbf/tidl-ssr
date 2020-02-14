@@ -59,7 +59,7 @@ export const PageTemplate: React.FC<Props> = ({ title, children }) => {
       </Head>
       <CSSTransition
         timeout={{ appear: 0, enter: 0, exit: 1000 }}
-        in={isAnimating || (isPWA && isLoading)}
+        in={isPWA && (isAnimating || isLoading)}
         classNames="fade"
         appear
         unmountOnExit

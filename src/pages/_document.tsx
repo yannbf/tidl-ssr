@@ -1,10 +1,15 @@
 import { ServerStyleSheet } from 'styled-components'
-import Document, { Html, Head, Main, NextScript } from 'next/document'
+import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document'
 
 import { APP_NAME, APP_URL, APP_DESCRIPTION, APP_BANNER } from '@tidl/constants'
 
-export default class MyDocument extends Document {
-  static async getInitialProps(ctx) {
+type Props = {
+  isPWA: boolean
+}
+
+export default class MyDocument extends Document<Props> {
+  static async getInitialProps(ctx: DocumentContext) {
+    const isPWA = ctx.query.pwa === 'true'
     const sheet = new ServerStyleSheet()
     const originalRenderPage = ctx.renderPage
     try {
@@ -15,6 +20,7 @@ export default class MyDocument extends Document {
       const initialProps = await Document.getInitialProps(ctx)
       return {
         ...initialProps,
+        isPWA,
         styles: (
           <>
             {initialProps.styles}
@@ -159,9 +165,16 @@ export default class MyDocument extends Document {
             href="apple-splash-1136-640.png"
             media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"
           />
+          <link href="/static/splash.css" rel="stylesheet" />
         </Head>
         <body>
           <noscript>You need to enable JavaScript to run this app.</noscript>
+          {/* defined as plain html to merge seamlessly with SplashScreen.tsx */}
+          {this.props.isPWA && (
+            <div id="splash">
+              <img src="/static/logo.png" />
+            </div>
+          )}
           <div id="modal" />
           <Main />
           <NextScript />

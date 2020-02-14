@@ -12,6 +12,7 @@ export interface ITask {
 
 export interface IAppState {
   tasks: ITask[]
+  isFetching: boolean
   isLoading: boolean
   error: string
   isOpen: boolean

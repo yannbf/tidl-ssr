@@ -4,7 +4,8 @@ import { IAppState } from '@tidl/types'
 export const INITIAL_STATE: IAppState = {
   error: null,
   tasks: [],
-  isLoading: true,
+  isFetching: true,
+  isLoading: false,
   isOpen: false,
   formData: {},
 }
@@ -30,19 +31,19 @@ export default function reducer(
     case types.FETCH_TASKS:
       return {
         ...state,
-        isLoading: true,
+        isFetching: true,
       }
     case types.FETCH_TASKS_SUCCESS:
       return {
         ...state,
         tasks: payload.tasks,
-        isLoading: false,
+        isFetching: false,
       }
     case types.FETCH_TASKS_FAILURE:
       return {
         ...state,
         error: payload.error,
-        isLoading: false,
+        isFetching: false,
       }
     case types.SAVE_TASK:
       return {

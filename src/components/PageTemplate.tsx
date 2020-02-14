@@ -23,8 +23,8 @@ export const PageTemplate: React.FC<Props> = ({ title, children }) => {
   const [isPWA, setIsPWA] = useState(false)
   const [isAnimating, setIsAnimating] = useState(true)
 
-  const { isLoading } = useSelector(({ isLoading }: IAppState) => ({
-    isLoading,
+  const { isFetching } = useSelector(({ isFetching: isFetching }: IAppState) => ({
+    isFetching,
   }))
 
   useEffect(() => {
@@ -59,7 +59,7 @@ export const PageTemplate: React.FC<Props> = ({ title, children }) => {
       </Head>
       <CSSTransition
         timeout={{ appear: 0, enter: 0, exit: 1000 }}
-        in={isPWA && (isAnimating || isLoading)}
+        in={isPWA && (isAnimating || isFetching)}
         classNames="fade"
         appear
         unmountOnExit

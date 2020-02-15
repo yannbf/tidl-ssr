@@ -2,7 +2,7 @@ import React from 'react'
 import { createGlobalStyle } from 'styled-components'
 import { CSSTransition } from 'react-transition-group'
 
-import { ModalContent, TopBar, TopBarButton, Backdrop } from './Modal.styles'
+import { ModalContent, TopBar, TopBarButton, Backdrop } from './styled'
 import { ClientOnlyPortal } from '../ClientOnlyPortal'
 import { useKey } from '@tidl/hooks'
 import { Icon } from '@tidl/components'

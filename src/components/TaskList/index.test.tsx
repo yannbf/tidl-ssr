@@ -1,7 +1,7 @@
 import React from 'react'
 import { cleanup, render } from '@testing-library/react'
 
-import { TaskList } from './TaskList'
+import { TaskList } from '@tidl/components'
 import { ITask } from '@tidl/types'
 
 describe('Task List', () => {
@@ -22,8 +22,8 @@ describe('Task List', () => {
   test('All elements of the list are rendered', () => {
     // Setup
     const data: ITask[] = [
-      { name: 'braga', date: new Date(), icon: 'tshirt' },
-      { name: 'yann', date: new Date(), icon: 'tshirt' },
+      { name: 'braga', date: new Date().toString(), icon: 'tshirt', frequency: 'none' },
+      { name: 'yann', date: new Date().toString(), icon: 'tshirt', frequency: 'none' },
     ]
 
     const { getAllByTestId } = render(<TaskList tasks={data} />)

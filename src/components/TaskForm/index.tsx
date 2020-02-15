@@ -18,7 +18,7 @@ import {
   Select,
   SubmitButton,
   ClearButton,
-} from './TaskForm.styled'
+} from './styled'
 
 const TaskSchema = Yup.object().shape({
   name: Yup.string()

@@ -2,16 +2,16 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { IAppState } from '@tidl/types'
-import { TaskList } from '@tidl/components'
-import { fetchTasks } from '@tidl/state/actions'
+import { TaskList, ListError } from '@tidl/components'
+import { fetchTasks as fetchTasksAction } from '@tidl/state/actions'
 
 export const TaskListContainer: React.FC = () => {
   const dispatch = useDispatch()
-
+  const fetchTasks = () => dispatch(fetchTasksAction())
   useEffect(() => {
-    dispatch(fetchTasks())
+    fetchTasks()
   }, [])
 
-  const tasks = useSelector(({ tasks }: IAppState) => tasks)
-  return <TaskList tasks={tasks} />
+  const { tasks, error } = useSelector(({ tasks, error }: IAppState) => ({ tasks, error }))
+  return error ? <ListError onRetry={fetchTasks} /> : <TaskList tasks={tasks} />
 }

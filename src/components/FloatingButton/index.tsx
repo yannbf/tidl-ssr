@@ -1,3 +1,4 @@
+import React from 'react'
 import { IconName } from '@fortawesome/fontawesome-svg-core'
 
 import { Icon } from '@tidl/components'

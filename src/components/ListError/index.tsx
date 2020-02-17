@@ -1,3 +1,4 @@
+import React from 'react'
 import { Text } from '@tidl/components'
 import styled from 'styled-components'
 

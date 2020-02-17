@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, memo } from 'react'
+import React, { useState, useRef, useEffect, memo } from 'react'
 import styled from 'styled-components'
 import { FixedSizeGrid as Grid } from 'react-window'
 import AutoSizer from 'react-virtualized-auto-sizer'

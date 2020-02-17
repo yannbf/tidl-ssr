@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import dayjs from 'dayjs'
 import styled, { css } from 'styled-components'
 import { useDispatch } from 'react-redux'

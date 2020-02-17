@@ -1,3 +1,4 @@
+require('dotenv').config()
 const withCSS = require('@zeit/next-css')
 const withOffline = require('next-offline')
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
@@ -6,6 +7,7 @@ const nextConfig = {
   target: 'serverless',
   env: {
     GA_KEY: process.env.GA_KEY,
+    MONGODB_URI: process.env.MONGODB_URI,
   },
   webpack: config => {
     if (config.resolve.plugins) {

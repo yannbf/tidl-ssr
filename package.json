@@ -24,6 +24,7 @@
     "@fortawesome/react-fontawesome": "^0.1.8",
     "@zeit/next-css": "^1.0.1",
     "dayjs": "^1.8.17",
+    "dotenv": "^8.2.0",
     "formik": "^2.1.2",
     "isomorphic-unfetch": "^3.0.0",
     "mongoose": "^5.9.1",

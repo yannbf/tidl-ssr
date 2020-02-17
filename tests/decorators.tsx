@@ -31,3 +31,5 @@ export const renderWithRedux = (
     store,
   }
 }
+
+export const renderThemedWithRedux = ui => renderWithRedux(withTheme(ui))

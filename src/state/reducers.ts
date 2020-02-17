@@ -10,10 +10,7 @@ export const INITIAL_STATE: IAppState = {
   formData: {},
 }
 
-export default function reducer(
-  state: IAppState = INITIAL_STATE,
-  action: { type: string; payload }
-) {
+export default function reducer(state: IAppState = INITIAL_STATE, action) {
   const { type, payload } = action
 
   switch (type) {

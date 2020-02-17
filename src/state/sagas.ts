@@ -1,47 +1,68 @@
-import { put, takeLatest, all } from 'redux-saga/effects'
+import { put, takeLatest, all, call } from 'redux-saga/effects'
 
 import * as types from './actionTypes'
 import { database } from '@tidl/services'
+import {
+  fetchTasksSuccess,
+  saveTaskSuccess,
+  saveTaskFailure,
+  fetchTasksFailure,
+  removeTaskSuccess,
+  updateTaskSuccess,
+  removeTaskFailure,
+} from './actions'
 
 // simulates async while there is no backend
 const delay = ms => new Promise(res => setTimeout(res, ms))
 
 function* fetchTasks() {
-  yield delay(200)
-  const tasks = database.list()
-  yield put({ type: types.FETCH_TASKS_SUCCESS, payload: { tasks } })
+  try {
+    const tasks = yield call(database.list)
+
+    yield put(fetchTasksSuccess(tasks))
+  } catch (error) {
+    yield put(fetchTasksFailure(error.message))
+  }
 }
 
 function* saveTask(action) {
-  yield delay(200)
-  const { payload } = action
-  yield database.save(payload.task)
-
-  const tasks = database.list()
-  yield put({ type: types.FETCH_TASKS_SUCCESS, payload: { tasks } })
+  try {
+    const { payload } = action
+    if (payload.task._id === undefined) {
+      const task = yield call(database.save, payload.task)
+      yield put(updateTaskSuccess(task))
+    } else {
+      const task = yield call(database.update, payload.task)
+      yield put(saveTaskSuccess(task))
+    }
+  } catch (error) {
+    yield put(saveTaskFailure(error.message))
+  }
 }
 
 function* removeTask(action) {
-  yield delay(200)
-  const { payload } = action
-  yield database.delete(payload.id)
+  try {
+    const { payload } = action
+    yield call(database.delete, payload.id)
 
-  const tasks = database.list()
-  yield put({ type: types.FETCH_TASKS_SUCCESS, payload: { tasks } })
+    yield put(removeTaskSuccess(payload.id))
+  } catch (error) {
+    yield put(removeTaskFailure(error.message))
+  }
 }
 
-function* fetchTasksWatcher() {
+function* fetchTasksWatcher(): Generator {
   yield takeLatest(types.FETCH_TASKS, fetchTasks)
 }
 
-function* removeTaskWatcher() {
+function* removeTaskWatcher(): Generator {
   yield takeLatest(types.REMOVE_TASK, removeTask)
 }
 
-function* saveTaskWatcher() {
+function* saveTaskWatcher(): Generator {
   yield takeLatest(types.SAVE_TASK, saveTask)
 }
 
-export default function* rootSaga() {
+export default function* rootSaga(): Generator {
   yield all([fetchTasksWatcher(), removeTaskWatcher(), saveTaskWatcher()])
 }

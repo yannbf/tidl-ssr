@@ -96,7 +96,7 @@ export const TaskForm = ({ formData, onSubmit, onDelete }: Props) => {
         onSubmit={({ name, date, frequency }: ITask) => {
           setOpenIconSelector(false)
           onSubmit({
-            id: formData.id,
+            _id: formData._id,
             name,
             date,
             icon: selectedIcon,
@@ -136,9 +136,9 @@ export const TaskForm = ({ formData, onSubmit, onDelete }: Props) => {
               </Select>
             </FieldSet>
 
-            {formData.id && (
+            {formData._id && (
               <>
-                <ClearButton type="button" onClick={() => onDelete(formData.id)}>
+                <ClearButton type="button" onClick={() => onDelete(formData._id)}>
                   <Text color="danger">Delete this task</Text>
                 </ClearButton>
 

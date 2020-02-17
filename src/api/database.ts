@@ -1,80 +1,47 @@
-import { Observable, BehaviorSubject } from 'rxjs'
+import fetch from 'isomorphic-unfetch'
 
 import { ITask } from '@tidl/types'
 
+export const BASE_URL = '/api/tasks'
+
+const makeCall = (method: 'GET' | 'POST' | 'PATCH' | 'DELETE', data: any): Promise<any> =>
+  fetch(BASE_URL, {
+    method,
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+    .then(handleErrors)
+    .then(r => r.json())
+
+const handleErrors = (response: Response) => {
+  if (!response.ok) {
+    throw Error(response.statusText)
+  }
+
+  return response
+}
+
 class Database {
-  private tasksSubject: BehaviorSubject<ITask[]> = new BehaviorSubject<ITask[]>(null)
-
-  public get tasks$(): Observable<ITask[]> {
-    return this.tasksSubject.asObservable()
+  public async list(): Promise<ITask[]> {
+    return fetch(BASE_URL)
+      .then(handleErrors)
+      .then(r => r.json())
+      .then(r => r.tasks)
   }
 
-  private set tasks(tasks: ITask[]) {
-    localStorage.setItem('mytasks', JSON.stringify(tasks))
+  public async delete(_id: number): Promise<any> {
+    return makeCall('DELETE', { _id })
   }
 
-  private get tasks(): ITask[] {
-    const tasks = localStorage.getItem('mytasks')
-    return (tasks && JSON.parse(tasks)) || []
+  public async save(task: ITask): Promise<any> {
+    return makeCall('POST', task)
   }
 
-  private notifySubscribers(): void {
-    this.tasksSubject.next(this.tasks)
-  }
-
-  public init(): void {
-    this.tasksSubject.next(this.tasks)
-  }
-
-  public flush(): void {
-    localStorage.clear()
-    this.notifySubscribers()
-  }
-
-  public sort(tasks: ITask[]): ITask[] {
-    if (tasks.length > 1) {
-      return tasks.sort((first: ITask, second: ITask) => {
-        const a = first.date
-        const b = second.date
-        return a > b ? -1 : a < b ? 1 : 0
-      })
-    } else {
-      return tasks
-    }
-  }
-
-  public save(myTask: ITask): void {
-    const tasks = this.tasks
-    const index = tasks.indexOf(tasks.find(item => item.id === myTask.id))
-    if (index !== -1) {
-      // Already existing task
-      tasks[index] = myTask
-      this.tasks = tasks
-      this.notifySubscribers()
-    } else {
-      // New task
-      myTask.id = Math.floor(Math.random() * 12345)
-
-      tasks.push(myTask)
-      this.tasks = tasks
-      this.notifySubscribers()
-    }
-  }
-
-  public delete(taskId: number): void {
-    const tasks = this.tasks
-    const index = tasks.indexOf(tasks.find(item => item.id === taskId))
-    if (index !== -1) {
-      tasks.splice(index, 1)
-      this.tasks = tasks
-      this.notifySubscribers()
-    } else {
-      throw new Error('Task not found')
-    }
-  }
-
-  public list(): ITask[] {
-    return this.tasks
+  public async update(task: ITask): Promise<any> {
+    return makeCall('PATCH', task)
   }
 }
 

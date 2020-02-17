@@ -1,9 +1,9 @@
 import * as types from './actionTypes'
-import { IAppState } from '@tidl/types'
+import { IAppState, ITask } from '@tidl/types'
 
 export const INITIAL_STATE: IAppState = {
   error: null,
-  tasks: [],
+  tasks: null,
   isFetching: true,
   isLoading: false,
   isOpen: false,
@@ -38,6 +38,7 @@ export default function reducer(
         ...state,
         tasks: payload.tasks,
         isFetching: false,
+        error: null,
       }
     case types.FETCH_TASKS_FAILURE:
       return {
@@ -53,11 +54,53 @@ export default function reducer(
     case types.SAVE_TASK_SUCCESS:
       return {
         ...state,
+        tasks: [...state.tasks, payload.task],
+        isLoading: false,
       }
     case types.SAVE_TASK_FAILURE:
       return {
         ...state,
+        error: payload.error,
       }
+    case types.UPDATE_TASK:
+      return {
+        ...state,
+        isLoading: true,
+      }
+    case types.UPDATE_TASK_SUCCESS:
+      const indexOldElement = state.tasks.findIndex(({ _id }) => _id === payload.task._id)
+      const newArray = [
+        ...state.tasks.slice(0, indexOldElement),
+        payload.task,
+        ...state.tasks.slice(indexOldElement + 1),
+      ]
+      return {
+        ...state,
+        tasks: newArray,
+        isLoading: false,
+      }
+    case types.UPDATE_TASK_FAILURE:
+      return {
+        ...state,
+        error: payload.error,
+      }
+    case types.REMOVE_TASK:
+      return {
+        ...state,
+        isLoading: true,
+      }
+    case types.REMOVE_TASK_SUCCESS:
+      return {
+        ...state,
+        tasks: [...state.tasks.filter((task: ITask) => task._id !== payload.id)],
+        isLoading: false,
+      }
+    case types.REMOVE_TASK_FAILURE:
+      return {
+        ...state,
+        error: payload.error,
+      }
+
     default:
       return state
   }

@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { ITask } from '@tidl/types'
-import { EmptyList, Task } from '@tidl/components'
+import { EmptyList, Task, Text } from '@tidl/components'
 
 const List = styled.ul`
   display: grid;
@@ -18,7 +18,7 @@ type Props = {
 
 export const TaskList: React.FC<Props> = ({ tasks }) => {
   if (tasks === null) {
-    return <div data-testid="loading">loading..</div>
+    return <Text data-testid="loading">loading..</Text>
   }
 
   if (tasks.length === 0) {
@@ -28,7 +28,7 @@ export const TaskList: React.FC<Props> = ({ tasks }) => {
   return (
     <List data-testid="task-list">
       {tasks.map((task: ITask) => (
-        <Task task={task} key={task.id} />
+        <Task task={task} key={task._id} />
       ))}
     </List>
   )

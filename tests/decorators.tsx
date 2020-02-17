@@ -12,8 +12,12 @@ export const withRedux = ui => (
   <Provider store={initStore(INITIAL_STATE, { isServer: false })}>{ui}</Provider>
 )
 
-// this is a handy function that I normally make available for all my tests
-// that deal with connected components.
+export const withTheme = ui => <ThemeProvider theme={darkTheme}>{ui}</ThemeProvider>
+
+// For all the tests that deal need themed components.
+export const renderWithTheme = ui => render(withTheme(ui))
+
+// For all the tests that deal with connected components.
 // you can provide initialState for the entire store that the ui is rendered with
 export const renderWithRedux = (
   ui,
@@ -27,5 +31,3 @@ export const renderWithRedux = (
     store,
   }
 }
-
-export const withTheme = ui => <ThemeProvider theme={darkTheme}>{ui}</ThemeProvider>

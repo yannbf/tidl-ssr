@@ -36,6 +36,7 @@
     "removeComments": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
+    "resolveJsonModule": true,
     "lib": [
       "es2017",
       "dom"

@@ -1,8 +1,8 @@
 import React from 'react'
-import { render } from '@testing-library/react'
 
 import { Task } from '.'
 import { ITask } from '@tidl/types'
+import { renderWithRedux, withTheme } from '@tidl/tests/decorators'
 
 describe('Task', () => {
   test('Item name is rendered', () => {
@@ -13,7 +13,7 @@ describe('Task', () => {
       frequency: 'none',
     }
 
-    const { getByText } = render(<Task task={task} />)
+    const { getByText } = renderWithRedux(withTheme(<Task task={task} />))
 
     expect(getByText(task.name)).toBeInTheDocument()
   })

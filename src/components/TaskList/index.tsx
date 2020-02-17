@@ -18,7 +18,11 @@ type Props = {
 
 export const TaskList: React.FC<Props> = ({ tasks }) => {
   if (tasks === null) {
-    return <Text data-testid="loading">loading..</Text>
+    return (
+      <div data-testid="loading">
+        <Text>loading..</Text>
+      </div>
+    )
   }
 
   if (tasks.length === 0) {

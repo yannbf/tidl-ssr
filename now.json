@@ -19,7 +19,7 @@
   "build": {
     "env": {
       "GA_KEY": "@ga-key",
-      "MONGODB_URI": "@my-mongodb-uri"
+      "MONGODB_URI": "@mongodb-uri"
     }
   }
 }

@@ -1,16 +1,13 @@
 import React from 'react'
-import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import { render } from '@testing-library/react'
 import { ThemeProvider } from 'styled-components'
+import configureStore from 'redux-mock-store'
 
 import { darkTheme } from '@tidl/styles'
-import initStore from '@tidl/state/index'
-import reducer, { INITIAL_STATE } from '@tidl/state/reducers'
+import { INITIAL_STATE } from '@tidl/state/reducers'
 
-export const withRedux = ui => (
-  <Provider store={initStore(INITIAL_STATE, { isServer: false })}>{ui}</Provider>
-)
+export const withRedux = (ui, store) => <Provider store={store}>{ui}</Provider>
 
 export const withTheme = ui => <ThemeProvider theme={darkTheme}>{ui}</ThemeProvider>
 
@@ -21,13 +18,11 @@ export const renderWithTheme = ui => render(withTheme(ui))
 // you can provide initialState for the entire store that the ui is rendered with
 export const renderWithRedux = (
   ui,
-  { initialState = INITIAL_STATE, store = createStore(reducer, initialState) } = {}
+  initialState = INITIAL_STATE,
+  store = configureStore()(initialState)
 ) => {
   return {
-    ...render(withRedux(ui)),
-    // adding `store` to the returned utilities to allow us
-    // to reference it in our tests (just try to avoid using
-    // this to test implementation details).
+    ...render(withRedux(ui, store)),
     store,
   }
 }
@@ -35,5 +30,5 @@ export const renderWithRedux = (
 export const renderThemedWithRedux = (
   ui,
   initialState = INITIAL_STATE,
-  store = createStore(reducer, initialState)
-) => renderWithRedux(withTheme(ui), { initialState, store })
+  store = configureStore()(initialState)
+) => renderWithRedux(withTheme(ui), initialState, store)

@@ -1,6 +1,7 @@
 import { IAppSpecificTheme } from '.'
 
 const dark: IAppSpecificTheme = {
+  name: 'dark',
   bg: {
     primary: '#121212',
     secondary: '#1e1e1e',

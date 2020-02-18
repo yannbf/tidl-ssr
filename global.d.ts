@@ -5,4 +5,8 @@ declare global {
       toHaveDispatched(action): R
     }
   }
+
+  interface Window {
+    GA_INITIALIZED: boolean
+  }
 }

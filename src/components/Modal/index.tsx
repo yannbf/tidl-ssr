@@ -20,9 +20,9 @@ export const Modal = ({ children, isOpen, onClose, small = false }) => {
   return (
     <ClientOnlyPortal selector="#modal">
       <CSSTransition in={isOpen} timeout={300} classNames="modal" unmountOnExit>
-        <ModalContent small={small}>
+        <ModalContent small={small} data-testid="modal">
           <TopBar>
-            <TopBarButton onClick={onClose}>
+            <TopBarButton data-testid="modal-close-btn" onClick={onClose}>
               <Icon icon="times" size="lg" />
             </TopBarButton>
           </TopBar>
@@ -31,7 +31,7 @@ export const Modal = ({ children, isOpen, onClose, small = false }) => {
       </CSSTransition>
 
       <CSSTransition in={isOpen} timeout={300} classNames="backdrop" unmountOnExit>
-        <Backdrop small={small} onClick={onClose} />
+        <Backdrop data-testid="modal-backdrop" small={small} onClick={onClose} />
       </CSSTransition>
 
       <GlobalStyle />

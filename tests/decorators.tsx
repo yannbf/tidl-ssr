@@ -32,4 +32,8 @@ export const renderWithRedux = (
   }
 }
 
-export const renderThemedWithRedux = ui => renderWithRedux(withTheme(ui))
+export const renderThemedWithRedux = (
+  ui,
+  initialState = INITIAL_STATE,
+  store = createStore(reducer, initialState)
+) => renderWithRedux(withTheme(ui), { initialState, store })

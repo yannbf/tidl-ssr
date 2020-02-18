@@ -13,8 +13,10 @@ type Props = {
 }
 
 export const ListError: React.FC<Props> = ({ onRetry }) => (
-  <Wrapper>
+  <Wrapper data-testid="list-error">
     <Text fontWeight="bold">Oops! There was an error.</Text>
-    <button onClick={onRetry}>Try again</button>
+    <button data-testid="list-error-retry-btn" onClick={onRetry}>
+      Try again
+    </button>
   </Wrapper>
 )

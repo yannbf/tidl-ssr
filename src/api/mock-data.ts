@@ -12,7 +12,7 @@ export const mockData: ITask[] = [
     _id: 2,
     name: 'Take trash out',
     date: new Date(Date.now() + 1000 * 60 * 60 * 248).toString(),
-    icon: 'trash',
+    icon: 'coffee',
     frequency: 'none',
   },
   {

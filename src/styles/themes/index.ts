@@ -26,6 +26,7 @@ export interface IAppGeneralTheme {
 }
 
 export interface IAppSpecificTheme {
+  name: string
   bg: {
     primary: string
     secondary: string

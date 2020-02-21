@@ -10,7 +10,7 @@ const Container = styled.div`
   left: 0;
   height: 100vh;
   width: 100vw;
-  z-index: 10;
+  z-index: 9;
   align-items: center;
   justify-content: center;
   background-color: ${({ theme }: { theme: IAppTheme }) => theme.splashScreen.background};
@@ -25,10 +25,11 @@ const Container = styled.div`
 
 export const SplashScreen = () => {
   const theme = useContext(ThemeContext) as IAppTheme
+  const { logoWidth, logoMaxWidth } = theme.splashScreen
 
   return (
     <Container>
-      <AnimatedLogo width={theme.splashScreen.imageWidth} />
+      <AnimatedLogo width={logoWidth} maxWidth={logoMaxWidth} />
     </Container>
   )
 }

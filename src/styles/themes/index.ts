@@ -20,7 +20,8 @@ export interface IAppGeneralTheme {
   backdrop: string
   splashScreen: {
     background: string
-    imageWidth: string
+    logoWidth: string
+    logoMaxWidth: string
   }
 }
 
@@ -78,7 +79,8 @@ const defaultTheme = {
   backdrop: 'rgba(0, 0, 0, 0.4)',
   splashScreen: {
     background: '#040b3c',
-    imageWidth: 'calc(100vw - calc(50vw - 20%) * 2)',
+    logoWidth: 'calc(100vw - calc(50vw - 25%) * 2)',
+    logoMaxWidth: '200px',
   },
 }
 

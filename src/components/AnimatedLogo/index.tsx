@@ -14,8 +14,9 @@ const lottieOptions = {
 
 type Props = {
   width: string
+  maxWidth?: string
 }
 
-export const AnimatedLogo: React.FC<Props> = memo(({ width }) => (
-  <Lottie config={lottieOptions} width={width} />
+export const AnimatedLogo: React.FC<Props> = memo(({ width, maxWidth = width }) => (
+  <Lottie config={lottieOptions} width={width} style={{ maxWidth }} />
 ))

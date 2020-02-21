@@ -12,5 +12,6 @@
 }
 
 #splash img {
-  width: calc(100vw - calc(50vw - 20%) * 2);
+  width: calc(100vw - calc(50vw - 25%) * 2);
+  max-width: 200px;
 }

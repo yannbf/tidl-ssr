@@ -1,5 +1,7 @@
-import styled from 'styled-components'
+import React, { useContext } from 'react'
+import styled, { ThemeContext } from 'styled-components'
 import { IAppTheme } from '@tidl/styles'
+import { AnimatedLogo } from '@tidl/components'
 
 const Container = styled.div`
   display: flex;
@@ -15,27 +17,18 @@ const Container = styled.div`
   &.fade-enter {
     opacity: 1;
   }
-  &.fade-enter-done {
-    transform: scale(1.15);
-    transition: transform 1000ms;
-  }
-  &.fade-exit {
-    transform: scale(1.15);
-  }
   &.fade-exit-active {
     opacity: 0;
-    transform: scale(1);
-    transition: transform 500ms, opacity 1000ms;
+    transition: opacity 400ms ease-out;
   }
 `
 
-const Image = styled.img`
-  /* width matches the padding given when generating splash screens */
-  width: ${({ theme }: { theme: IAppTheme }) => theme.splashScreen.imageWidth};
-`
+export const SplashScreen = () => {
+  const theme = useContext(ThemeContext) as IAppTheme
 
-export const SplashScreen = () => (
-  <Container>
-    <Image src="/static/logo.png" />
-  </Container>
-)
+  return (
+    <Container>
+      <AnimatedLogo width={theme.splashScreen.imageWidth} />
+    </Container>
+  )
+}

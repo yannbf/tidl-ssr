@@ -33,7 +33,7 @@ export const PageTemplate: React.FC<Props> = ({ title, children }) => {
     setIsPWA(urlParams.get('pwa') === 'true')
 
     // ensure there's enough time for the animation on splash screen
-    const animationTimer = setTimeout(() => setIsAnimating(false), 1500)
+    const animationTimer = setTimeout(() => setIsAnimating(false), 2500)
 
     if (!window.GA_INITIALIZED) {
       initGA()

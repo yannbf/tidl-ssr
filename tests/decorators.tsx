@@ -6,6 +6,29 @@ import configureStore from 'redux-mock-store'
 
 import { darkTheme } from '@tidl/styles'
 import { INITIAL_STATE } from '@tidl/state/reducers'
+import { IGlobalState } from '@tidl/types'
+
+type DeepPartial<T> = {
+  [P in keyof T]?: T[P] extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T[P] extends ReadonlyArray<infer U>
+    ? ReadonlyArray<DeepPartial<U>>
+    : DeepPartial<T[P]>
+}
+
+export const GLOBAL_STATE: DeepPartial<IGlobalState> = {
+  firebase: {
+    auth: { uid: 'braga' },
+  },
+  firestore: {
+    data: {},
+  },
+  app: INITIAL_STATE,
+}
+
+export const injectDataInFirestoreState = (data: any) => {
+  return { ...GLOBAL_STATE, firestore: { data } }
+}
 
 export const withRedux = (ui, store) => <Provider store={store}>{ui}</Provider>
 
@@ -18,7 +41,7 @@ export const renderWithTheme = ui => render(withTheme(ui))
 // you can provide initialState for the entire store that the ui is rendered with
 export const renderWithRedux = (
   ui,
-  initialState = INITIAL_STATE,
+  initialState = GLOBAL_STATE,
   store = configureStore()(initialState)
 ) => {
   return {
@@ -29,6 +52,6 @@ export const renderWithRedux = (
 
 export const renderThemedWithRedux = (
   ui,
-  initialState = INITIAL_STATE,
+  initialState = GLOBAL_STATE,
   store = configureStore()(initialState)
 ) => renderWithRedux(withTheme(ui), initialState, store)

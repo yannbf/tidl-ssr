@@ -39,7 +39,7 @@ const TaskSchema = Yup.object().shape({
 type Props = {
   formData: Partial<ITask>
   onSubmit: (task: ITask) => void
-  onDelete?: (id: number) => void
+  onDelete?: (id: string) => void
 }
 
 const FREQUENCY_OPTIONS: TaskFrequency[] = ['none', 'daily', 'weekly', 'biweekly', 'monthly']
@@ -70,6 +70,7 @@ export const TaskForm = ({ formData, onSubmit, onDelete }: Props) => {
     await (navigator as any).share(shareData)
   }
   const isLate = isDue(formData.date, formData.frequency)
+
   const dueText =
     isLate &&
     `Woah! It's been ${daysFromToday(formData.date)} days since you should have done: ${
@@ -91,16 +92,19 @@ export const TaskForm = ({ formData, onSubmit, onDelete }: Props) => {
           frequency,
           date: dayjs(date).format('YYYY-MM-DDTHH:mm'),
           icon,
+          sharedWith: formData.sharedWith,
         }}
         validationSchema={TaskSchema}
         onSubmit={({ name, date, frequency }: ITask) => {
           setOpenIconSelector(false)
+
           onSubmit({
-            _id: formData._id,
+            id: formData.id,
             name,
             date,
             icon: selectedIcon,
             frequency,
+            sharedWith: formData.sharedWith || [],
           })
         }}
       >
@@ -136,9 +140,9 @@ export const TaskForm = ({ formData, onSubmit, onDelete }: Props) => {
               </Select>
             </FieldSet>
 
-            {formData._id && (
+            {formData.id && (
               <>
-                <ClearButton type="button" onClick={() => onDelete(formData._id)}>
+                <ClearButton type="button" onClick={() => onDelete(formData.id)}>
                   <Text color="danger">Delete this task</Text>
                 </ClearButton>
 

@@ -1,44 +1,51 @@
 import React from 'react'
+import * as ReduxFirebase from 'react-redux-firebase'
 
-import { renderThemedWithRedux } from '@tidl/tests/decorators'
-import { TaskListContainer } from '.'
-import { fetchTasks } from '@tidl/state/actions'
-import { INITIAL_STATE } from '@tidl/state/reducers'
+import { TaskListContainer } from '@tidl/components'
 import { mockData } from '@tidl/services'
+import { renderThemedWithRedux, injectDataInFirestoreState } from '@tidl/tests/decorators'
 
-describe('TaskListContainer', () => {
-  test('Fetch tasks action is dispatched', () => {
-    // Execute
-    const { store } = renderThemedWithRedux(<TaskListContainer />)
+jest.mock('react-redux-firebase')
 
-    // Test
-    const [action] = store.getActions()
-    expect(action).toEqual(fetchTasks())
+describe('Task List Container', () => {
+  afterEach(() => {
+    jest.clearAllMocks()
   })
 
-  test('ListError component is displayed on error', () => {
-    // Execute
-    const { getByTestId } = renderThemedWithRedux(<TaskListContainer />, {
-      ...INITIAL_STATE,
-      error: 'problems!',
-    })
+  let isLoadedSpy
+  let isEmptySpy
 
-    const listError = getByTestId('list-error')
-
-    // Test
-    expect(listError).toBeInTheDocument()
+  beforeEach(() => {
+    isLoadedSpy = jest.spyOn(ReduxFirebase, 'isLoaded')
+    isEmptySpy = jest.spyOn(ReduxFirebase, 'isEmpty')
   })
 
-  test('TaskList component is displayed on success', () => {
-    // Execute
-    const { getByTestId } = renderThemedWithRedux(<TaskListContainer />, {
-      ...INITIAL_STATE,
-      tasks: mockData,
-    })
+  test('Loading element is rendered if no data is there', () => {
+    isLoadedSpy.mockImplementation(() => false)
 
-    const taskList = getByTestId('task-list')
+    const { getByTestId } = renderThemedWithRedux(<TaskListContainer />)
 
-    // Test
-    expect(taskList).toBeInTheDocument()
+    expect(getByTestId('loading')).toBeInTheDocument()
+  })
+
+  test('Empty List element is rendered if empty array is passed', () => {
+    isLoadedSpy.mockImplementation(() => true)
+    isEmptySpy.mockImplementation(() => true)
+
+    const { getByTestId } = renderThemedWithRedux(<TaskListContainer />)
+
+    expect(getByTestId('empty-list')).toBeInTheDocument()
+  })
+
+  test('Task List element is rendered if tasks array is passed', () => {
+    isLoadedSpy.mockImplementation(() => true)
+    isEmptySpy.mockImplementation(() => false)
+
+    const { getByTestId } = renderThemedWithRedux(
+      <TaskListContainer />,
+      injectDataInFirestoreState({ tasks: mockData })
+    )
+
+    expect(getByTestId('task-list')).toBeInTheDOM()
   })
 })

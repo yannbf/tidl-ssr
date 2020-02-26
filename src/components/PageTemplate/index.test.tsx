@@ -4,6 +4,7 @@ import * as Analytics from '@tidl/analytics'
 import { renderWithRedux, renderThemedWithRedux } from '@tidl/tests/decorators'
 import { PageTemplate } from '.'
 
+jest.mock('react-redux-firebase')
 jest.mock('@tidl/analytics')
 
 describe('Page Template', () => {

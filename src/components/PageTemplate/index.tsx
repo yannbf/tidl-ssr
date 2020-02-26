@@ -6,7 +6,8 @@ import { CSSTransition } from 'react-transition-group'
 
 import { SplashScreen } from '@tidl/components'
 import { initGA, logPageView } from '@tidl/analytics'
-import { IAppState } from '@tidl/types'
+import { IGlobalState } from '@tidl/types'
+import { isLoaded } from 'react-redux-firebase'
 
 declare const window
 
@@ -23,9 +24,8 @@ export const PageTemplate: React.FC<Props> = ({ title, children }) => {
   const [isPWA, setIsPWA] = useState(false)
   const [isAnimating, setIsAnimating] = useState(true)
 
-  const { isFetching } = useSelector(({ isFetching: isFetching }: IAppState) => ({
-    isFetching,
-  }))
+  // TODO: Improve this. Use another strategy for checking the fetching state
+  const tasks = useSelector(({ firestore }: IGlobalState) => firestore.data.tasks)
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search)
@@ -59,7 +59,7 @@ export const PageTemplate: React.FC<Props> = ({ title, children }) => {
       </Head>
       <CSSTransition
         timeout={{ appear: 0, enter: 0, exit: 1000 }}
-        in={isPWA && (isAnimating || isFetching)}
+        in={isPWA && (isAnimating || !isLoaded(tasks))}
         classNames="fade"
         appear
         unmountOnExit

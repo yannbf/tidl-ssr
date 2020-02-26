@@ -1,17 +1,10 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import { createLogger } from 'redux-logger'
-import createSagaMiddleware, { Task } from 'redux-saga'
-
-import rootReducer from './reducers'
-import rootSaga from './sagas'
+import { rootReducer } from './reducers'
 import { isDev } from '@tidl/util'
-import { IAppState } from '@tidl/types'
+import { IGlobalState } from '@tidl/types'
 
 declare const window
-
-type WithSagaTask = {
-  sagaTask: Task
-}
 
 const bindMiddleware = middleware => {
   if (isDev) {
@@ -24,20 +17,10 @@ const bindMiddleware = middleware => {
   return applyMiddleware(...middleware)
 }
 
-const configureStore = (initialState: IAppState, { isServer, req = null }) => {
-  const sagaMiddleware = createSagaMiddleware()
-
+const configureStore = (initialState: IGlobalState) => {
   const logger = createLogger({ collapsed: true, predicate: () => isDev }) // log every action to see what's happening behind the scenes.
 
-  const store = createStore(
-    rootReducer,
-    initialState,
-    bindMiddleware([sagaMiddleware, logger])
-  ) as WithSagaTask
-
-  if (req || !isServer) {
-    store.sagaTask = sagaMiddleware.run(rootSaga)
-  }
+  const store = createStore(rootReducer, initialState, bindMiddleware([logger]))
 
   return store as any
 }

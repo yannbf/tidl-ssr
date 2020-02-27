@@ -8,6 +8,13 @@ module.exports = ({ config, mode }) => {
       presets: [['next/babel', { flow: false, typescript: true }]],
     },
   })
+
+  config.module.rules.push({
+    test: /\.stories\.tsx?$/,
+    loaders: [require.resolve('@storybook/addon-storysource/loader')],
+    enforce: 'pre',
+  })
+
   config.resolve.extensions.push('.ts', '.tsx')
 
   if (config.resolve.plugins) {

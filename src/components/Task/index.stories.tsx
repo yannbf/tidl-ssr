@@ -1,8 +1,16 @@
 import React from 'react'
 import { withKnobs, text } from '@storybook/addon-knobs'
 
-import { Task } from '@tidl/components'
+import { TaskDesktop, Check } from '@tidl/components'
 import { ITask } from '@tidl/types'
+import { Wrapper } from './styled'
+
+const defaultProps = {
+  onClick: () => {},
+}
+
+// TODO: make this a globally accessible decorator
+const withPadding = story => <div style={{ padding: '2rem', maxWidth: '8.5rem' }}>{story()}</div>
 
 export const WithCurrentDate = () => {
   const task: ITask = {
@@ -12,7 +20,7 @@ export const WithCurrentDate = () => {
     frequency: 'none',
     sharedWith: [],
   }
-  return <Task task={task} />
+  return <TaskDesktop task={task} {...defaultProps} />
 }
 
 export const FromAWeekAgo = () => {
@@ -23,7 +31,7 @@ export const FromAWeekAgo = () => {
     frequency: 'none',
     sharedWith: [],
   }
-  return <Task task={task} />
+  return <TaskDesktop task={task} {...defaultProps} />
 }
 
 export const Late = () => {
@@ -34,10 +42,27 @@ export const Late = () => {
     frequency: 'daily',
     sharedWith: [],
   }
-  return <Task task={task} />
+  return <TaskDesktop task={task} {...defaultProps} />
+}
+
+// This is JUST for storybook purposes. Do not use this component like this. It's handled with a touchevent on mobile on TaskMobile component.
+export const UpdatingState = () => {
+  return (
+    <Wrapper isLate={false}>
+      <div
+        style={{
+          position: 'absolute',
+          top: '20%',
+          left: '14%',
+        }}
+      >
+        <Check />
+      </div>
+    </Wrapper>
+  )
 }
 
 export default {
   title: 'Task',
-  decorators: [withKnobs],
+  decorators: [withKnobs, withPadding],
 }

@@ -2,6 +2,7 @@ import React from 'react'
 
 import { HttpStatusCode } from '@tidl/types'
 import PageNotFound from './404'
+import { PageError } from '@tidl/components'
 
 type Prop = {
   statusCode: HttpStatusCode
@@ -15,13 +16,9 @@ const Error = ({ statusCode }: Prop) => {
   const msg = statusCode
     ? `An error ${statusCode} occurred on server`
     : 'An error occurred on client'
+  console.log(msg)
 
-  return (
-    <>
-      <h1>Oops!</h1>
-      <p>{msg}</p>
-    </>
-  )
+  return <PageError />
 }
 
 Error.getInitialProps = ({ res, err }: { res: any; err: any }) => {

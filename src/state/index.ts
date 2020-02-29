@@ -1,21 +1,28 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import { createLogger } from 'redux-logger'
-import { createEpicMiddleware } from 'redux-observable'
-import reducer from './reducers'
-import { rootEpic } from './epics'
-import { IAppState } from '@tidl/types'
+import { rootReducer } from './reducers'
+import { isDev } from '@tidl/util'
+import { IGlobalState } from '@tidl/types'
 
 declare const window
 
-export default function initStore(initialState: IAppState) {
-  const composeEnhancers =
-    (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose
-  const epicMiddleware = createEpicMiddleware()
-  const logger = createLogger({ collapsed: true }) // log every action to see what's happening behind the scenes.
-  const reduxMiddleware = composeEnhancers(applyMiddleware(epicMiddleware, logger))
+const bindMiddleware = middleware => {
+  if (isDev) {
+    const composeWithDevTools =
+      (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose
 
-  const store = createStore(reducer, initialState, reduxMiddleware)
-  epicMiddleware.run(rootEpic)
+    return composeWithDevTools(applyMiddleware(...middleware))
+  }
+
+  return applyMiddleware(...middleware)
+}
+
+const configureStore = (initialState: IGlobalState) => {
+  const logger = createLogger({ collapsed: true, predicate: () => isDev }) // log every action to see what's happening behind the scenes.
+
+  const store = createStore(rootReducer, initialState, bindMiddleware([logger]))
 
   return store as any
 }
+
+export default configureStore

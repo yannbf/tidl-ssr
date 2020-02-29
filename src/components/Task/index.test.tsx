@@ -1,20 +1,19 @@
 import React from 'react'
-import { render } from '@testing-library/react'
-
 import { Task } from '.'
 import { ITask } from '@tidl/types'
+import { renderWithTheme } from '@tidl/tests/decorators'
 
 describe('Task', () => {
-  test('Item name is rendered', () => {
-    const task: ITask = {
-      name: 'braga',
-      date: new Date().toString(),
-      icon: 'coffee',
-      frequency: 'none',
-    }
+  const task: ITask = {
+    name: 'braga',
+    date: new Date().toString(),
+    icon: 'coffee',
+    frequency: 'none',
+    sharedWith: [],
+  }
 
-    const { getByText } = render(<Task task={task} />)
-
+  test('Task name is rendered', () => {
+    const { getByText } = renderWithTheme(<Task task={task} />)
     expect(getByText(task.name)).toBeInTheDocument()
   })
 })

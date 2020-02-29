@@ -1,6 +1,7 @@
 import { IAppSpecificTheme } from '.'
 
 const light: IAppSpecificTheme = {
+  name: 'light',
   bg: {
     primary: '#eff0f524',
     secondary: '#ffffff',

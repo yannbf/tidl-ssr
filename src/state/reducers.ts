@@ -1,19 +1,19 @@
+import { combineReducers } from 'redux'
+import { firebaseReducer as firebase } from 'react-redux-firebase'
+import { firestoreReducer as firestore } from 'redux-firestore'
+
 import * as types from './actionTypes'
 import { IAppState } from '@tidl/types'
 
 export const INITIAL_STATE: IAppState = {
   error: null,
-  tasks: [],
   isFetching: true,
   isLoading: false,
   isOpen: false,
   formData: {},
 }
 
-export default function reducer(
-  state: IAppState = INITIAL_STATE,
-  action: { type: string; payload }
-) {
+export const modalReducer = (state: IAppState = INITIAL_STATE, action) => {
   const { type, payload } = action
 
   switch (type) {
@@ -28,37 +28,13 @@ export default function reducer(
         ...state,
         isOpen: false,
       }
-    case types.FETCH_TASKS:
-      return {
-        ...state,
-        isFetching: true,
-      }
-    case types.FETCH_TASKS_SUCCESS:
-      return {
-        ...state,
-        tasks: payload.tasks,
-        isFetching: false,
-      }
-    case types.FETCH_TASKS_FAILURE:
-      return {
-        ...state,
-        error: payload.error,
-        isFetching: false,
-      }
-    case types.SAVE_TASK:
-      return {
-        ...state,
-        isLoading: true,
-      }
-    case types.SAVE_TASK_SUCCESS:
-      return {
-        ...state,
-      }
-    case types.SAVE_TASK_FAILURE:
-      return {
-        ...state,
-      }
     default:
       return state
   }
 }
+
+export const rootReducer = combineReducers({
+  firebase,
+  firestore,
+  app: modalReducer,
+})

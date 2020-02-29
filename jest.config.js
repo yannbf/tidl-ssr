@@ -22,7 +22,7 @@ module.exports = {
   transform: {
     '^.+\\.(ts|tsx)$': 'ts-jest',
   },
-  setupFilesAfterEnv: ['<rootDir>/tests/init.ts'],
+  setupFilesAfterEnv: ['<rootDir>/tests/init.ts', 'jest-canvas-mock'],
   modulePaths: ['<rootDir>'],
   moduleDirectories: ['node_modules'],
   moduleFileExtensions: ['js', 'ts', 'tsx'],

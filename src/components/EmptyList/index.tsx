@@ -1,3 +1,4 @@
+import React from 'react'
 import { Lottie } from '@crello/react-lottie'
 import styled from 'styled-components'
 

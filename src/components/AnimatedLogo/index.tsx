@@ -1,4 +1,4 @@
-import { memo } from 'react'
+import React, { memo } from 'react'
 import { Lottie } from '@crello/react-lottie'
 
 import animationData from './animation.json'

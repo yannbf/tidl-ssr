@@ -1,17 +1,50 @@
-import React, { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React from 'react'
+import { useSelector } from 'react-redux'
+import {
+  useFirestoreConnect,
+  isLoaded,
+  isEmpty,
+  ReduxFirestoreQuerySetting,
+} from 'react-redux-firebase'
 
-import { IAppState } from '@tidl/types'
-import { TaskList } from '@tidl/components'
-import { fetchTasks } from '@tidl/state/actions'
+import { EmptyList, TaskList, Text } from '@tidl/components'
+import { ITask } from '@tidl/types'
 
 export const TaskListContainer: React.FC = () => {
-  const dispatch = useDispatch()
+  const userId = useSelector(({ firebase }) => firebase.auth.uid)
 
-  useEffect(() => {
-    dispatch(fetchTasks())
-  }, [])
+  if (isLoaded(userId)) {
+    /* Every task has the ownerID in the sharedWith property.
+     * asks with more than one element in that ID means that the task is shared.
+     * This is an efficient way to be able to retrieve all tasks in a single operation. */
+    const tasksQuery: ReduxFirestoreQuerySetting = {
+      collection: 'tasks',
+      where: ['sharedWith', 'array-contains', userId],
+    }
 
-  const tasks = useSelector(({ tasks }: IAppState) => tasks)
-  return <TaskList tasks={tasks} />
+    useFirestoreConnect(() => [tasksQuery])
+
+    const tasks = useSelector(({ firestore }) => {
+      return firestore.data.tasks
+    })
+
+    if (!isLoaded(tasks)) {
+      return (
+        <div data-testid="loading">
+          <Text>loading..</Text>
+        </div>
+      )
+    }
+
+    if (isEmpty(tasks)) {
+      return <EmptyList />
+    }
+
+    // This filter is necessary to handle delete operations
+    const tasksArray = Object.values(tasks).filter(Boolean) as ITask[]
+
+    return <TaskList tasks={tasksArray} />
+  }
+
+  return <Text>loading..</Text>
 }

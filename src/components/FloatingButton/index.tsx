@@ -1,3 +1,4 @@
+import React from 'react'
 import { IconName } from '@fortawesome/fontawesome-svg-core'
 
 import { Icon } from '@tidl/components'
@@ -10,7 +11,7 @@ type Props = {
 }
 
 export const FloatingButton = ({ icon, isShowing = true, onClick }: Props) => (
-  <StyledFloatingButton isShowing={isShowing} onClick={onClick}>
+  <StyledFloatingButton data-testid="floating-button" isShowing={isShowing} onClick={onClick}>
     <Icon icon={icon} size="2x" fixedWidth />
   </StyledFloatingButton>
 )

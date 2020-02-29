@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { Formik, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import dayjs from 'dayjs'
@@ -39,7 +39,7 @@ const TaskSchema = Yup.object().shape({
 type Props = {
   formData: Partial<ITask>
   onSubmit: (task: ITask) => void
-  onDelete?: (id: number) => void
+  onDelete?: (id: string) => void
 }
 
 const FREQUENCY_OPTIONS: TaskFrequency[] = ['none', 'daily', 'weekly', 'biweekly', 'monthly']
@@ -70,6 +70,7 @@ export const TaskForm = ({ formData, onSubmit, onDelete }: Props) => {
     await (navigator as any).share(shareData)
   }
   const isLate = isDue(formData.date, formData.frequency)
+
   const dueText =
     isLate &&
     `Woah! It's been ${daysFromToday(formData.date)} days since you should have done: ${
@@ -91,16 +92,19 @@ export const TaskForm = ({ formData, onSubmit, onDelete }: Props) => {
           frequency,
           date: dayjs(date).format('YYYY-MM-DDTHH:mm'),
           icon,
+          sharedWith: formData.sharedWith,
         }}
         validationSchema={TaskSchema}
         onSubmit={({ name, date, frequency }: ITask) => {
           setOpenIconSelector(false)
+
           onSubmit({
             id: formData.id,
             name,
             date,
             icon: selectedIcon,
             frequency,
+            sharedWith: formData.sharedWith || [],
           })
         }}
       >

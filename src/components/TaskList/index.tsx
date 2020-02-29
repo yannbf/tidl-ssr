@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { ITask } from '@tidl/types'
-import { EmptyList, Task } from '@tidl/components'
+import { TaskContainer } from '../TaskContainer'
 
 const List = styled.ul`
   display: grid;
@@ -16,20 +16,10 @@ type Props = {
   tasks: ITask[]
 }
 
-export const TaskList: React.FC<Props> = ({ tasks }) => {
-  if (tasks === null) {
-    return <div data-testid="loading">loading..</div>
-  }
-
-  if (tasks.length === 0) {
-    return <EmptyList />
-  }
-
-  return (
-    <List data-testid="task-list">
-      {tasks.map((task: ITask) => (
-        <Task task={task} key={task.id} />
-      ))}
-    </List>
-  )
-}
+export const TaskList: React.FC<Props> = ({ tasks = [] }) => (
+  <List data-testid="task-list">
+    {tasks.map((task: ITask) => (
+      <TaskContainer key={task.id} task={task} />
+    ))}
+  </List>
+)

@@ -1,14 +1,29 @@
-import React from 'react'
-import { Provider } from 'react-redux'
-import App from 'next/app'
-import withRedux from 'next-redux-wrapper'
 import '@fortawesome/fontawesome-svg-core/styles.css'
+
+import React from 'react'
+import { Provider, useSelector } from 'react-redux'
+import withRedux from 'next-redux-wrapper'
 import Head from 'next/head'
+import App from 'next/app'
 
 import initStore from '@tidl/state/index'
 import { configureDates, registerIcons } from '@tidl/util'
 import { GlobalStyle } from '@tidl/styles'
 import { ThemeProvider } from '@tidl/components'
+
+import firebase from '@tidl/state/firebase'
+import { createFirestoreInstance } from 'redux-firestore'
+import { ReactReduxFirebaseProvider, isLoaded } from 'react-redux-firebase'
+
+const AuthIsLoaded = ({ children }) => {
+  const auth = useSelector(state => state.firebase.auth)
+
+  if (!isLoaded(auth)) {
+    return <div>loading...</div>
+  }
+
+  return children
+}
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
@@ -19,6 +34,18 @@ class MyApp extends App {
 
   render() {
     const { Component, pageProps, store } = this.props as any
+
+    const rrfProps = {
+      firebase,
+      config: {
+        userProfile: 'users',
+        useFirestoreForProfile: true,
+        enableLogging: true,
+      },
+      dispatch: store.dispatch,
+      createFirestoreInstance,
+    }
+
     return (
       <ThemeProvider>
         <Head>
@@ -28,7 +55,11 @@ class MyApp extends App {
           />
         </Head>
         <Provider store={store}>
-          <Component {...pageProps} />
+          <ReactReduxFirebaseProvider {...rrfProps}>
+            <AuthIsLoaded>
+              <Component {...pageProps} />
+            </AuthIsLoaded>
+          </ReactReduxFirebaseProvider>
         </Provider>
         <GlobalStyle />
       </ThemeProvider>

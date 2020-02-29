@@ -9,13 +9,13 @@ Live demo: https://tidl.now.sh
 ## Technologies
 
 - React with Typescript
-- Styled components
 - SSR with Next.js
+- Styled components
 - Storybook
 - Cypress
 - Jest with react-testing-library
-- Redux with Redux-Observable
-- RxJS
+- Firebase and Firestore
+- Redux with React-redux-firebase
 
 ## Getting started
 

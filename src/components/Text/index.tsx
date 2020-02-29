@@ -6,7 +6,7 @@ import { IAppTheme } from '@tidl/styles'
 type Color = 'primary' | 'secondary' | 'danger' | 'light'
 export interface DefaultProps {
   color: Color
-  element: 'span' | 'p' | 'div'
+  element: 'span' | 'p' | 'div' | 'h1' | 'h2'
   size: 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl'
 }
 

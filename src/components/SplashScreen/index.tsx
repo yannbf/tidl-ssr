@@ -28,7 +28,7 @@ export const SplashScreen = () => {
   const { logoWidth, logoMaxWidth } = theme.splashScreen
 
   return (
-    <Container>
+    <Container data-testid="splash-screen">
       <AnimatedLogo width={logoWidth} maxWidth={logoMaxWidth} />
     </Container>
   )

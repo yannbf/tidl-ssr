@@ -5,8 +5,14 @@
       "@tidl/components": [
         "components/index.ts"
       ],
+      "@tidl/components/*": [
+        "components/*"
+      ],
       "@tidl/util": [
         "util/index.ts"
+      ],
+      "@tidl/analytics": [
+        "util/analytics.ts"
       ],
       "@tidl/services": [
         "api/index.ts"
@@ -23,6 +29,9 @@
       "@tidl/state/*": [
         "state/*"
       ],
+      "@tidl/hooks": [
+        "hooks/index.ts"
+      ],
       "@tidl/tests/*": [
         "../tests/*"
       ]
@@ -36,6 +45,7 @@
     "removeComments": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
+    "resolveJsonModule": true,
     "lib": [
       "es2017",
       "dom"

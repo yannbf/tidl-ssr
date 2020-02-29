@@ -1,13 +1,13 @@
 import React from 'react'
-import { render } from '@testing-library/react'
 
-import { Text } from './Text'
+import { Text } from './'
+import { renderWithTheme } from '@tidl/tests/decorators'
 
-describe.only('Text', () => {
+describe('Text', () => {
   test('Text is rendered', () => {
     const name = 'Braga'
 
-    const { getByText } = render(<Text>{name}</Text>)
+    const { getByText } = renderWithTheme(<Text>{name}</Text>)
 
     expect(getByText(name)).toBeInTheDocument()
   })

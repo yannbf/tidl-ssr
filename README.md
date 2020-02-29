@@ -14,8 +14,8 @@ Live demo: https://tidl.now.sh
 - Storybook
 - Cypress
 - Jest with react-testing-library
-- Redux with Redux-Saga
-- Api with Mongodb and Mongoose
+- Firebase and Firestore
+- Redux with React-redux-firebase
 
 ## Getting started
 

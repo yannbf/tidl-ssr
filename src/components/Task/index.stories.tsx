@@ -65,4 +65,7 @@ export const UpdatingState = () => {
 export default {
   title: 'Task',
   decorators: [withKnobs, withPadding],
+  parameters: {
+    notes: 'some documentation here!!!',
+  },
 }

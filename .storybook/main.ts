@@ -8,5 +8,6 @@ module.exports = {
     '@storybook/addon-a11y',
     'storybook-addon-styled-component-theme/dist/register',
     '@storybook/addon-storysource/register',
+    '@storybook/addon-notes',
   ],
 }

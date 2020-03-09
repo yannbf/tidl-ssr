@@ -1928,6 +1928,25 @@
     qs "^6.6.0"
     ts-dedent "^1.1.0"
 
+"@storybook/addon-notes@^5.3.14":
+  version "5.3.14"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-notes/-/addon-notes-5.3.14.tgz#590ca7618cea39d3ee15c1aaddaa2d24d5c0ab8e"
+  integrity sha512-0RMKwdPQILXV9VnbiWBwpqJZYx6m6F8CB1xZRPXump78lghs2dT1/3WYtas6INdZVzHnNR63U1TAoXaRHPjgrg==
+  dependencies:
+    "@storybook/addons" "5.3.14"
+    "@storybook/api" "5.3.14"
+    "@storybook/client-logger" "5.3.14"
+    "@storybook/components" "5.3.14"
+    "@storybook/core-events" "5.3.14"
+    "@storybook/router" "5.3.14"
+    "@storybook/theming" "5.3.14"
+    core-js "^3.0.1"
+    global "^4.3.2"
+    markdown-to-jsx "^6.10.3"
+    memoizerific "^1.11.3"
+    prop-types "^15.7.2"
+    util-deprecate "^1.0.2"
+
 "@storybook/addon-storysource@^5.3.14":
   version "5.3.14"
   resolved "https://registry.yarnpkg.com/@storybook/addon-storysource/-/addon-storysource-5.3.14.tgz#da820431638f36e961f74c6f4e4dea4b7d9ec9f9"
@@ -9030,7 +9049,7 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
-markdown-to-jsx@^6.9.1, markdown-to-jsx@^6.9.3:
+markdown-to-jsx@^6.10.3, markdown-to-jsx@^6.9.1, markdown-to-jsx@^6.9.3:
   version "6.11.0"
   resolved "https://registry.yarnpkg.com/markdown-to-jsx/-/markdown-to-jsx-6.11.0.tgz#a2e3f2bc781c3402d8bb0f8e0a12a186474623b0"
   integrity sha512-RH7LCJQ4RFmPqVeZEesKaO1biRzB/k4utoofmTCp3Eiw6D7qfvK8fzZq/2bjEJAtVkfPrM5SMt5APGf2rnaKMg==

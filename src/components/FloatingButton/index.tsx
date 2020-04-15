@@ -10,7 +10,7 @@ type Props = {
   onClick: () => void
 }
 
-export const FloatingButton = ({ icon, isShowing = true, onClick }: Props) => (
+export const FloatingButton: React.FC<Props> = ({ icon, isShowing = true, onClick }) => (
   <StyledFloatingButton data-testid="floating-button" isShowing={isShowing} onClick={onClick}>
     <Icon icon={icon} size="2x" fixedWidth />
   </StyledFloatingButton>

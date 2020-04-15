@@ -13,7 +13,7 @@ type Props = {
   onLongPress: () => void
 }
 
-export const TaskMobile: React.FC<Props> = ({ task, onLongPress, onClick }: Props) => {
+export const TaskMobile: React.FC<Props> = ({ task, onLongPress, onClick }) => {
   const [updating, setUpdating] = useState(false)
   const isLate = isDue(task.date, task.frequency)
 

@@ -71,6 +71,11 @@ const Home: NextPage = () => {
     [updateTask, createTask]
   )
 
+  const newTask = () => {
+    dispatch(openModal())
+    logModalView('NewTask')
+  }
+
   return (
     <PageTemplate>
       <TaskListContainer />
@@ -79,13 +84,7 @@ const Home: NextPage = () => {
         <TaskForm onSubmit={onSubmit} formData={formData} onDelete={removeData} />
       </Modal>
 
-      <FloatingButton
-        icon="plus"
-        onClick={() => {
-          dispatch(openModal())
-          logModalView('NewTask')
-        }}
-      />
+      <FloatingButton icon="plus" onClick={newTask} />
     </PageTemplate>
   )
 }

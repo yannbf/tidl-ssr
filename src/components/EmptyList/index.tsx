@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Lottie } from '@crello/react-lottie'
 import styled from 'styled-components'
 
@@ -21,7 +21,7 @@ const options = {
   },
 }
 
-export const EmptyList = () => (
+export const EmptyList: React.FC = memo(() => (
   <StyledEmptyList data-testid="empty-list">
     <Lottie config={options} height="160px" width="160px" />
     <Text element="p">Your task list is empty!</Text>
@@ -29,4 +29,4 @@ export const EmptyList = () => (
       Click on <Icon color="purple" size="sm" icon="plus" /> below to add a task.
     </Text>
   </StyledEmptyList>
-)
+))

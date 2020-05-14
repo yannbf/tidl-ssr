@@ -15,7 +15,9 @@
     "lint": "tslint 'src/**/*.{ts,tsx,js}'",
     "format": "prettier --write 'src/**/*.{ts,tsx,js}'",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "circular-deps": "npx madge --circular --extensions ts ./",
+    "dependency-graph": "npx madge --image graph.svg --extensions ts ./"
   },
   "dependencies": {
     "@crello/react-lottie": "^0.0.7",

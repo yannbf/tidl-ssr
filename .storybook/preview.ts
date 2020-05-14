@@ -18,6 +18,13 @@ addParameters({
   },
 })
 
+addParameters({
+  backgrounds: [
+    { name: 'light', value: '#eff0f524', default: true },
+    { name: 'dark', value: '#121212' },
+  ],
+})
+
 addDecorator(withInfo)
 addDecorator(withRedux)
 addDecorator(withThemesProvider([lightTheme, darkTheme]))

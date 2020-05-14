@@ -9,5 +9,6 @@ module.exports = {
     'storybook-addon-styled-component-theme/dist/register',
     '@storybook/addon-storysource/register',
     '@storybook/addon-notes',
+    '@storybook/addon-backgrounds',
   ],
 }

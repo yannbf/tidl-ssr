@@ -16,6 +16,13 @@ import { auth, linkAnonymousAccount } from '@tidl/state/firebase'
 import { logModalView } from '@tidl/analytics'
 import { useFirestore } from 'react-redux-firebase'
 import { redirectTo } from '@tidl/util'
+import styled from 'styled-components'
+
+const ClearButton = styled.button`
+  background-color: transparent;
+  border: none;
+  padding: 2rem;
+`
 
 const Home: NextPage = () => {
   const dispatch = useDispatch()
@@ -106,13 +113,13 @@ const Home: NextPage = () => {
   return (
     <PageTemplate>
       {/* <PageTemplate showSplash={!isLoaded(tasks)}> */}
-      <button onClick={handleLogout}>
+      <ClearButton onClick={handleLogout}>
         <Text>Logout</Text>
-      </button>
+      </ClearButton>
       {loggedInUser.isAnonymous === true && (
-        <button onClick={handleConnectAccount}>
+        <ClearButton onClick={handleConnectAccount}>
           <Text>Connect with google</Text>
-        </button>
+        </ClearButton>
       )}
       <TaskListContainer />
 

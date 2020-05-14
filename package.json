@@ -17,7 +17,8 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "circular-deps": "npx madge --circular --extensions ts ./",
-    "dependency-graph": "npx madge --image graph.svg --extensions ts ./"
+    "dependency-graph": "npx madge --image graph.svg --extensions ts ./",
+    "bundle-analyzer": "ANALYZE=true yarn build"
   },
   "dependencies": {
     "@crello/react-lottie": "^0.0.7",
@@ -25,6 +26,7 @@
     "@fortawesome/free-brands-svg-icons": "^5.12.0",
     "@fortawesome/free-solid-svg-icons": "^5.12.0",
     "@fortawesome/react-fontawesome": "^0.1.8",
+    "@next/bundle-analyzer": "^9.4.0",
     "@zeit/next-css": "^1.0.1",
     "dayjs": "^1.8.17",
     "dotenv": "^8.2.0",

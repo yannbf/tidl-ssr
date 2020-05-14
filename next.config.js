@@ -2,6 +2,9 @@ require('dotenv').config()
 const withCSS = require('@zeit/next-css')
 const withOffline = require('next-offline')
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+})
 
 const nextConfig = {
   target: 'serverless',
@@ -50,4 +53,4 @@ const nextConfig = {
   },
 }
 
-module.exports = withOffline(withCSS(nextConfig))
+module.exports = withBundleAnalyzer(withOffline(withCSS(nextConfig)))
